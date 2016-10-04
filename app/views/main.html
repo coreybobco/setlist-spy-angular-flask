@@ -1,0 +1,15 @@
+<div ng-controller="MainCtrl">
+<h1>Markov Mutator</h1>
+<h3>Mix together entire books and randomly generate text from their more interesting* sentences.</h3>
+<div class="outer_container">
+  <p>Add a book to the mutation chamber by pasting its Project Gutenberg URL below and hitting the button.</p>
+  <label>url:<input id="url"/></label><br>
+  <button id="add_document_button" ng-click="addBook()">Add Book</button>
+  <div id="url_error" class="error"></div>
+</div>
+
+<div id="mutation_chamber"></div>
+Mutation Chamber
+
+<button id="mutate_button" disabled>Mutate</button>
+</div>
