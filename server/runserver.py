@@ -8,7 +8,6 @@ app = Flask(__name__)
 @app.route("/addBook", methods=['POST'])
 def addBook():
     url = json.loads(request.get_data().decode(encoding='UTF-8'))
-    print(url)
     bookScraper = Scraper(url)
     book_info = bookScraper.serialize()
     return jsonify(book_info)
