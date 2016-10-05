@@ -88,3 +88,5 @@ table, th, td ***REMOVED*** border: 1px solid black; text-align: center; ***REMO
 #th_author ***REMOVED*** width: 250px; ***REMOVED***
 #th_title ***REMOVED*** width: 500px; ***REMOVED***
 .error ***REMOVED*** color: red; ***REMOVED***
+.mutagen_title ***REMOVED*** font-size: 16px; font-weight:bold; ***REMOVED***
+.mutagen_source ***REMOVED*** font-style: italic; ***REMOVED***

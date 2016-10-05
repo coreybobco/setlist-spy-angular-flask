@@ -2,6 +2,7 @@
   "name": "markovmutator",
   "private": true,
   "devDependencies": ***REMOVED***
+    "angular": "^1.5.8",
     "autoprefixer-core": "^5.2.1",
     "grunt": "^0.4.5",
     "grunt-angular-templates": "^0.5.7",
