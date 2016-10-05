@@ -75,12 +75,23 @@ module.exports = function (grunt) ***REMOVED***
         hostname: 'localhost',
         livereload: 35729
       ***REMOVED***,
+      proxies: [
+        ***REMOVED***
+          context: '/addBook',
+          host: '127.0.0.1',
+          port: 5000,
+          https: false,
+          changeOrigin: false,
+          xforward: false
+        ***REMOVED***
+      ],
       livereload: ***REMOVED***
         options: ***REMOVED***
           open: true,
           middleware: function (connect) ***REMOVED***
             return [
-              connect.static('.tmp'),
+              require('grunt-connect-proxy/lib/utils').proxyRequest,
+            connect.static('.tmp'),
               connect().use(
                 '/bower_components',
                 connect.static('./bower_components')
@@ -220,7 +231,7 @@ module.exports = function (grunt) ***REMOVED***
             ***REMOVED***
           ***REMOVED***
       ***REMOVED***
-    ***REMOVED***, 
+    ***REMOVED***,
 
     // Renames files for browser caching purposes
     filerev: ***REMOVED***
@@ -426,6 +437,7 @@ module.exports = function (grunt) ***REMOVED***
     ***REMOVED***
   ***REMOVED***);
 
+  grunt.loadNpmTasks('grunt-connect-proxy');
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) ***REMOVED***
     if (target === 'dist') ***REMOVED***
@@ -435,6 +447,7 @@ module.exports = function (grunt) ***REMOVED***
     grunt.task.run([
       'clean:server',
       'wiredep',
+      'configureProxies:server',
       'concurrent:server',
       'postcss:server',
       'connect:livereload',
@@ -480,4 +493,5 @@ module.exports = function (grunt) ***REMOVED***
     'test',
     'build'
   ]);
+
 ***REMOVED***;

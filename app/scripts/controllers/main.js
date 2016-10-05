@@ -8,12 +8,15 @@
  * Controller of the markovmutatorApp
  */
 angular.module('markovmutatorApp')
-  .controller('MainCtrl', function ($scope) ***REMOVED***
+  .controller('MainCtrl', function ($scope, $http) ***REMOVED***
     $scope.addBook = function() ***REMOVED***
       var url = JSON.stringify(document.querySelector("#url").value);
-      var req = new XMLHttpRequest();
-      req.addEventListener("load", console.log);
-      req.open("post", "./addBook", true);
-      req.send(url);
+      $http.post('/addBook', url)
+      .then(function successCallback(response) ***REMOVED***
+        // this callback will be called asynchronously
+        // when the response is available
+      ***REMOVED***, function errorCallback(response) ***REMOVED***
+        console.log("Error\n" + response)
+      ***REMOVED***);
   ***REMOVED***
   ***REMOVED***);
