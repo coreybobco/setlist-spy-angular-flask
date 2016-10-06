@@ -14,7 +14,7 @@ angular
     'ngMessages',
     'ngResource',
     'ngRoute',
-    'ngSanitize'
+    'ngSanitize',
   ])
   .config(function ($routeProvider) ***REMOVED***
     $routeProvider

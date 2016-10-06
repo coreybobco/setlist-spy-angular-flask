@@ -88,5 +88,21 @@ table, th, td ***REMOVED*** border: 1px solid black; text-align: center; ***REMO
 #th_author ***REMOVED*** width: 250px; ***REMOVED***
 #th_title ***REMOVED*** width: 500px; ***REMOVED***
 .error ***REMOVED*** color: red; ***REMOVED***
-.mutagen_title ***REMOVED*** font-size: 16px; font-weight:bold; ***REMOVED***
-.mutagen_source ***REMOVED*** font-style: italic; ***REMOVED***
+.fa-times ***REMOVED*** position:absolute; right: 5px; ***REMOVED***
+.gene_container ***REMOVED***
+  background-color: #eaeaea;
+  border-radius: 8px; border: 1px solid darkgray;
+  margin: 6px;
+  height: 65px;
+  width: 250px; ***REMOVED***
+.gene_info ***REMOVED*** position: absolute; top: 0px; left: 22px; ***REMOVED***
+.gene_title ***REMOVED***
+  font-size: 16px;
+  font-weight:bold;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 230px;
+***REMOVED***
+.gene_source ***REMOVED*** font-style: italic;   text-overflow: ellipsis; ***REMOVED***
+.col-sm-4 ***REMOVED*** padding-left: 5px; padding-right: 5px; ***REMOVED***

@@ -8,7 +8,9 @@
     "angular-messages": "^1.4.0",
     "angular-resource": "^1.4.0",
     "angular-route": "^1.4.0",
-    "angular-sanitize": "^1.4.0"
+    "angular-sanitize": "^1.4.0",
+    "components-font-awesome": "^4.6.3",
+    "angular-ellipsis": "^0.1.7"
   ***REMOVED***,
   "devDependencies": ***REMOVED***
     "angular-mocks": "^1.4.0"
@@ -21,6 +23,12 @@
         "less/bootstrap.less",
         "dist/css/bootstrap.css",
         "dist/js/bootstrap.js"
+      ]
+    ***REMOVED***,
+    "font-awesome": ***REMOVED***
+      "main": [
+        "less/font-awesome.less",
+        "css/font-awesome.css"
       ]
     ***REMOVED***
   ***REMOVED***
