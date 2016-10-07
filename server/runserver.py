@@ -5,8 +5,8 @@ from pprint import pprint
 
 app = Flask(__name__)
 
-@app.route("/addBook", methods=['POST'])
-def addBook():
+@app.route("/addGene", methods=['POST'])
+def addGene():
     url = json.loads(request.get_data().decode(encoding='UTF-8'))
     bookScraper = Scraper(url)
     book_info = bookScraper.serialize()

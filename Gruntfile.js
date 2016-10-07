@@ -77,7 +77,7 @@ module.exports = function (grunt) ***REMOVED***
       ***REMOVED***,
       proxies: [
         ***REMOVED***
-          context: '/addBook',
+          context: '/addGene',
           host: '127.0.0.1',
           port: 5000,
           https: false,

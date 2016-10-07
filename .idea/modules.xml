@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../markov-mutagen/.idea/markovmutagen.iml" filepath="$PROJECT_DIR$/../markov-mutagen/.idea/markovmutagen.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/markov-mutagen.iml" filepath="$PROJECT_DIR$/.idea/markov-mutagen.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/markovmutagen.iml" filepath="$PROJECT_DIR$/.idea/markovmutagen.iml" />
     </modules>
   </component>
 </project>

@@ -62,7 +62,7 @@ body ***REMOVED***
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) ***REMOVED***
   .container ***REMOVED***
-    max-width: 730px;
+    max-width: 900px;
   ***REMOVED***
 
   /* Remove the padding we set earlier */
@@ -74,7 +74,6 @@ body ***REMOVED***
   ***REMOVED***
   /* Space out the masthead */
   .header ***REMOVED***
-    margin-bottom: 30px;
   ***REMOVED***
   /* Remove the bottom border on the jumbotron for visual effect */
   .jumbotron ***REMOVED***
@@ -82,20 +81,26 @@ body ***REMOVED***
   ***REMOVED***
 ***REMOVED***
 
-#url ***REMOVED*** width: 250px ***REMOVED***
-table, th, td ***REMOVED*** border: 1px solid black; text-align: center; ***REMOVED***
-#th_source ***REMOVED*** width: 150px; ***REMOVED***
-#th_author ***REMOVED*** width: 250px; ***REMOVED***
-#th_title ***REMOVED*** width: 500px; ***REMOVED***
+h1,h3 ***REMOVED*** text-align: center; ***REMOVED***
+#url ***REMOVED*** width: 350px ***REMOVED***
 .error ***REMOVED*** color: red; ***REMOVED***
-.fa-times ***REMOVED*** position:absolute; right: 5px; ***REMOVED***
+.fa-times ***REMOVED*** position:absolute; right: 5px; padding-left: 5px; ***REMOVED***
+.add_gene_container ***REMOVED***
+  text-align: center;
+***REMOVED***
 .gene_container ***REMOVED***
   background-color: #eaeaea;
   border-radius: 8px; border: 1px solid darkgray;
   margin: 6px;
   height: 65px;
-  width: 250px; ***REMOVED***
-.gene_info ***REMOVED*** position: absolute; top: 0px; left: 22px; ***REMOVED***
+  width: 277px;
+***REMOVED***
+.gene_info ***REMOVED***
+  position: absolute;
+  top: 0px;
+  left: 22px;
+  text-align: center;
+***REMOVED***
 .gene_title ***REMOVED***
   font-size: 16px;
   font-weight:bold;
@@ -106,3 +111,8 @@ table, th, td ***REMOVED*** border: 1px solid black; text-align: center; ***REMO
 ***REMOVED***
 .gene_source ***REMOVED*** font-style: italic;   text-overflow: ellipsis; ***REMOVED***
 .col-sm-4 ***REMOVED*** padding-left: 5px; padding-right: 5px; ***REMOVED***
+#mutate_button ***REMOVED***
+  width: 100px;
+  margin: 10px auto 10px auto;
+  display: block;
+***REMOVED***

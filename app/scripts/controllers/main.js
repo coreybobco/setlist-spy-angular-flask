@@ -10,9 +10,9 @@
 angular.module('markovmutatorApp')
   .controller('MainCtrl', function ($scope, $http) ***REMOVED***
     $scope.genes = [];
-    $scope.addBook = function() ***REMOVED***
+    $scope.addGene = function() ***REMOVED***
       var url = JSON.stringify(document.querySelector("#url").value);
-      $http.post('/addBook', url)
+      $http.post('/addGene', url)
       .then(function successCallback(response) ***REMOVED***
         var gene = response.data;
         var duplicate_found = false;
