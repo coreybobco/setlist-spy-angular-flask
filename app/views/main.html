@@ -2,10 +2,12 @@
 <h1>Markov Mutagen</h1>
 <h3>Combine and mutate books into randomly generated bodies of text. </h3>
 <div class="add_gene_container">
-  <p>Add a book's genetic components by pasting its Project Gutenberg URL below.</p>
-  <label><input id="url"/></label>
-  <button id="add_gene_button" ng-click="addGene()">Add</button>
-  <div id="url_error" class="error"></div>
+  <form name="addGeneForm" ng-submit="addGeneForm.$valid && addGene()">
+    <p>Add a book's genetic components by pasting its Project Gutenberg URL below.</p>
+    <label><input id="url" name="url" ng-model="url" ng-pattern="/gutenberg.org\/(?:files|ebooks|epub|etext)\/(\d+)/"/></label>
+    <input id="add_gene_button" type="submit" value="Add">
+    <div class="error" ng-show="addGeneForm.url.$error.pattern">Not a valid Project Gutenberg URL</div>
+  </form>
 </div>
 
 <div id="mutation_chamber" class="container-fluid">
