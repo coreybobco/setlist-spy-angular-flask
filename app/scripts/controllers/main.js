@@ -14,6 +14,7 @@ angular.module('markovmutatorApp')
       var url = JSON.stringify(document.querySelector("#url").value);
       $http.post('/addGene', url)
       .then(function successCallback(response) ***REMOVED***
+        document.querySelector("#mutate_button").disabled = false;
         var gene = response.data;
         var duplicate_found = false;
         for(var i = 0; i < $scope.genes.length; i++) ***REMOVED***
@@ -28,5 +29,18 @@ angular.module('markovmutatorApp')
       ***REMOVED***, function errorCallback(response) ***REMOVED***
         console.log("Error\n" + response)
       ***REMOVED***);
-  ***REMOVED***
+    ***REMOVED***;
+    $scope.mutate = function() ***REMOVED***
+      var checked_genes = []
+      for(var i = 0; i < $scope.genes.length; i++) ***REMOVED***
+        if (document.querySelector("#checkbox_gene_" + i.toString()).checked) ***REMOVED***
+          checked_genes.push($scope.genes[i]);
+        ***REMOVED***
+      ***REMOVED***
+      $http.post('mutate', checked_genes);
+    ***REMOVED***;
+    $scope.deleteGene = function(gene)***REMOVED***
+      var index = $scope.genes.indexOf(gene);
+      $scope.genes.splice(index, 1);
+    ***REMOVED***
   ***REMOVED***);
