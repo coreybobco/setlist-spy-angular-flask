@@ -5,7 +5,7 @@ from gutenberg.acquire import load_etext
 from gutenberg.cleanup import strip_headers
 from gutenberg.query import get_metadata
 
-class Scraper:
+class metadataScraper:
     def __init__(self, url):
         self.url = url
         self.document_id = False
@@ -19,6 +19,7 @@ class Scraper:
         match = re.search("(?:files|ebooks|epub)\/(\d+)", url_parts.path)
         self.source = "Project Gutenberg"
         self.document_id = int(match.group(1))
+        print(self.document_id)
         author_set = get_metadata('author', self.document_id)
         self.author = list(author_set)[0] if len(author_set) else "Unknown"
         if ", " in self.author:
@@ -37,3 +38,12 @@ class Scraper:
             'author': self.author,
             'title': self.title
         ***REMOVED***
+
+class textScraper():
+    def __init__(self):
+        return
+
+    def getText(self, gene):
+        if gene['source'] == "Project Gutenberg":
+            gene['text'] = strip_headers(load_etext(gene['document_id']).strip())
+        return gene
