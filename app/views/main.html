@@ -5,7 +5,7 @@
   <form name="addGeneForm" ng-submit="addGeneForm.$valid && addGene()">
     <p>Add a book's genetic components by pasting its Project Gutenberg URL below.</p>
     <label><input id="url" name="url" ng-model="url" ng-pattern="/gutenberg.org\/(?:files|ebooks|epub|etext)\/(\d+)/"/></label>
-    <input id="add_gene_button" type="submit" value="Add">
+    <input id="add_gene_button" type="submit" value="Add">  <button type='button' ng-click="addGene('random')">Random</button>
     <div class="error" ng-show="addGeneForm.url.$error.pattern">Not a valid Project Gutenberg URL</div>
   </form>
 </div>

@@ -10,8 +10,8 @@
 angular.module('markovmutatorApp')
   .controller('MainCtrl', function ($scope, $http) ***REMOVED***
     $scope.genes = [];
-    $scope.addGene = function() ***REMOVED***
-      var url = JSON.stringify(document.querySelector("#url").value);
+    $scope.addGene = function(url) ***REMOVED***
+      var url = (url) ? JSON.stringify(url) : JSON.stringify(document.querySelector("#url").value);
       $http.post('/addGene', url)
       .then(function successCallback(response) ***REMOVED***
         document.querySelector("#mutate_button").disabled = false;
