@@ -4,22 +4,26 @@ from pprint import pprint
 from collections import OrderedDict
 
 class Processor:
-	def __init__(self):
+	def __init__(self, target_ratio):
 		self.config = json.load(open("config.json"))
+		self.target_ratio = target_ratio
+		self.sentences_tokenized = OrderedDict()
+		self.meaningful_sentences = list()
+		self.garbage_sentences = list()
+		self.filtered_text = ""
 		return
 
 	def tokenize_part_of_speech(self, text):
 		sentences = nltk.sent_tokenize(text)
-		sentences_tokenized = OrderedDict()
 		for sentence in sentences:
 			words = nltk.word_tokenize(sentence)
-			sentences_tokenized[sentence] = nltk.pos_tag(words)
-		return sentences_tokenized
+			self.sentences_tokenized[sentence] = nltk.pos_tag(words)
+		return
 
-	def filter_and_calculate(self, sentences_tokenized, target_ratio):
+	def filter_and_purge(self, text):
 		# Calculate ratio of filtered parts of speech
-		garbage_sentences = 0
-		for sentence, pos_tokens in sentences_tokenized.items():
+		self.tokenize_part_of_speech(text)
+		for sentence, pos_tokens in self.sentences_tokenized.items():
 			meaningful_word_count = 0
 			valid_word_count = 0
 			token_count = len(pos_tokens)
@@ -28,12 +32,14 @@ class Processor:
 					meaningful_word_count += 1
 				if not self.filter_token(token) == "neutral":
 					valid_word_count += 1
-			sentence_ratio = meaningful_word_count / valid_word_count
-			if sentence_ratio <= target_ratio:
-				garbage_sentences += 1
-				print(sentence)
-				print(str(meaningful_word_count) + " meaningful words / " + str(valid_word_count) + " valid words. " + str(token_count) + " tokens\n")
-		print(str(garbage_sentences) + " out of " + str(len(sentences_tokenized)) + " sentences.")
+			if valid_word_count > 0 and meaningful_word_count / valid_word_count > self.target_ratio:
+				self.meaningful_sentences.append(sentence)
+			else:
+				self.garbage_sentences.append(sentence)
+				# print(sentence)
+				# print(str(meaningful_word_count) + " meaningful words / " + str(valid_word_count) + " valid words. " + str(token_count) + " tokens\n")
+		self.filtered_text = " ".join(self.meaningful_sentences)
+		print(str(len(self.garbage_sentences)) + " out of " + str(len(self.sentences_tokenized)) + " sentences.")
 		return ""
 
 	def filter_token(self, token):

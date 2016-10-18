@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import json
 from scraper import metadataScraper, textScraper
 from processor import Processor
+from textgen import TextGen
 from pprint import pprint
 
 app = Flask(__name__)
@@ -17,11 +18,15 @@ def addGene():
 def mutate():
     genes = json.loads(request.get_data().decode(encoding='UTF-8'))
     scraper = textScraper()
-    nlp = Processor()
+    target_ratio = .6
+    nlp = Processor(target_ratio)
+    textgen = TextGen()
     for gene in genes:
         gene = scraper.getText(gene)
-        sentences_tokenized = nlp.tokenize_part_of_speech(gene['text'])
-        nlp.filter_and_calculate(sentences_tokenized, .5)
+        nlp.filter_and_purge(gene['text'])
+        textgen.addMarkov(nlp.filtered_text)
+    output = textgen.generateText()
+    print(output)
     return ""
 
 if __name__ == '__main__':
