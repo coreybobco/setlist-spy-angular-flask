@@ -41,7 +41,6 @@ angular.module('markovmutatorApp')
       options.purge_mode = $("#purge_mode").is(':checked');
       options.purge_ratio = $("#purge_ratio").val();
       options.block_length = $("input:checked[name=block_length]")[0].value;
-      options.pos_markov = $("#pos_markov").is(':checked');
       options = JSON.stringify(options);
       $http.post('mutate', options)
         .then(function successCallback(response) ***REMOVED***

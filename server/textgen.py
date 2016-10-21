@@ -36,14 +36,8 @@ class POSifiedText(markovify.Text):
         word = token[0]
         pos = token[1]
         config = json.load(open("config.json"))
-        # punct_tokens = config['punct_tokens']
-        # articles = config["articles"]
-        # linking_verbs = config["linking_verbs"]
-        # aux_verbs = config["aux_verbs"]
-        # neutral_pos_filter = config["neutral_pos_filter"]
-        # exclude_pos_filter = config["exclude_pos_filter"]
         meaningless_tokens = [ config["articles"], config["linking_verbs"],
-                               config["aux_verbs"], config["exclude_pos_filter"]]
+                               config["aux_verbs"], config["exclude_pos_filter"] ]
         if word in config["punct_tokens"] or pos in config["neutral_pos_filter"]:
             return "neutral"
         for tokens in meaningless_tokens:
@@ -60,7 +54,8 @@ class TextGen:
     def addMarkov(self, text, options):
         print("POSing")
         block_length = int(options['block_length'])
-        if options['pos_markov']:
+        if options['purge_mode']:
+            print("yo")
             self.markov_models.append(POSifiedText(text, state_size=block_length))
         else:
             self.markov_models.append(markovify.Text(text, state_size=block_length))
