@@ -14,6 +14,6 @@ class TextGen:
             textgen =  markovify.combine(self.markov_models)
         else:
             textgen = self.markov_models[0]
-        for i in range(100):
+        for i in range(500):
             print(textgen.make_sentence())
-            output += " " + textgen.make_sentence()
+            # output += " " + textgen.make_sentence()

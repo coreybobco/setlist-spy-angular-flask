@@ -19,9 +19,9 @@ def mutate():
     genes = json.loads(request.get_data().decode(encoding='UTF-8'))
     scraper = textScraper()
     target_ratio = .6
-    nlp = Processor(target_ratio)
     textgen = TextGen()
     for gene in genes:
+        nlp = Processor(target_ratio)
         gene = scraper.getText(gene)
         nlp.filter_and_purge(gene['text'])
         textgen.addMarkov(nlp.filtered_text)

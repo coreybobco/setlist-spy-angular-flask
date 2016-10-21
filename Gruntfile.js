@@ -24,7 +24,7 @@ module.exports = function (grunt) ***REMOVED***
     app: require('./bower.json').appPath || 'app',
     dist: 'dist'
   ***REMOVED***;
-
+  var serveStatic = require('serve-static');
   // Define the configuration for all the tasks
   grunt.initConfig(***REMOVED***
 
@@ -99,16 +99,16 @@ module.exports = function (grunt) ***REMOVED***
           middleware: function (connect) ***REMOVED***
             return [
               require('grunt-connect-proxy/lib/utils').proxyRequest,
-            connect.static('.tmp'),
+            serveStatic('.tmp'),
               connect().use(
                 '/bower_components',
-                connect.static('./bower_components')
+                serveStatic('./bower_components')
               ),
               connect().use(
                 '/app/styles',
-                connect.static('./app/styles')
+                serveStatic('./app/styles')
               ),
-              connect.static(appConfig.app)
+              serveStatic(appConfig.app)
             ];
           ***REMOVED***
         ***REMOVED***
@@ -118,13 +118,13 @@ module.exports = function (grunt) ***REMOVED***
           port: 9001,
           middleware: function (connect) ***REMOVED***
             return [
-              connect.static('.tmp'),
-              connect.static('test'),
+              serveStatic('.tmp'),
+              serveStatic('test'),
               connect().use(
                 '/bower_components',
-                connect.static('./bower_components')
+                serveStatic('./bower_components')
               ),
-              connect.static(appConfig.app)
+              serveStatic(appConfig.app)
             ];
           ***REMOVED***
         ***REMOVED***
@@ -193,7 +193,7 @@ module.exports = function (grunt) ***REMOVED***
     postcss: ***REMOVED***
       options: ***REMOVED***
         processors: [
-          require('autoprefixer-core')(***REMOVED***browsers: ['last 1 version']***REMOVED***)
+          require('autoprefixer')(***REMOVED***browsers: ['last 1 version']***REMOVED***)
         ]
       ***REMOVED***,
       server: ***REMOVED***
@@ -221,7 +221,10 @@ module.exports = function (grunt) ***REMOVED***
     wiredep: ***REMOVED***
       app: ***REMOVED***
         src: ['<%= yeoman.app %>/index.html'],
-        ignorePath:  /\.\.\//
+          dependencies: true,
+          devDependencies: true
+          // ...
+
       ***REMOVED***,
       test: ***REMOVED***
         devDependencies: true,
@@ -445,6 +448,7 @@ module.exports = function (grunt) ***REMOVED***
     ***REMOVED***
   ***REMOVED***);
 
+  grunt.loadNpmTasks('grunt-wiredep');
   grunt.loadNpmTasks('grunt-connect-proxy');
 
   grunt.registerTask('serve', 'Compile then start a connect web server', function (target) ***REMOVED***
