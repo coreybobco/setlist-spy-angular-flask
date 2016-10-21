@@ -19,12 +19,13 @@
 <div id="config_options">
   <h4 id="config_title">Options</h4>
   Structure:
-  <label><input type="radio" name="structure" value="3">Story</label>
-  <label><input type="radio" name="structure" value="4">Poems</label><br>
-  <label><input id="purge_mode" type="checkbox"/>Purge fluff sentences from books before text generation</label>
-  <label>Purge Ratio (higher means more deletion!):<input id="purge_ratio" type="number" min="0" max=".95" value=".6"/></label><br>
+  <label><input type="radio" name="structure" value="story" checked>Story</label>
+  <label><input type="radio" name="structure" value="poems">Poems</label><br>
+  <label><input id="purge_mode" type="checkbox" checked/>Purge fluff sentences from books before text generation</label>
+  <label><input id="pos_markov" type="checkbox" checked/>Calculate part of speech in Markov (slows down)</label><br>
+  <label>Purge Ratio (higher = more):<input id="purge_ratio" type="number" min="0" max=".95" value=".6"/></label><br>
   Block Length:<br>
-  <label>Calculate part of speech in Markov (slows down):<input id="pos_markov" type="checkbox"/></label><br>
+  <label><input type="radio" name="block_length" value="1">1</label>
   <label><input type="radio" name="block_length" value="2" checked>2</label>
   <label><input type="radio" name="block_length" value="3">3</label>
   <label><input type="radio" name="block_length" value="4">4</label><br>
