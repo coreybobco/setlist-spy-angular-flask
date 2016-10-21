@@ -31,13 +31,19 @@ angular.module('markovmutatorApp')
       ***REMOVED***);
     ***REMOVED***;
     $scope.mutate = function() ***REMOVED***
-      var checked_genes = []
+      var options = ***REMOVED******REMOVED***;
+      options.genes = [];
       for(var i = 0; i < $scope.genes.length; i++) ***REMOVED***
         if (document.querySelector("#checkbox_gene_" + i.toString()).checked) ***REMOVED***
-          checked_genes.push($scope.genes[i]);
+          options.genes.push($scope.genes[i]);
         ***REMOVED***
       ***REMOVED***
-      $http.post('mutate', checked_genes)
+      options.purge_mode = $("#purge_mode").is(':checked');
+      options.purge_ratio = $("#purge_ratio").val();
+      options.block_length = $("input:checked[name=block_length]")[0].value;
+      options.pos_markov = $("#pos_markov").is(':checked');
+      options = JSON.stringify(options);
+      $http.post('mutate', options)
         .then(function successCallback(response) ***REMOVED***
           var booklet = $("#mutant_book").booklet(***REMOVED***width: '900px', height: '520px', pageTotal: 15***REMOVED***);
           var output = response.data;

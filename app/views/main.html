@@ -1,4 +1,4 @@
-<div ng-controller="MainCtrl">
+<ng-controller="MainCtrl">
 <h1>Markov Mutagen</h1>
 <h3>Combine and mutate books into randomly generated bodies of text. </h3>
 <div class="add_gene_container">
@@ -14,8 +14,22 @@
   <div class="row">
     <ng-include src="'views/chamber.html'"></ng-include>
   </div>
-  <button id="mutate_button" disabled ng-click="mutate()">Mutate</button>
 </div>
+
+<div id="config_options">
+  <h4 id="config_title">Options</h4>
+  Structure:
+  <label><input type="radio" name="structure" value="3">Story</label>
+  <label><input type="radio" name="structure" value="4">Poems</label><br>
+  <label><input id="purge_mode" type="checkbox"/>Purge fluff sentences from books before text generation</label>
+  <label>Purge Ratio (higher means more deletion!):<input id="purge_ratio" type="number" min="0" max=".95" value=".6"/></label><br>
+  Block Length:<br>
+  <label>Calculate part of speech in Markov (slows down):<input id="pos_markov" type="checkbox"/></label><br>
+  <label><input type="radio" name="block_length" value="2" checked>2</label>
+  <label><input type="radio" name="block_length" value="3">3</label>
+  <label><input type="radio" name="block_length" value="4">4</label><br>
+</div>
+<button id="mutate_button" disabled ng-click="mutate()">Mutate</button>
 
 <div id="mutant_book">
   <div ng-attr-id="page***REMOVED******REMOVED***$index***REMOVED******REMOVED***" ng-repeat="n in [] | range:15">

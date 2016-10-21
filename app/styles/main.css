@@ -109,8 +109,20 @@ h1,h3 ***REMOVED*** text-align: center; ***REMOVED***
   white-space: nowrap;
   width: 230px;
 ***REMOVED***
-.gene_source ***REMOVED*** font-style: italic;   text-overflow: ellipsis; ***REMOVED***
+.gene_source ***REMOVED*** font-style: italic; text-overflow: ellipsis; ***REMOVED***
 .col-sm-4 ***REMOVED*** padding-left: 5px; padding-right: 5px; ***REMOVED***
+
+#config_options ***REMOVED***
+  border: 1px solid grey;
+  border-radius: 8px;
+  width: 400px;
+  margin-left: 240px;
+  background-color: #ececec;
+***REMOVED***
+#config_title ***REMOVED***
+  text-align: center;
+***REMOVED***
+
 #mutate_button ***REMOVED***
   width: 100px;
   margin: 10px auto 10px auto;
@@ -121,4 +133,7 @@ h1,h3 ***REMOVED*** text-align: center; ***REMOVED***
 ***REMOVED***
 .b-page, .b-wrap ***REMOVED***
   width: 400px; !important
+***REMOVED***
+label ***REMOVED***
+  font-weight: normal;
 ***REMOVED***

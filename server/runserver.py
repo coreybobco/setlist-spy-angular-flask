@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify
 import json
 from scraper import metadataScraper, textScraper
-from processor import Processor
 from textgen import TextGen
 from pprint import pprint
 
@@ -16,16 +15,14 @@ def addGene():
 
 @app.route("/mutate", methods=['POST'])
 def mutate():
-    genes = json.loads(request.get_data().decode(encoding='UTF-8'))
+    options = json.loads(request.get_data().decode(encoding='UTF-8'))
+    pprint(options)
+    genes = options['genes']
     scraper = textScraper()
-    target_ratio = .6
     textgen = TextGen()
     for gene in genes:
-        nlp = Processor(target_ratio)
         gene = scraper.getText(gene)
-        # nlp.filter_and_purge(gene['text'])
-        textgen.addMarkov(gene['text'])
-        # textgen.addMarkov(nlp.filtered_text)
+        textgen.addMarkov(gene['text'], options)
     output = textgen.generateText()
     return output
 
