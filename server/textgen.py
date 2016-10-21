@@ -11,9 +11,11 @@ class TextGen:
     def generateText(self):
         output = ""
         if len(self.markov_models) > 1:
-            textgen =  markovify.combine(self.markov_models)
+            textgen = markovify.combine(self.markov_models)
         else:
             textgen = self.markov_models[0]
         for i in range(500):
-            print(textgen.make_sentence())
-            # output += " " + textgen.make_sentence()
+            sentence = textgen.make_sentence()
+            if isinstance(sentence, str):
+                output += " " + sentence
+        return output

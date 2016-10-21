@@ -23,11 +23,11 @@ def mutate():
     for gene in genes:
         nlp = Processor(target_ratio)
         gene = scraper.getText(gene)
-        nlp.filter_and_purge(gene['text'])
-        textgen.addMarkov(nlp.filtered_text)
+        # nlp.filter_and_purge(gene['text'])
+        textgen.addMarkov(gene['text'])
+        # textgen.addMarkov(nlp.filtered_text)
     output = textgen.generateText()
-    print(output)
-    return ""
+    return output
 
 if __name__ == '__main__':
     app.run(

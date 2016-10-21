@@ -37,7 +37,19 @@ angular.module('markovmutatorApp')
           checked_genes.push($scope.genes[i]);
         ***REMOVED***
       ***REMOVED***
-      $http.post('mutate', checked_genes);
+      $http.post('mutate', checked_genes)
+        .then(function successCallback(response) ***REMOVED***
+          var booklet = $("#mutant_book").booklet(***REMOVED***width: '900px', height: '520px', pageTotal: 15***REMOVED***);
+          var output = response.data;
+          var page_texts = output.match(/.***REMOVED***1,1400***REMOVED***/g);
+          $("#page1").find('p').text(page_texts[1]);
+          for (i=0; i < page_texts.length; i++) ***REMOVED***
+            $("#page" + i.toString()).find('p').text(page_texts[i]);
+          ***REMOVED***
+        ***REMOVED***,
+          function errorCallback(response) ***REMOVED***
+        console.log("Error\n" + response)
+      ***REMOVED***);
     ***REMOVED***;
     $scope.deleteGene = function(gene)***REMOVED***
       var index = $scope.genes.indexOf(gene);
