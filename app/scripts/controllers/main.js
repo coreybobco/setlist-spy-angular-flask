@@ -41,7 +41,7 @@ angular.module('markovmutatorApp')
         .then(function successCallback(response) ***REMOVED***
           var booklet = $("#mutant_book").booklet(***REMOVED***width: '900px', height: '520px', pageTotal: 15***REMOVED***);
           var output = response.data;
-          var page_texts = output.match(/.***REMOVED***1,1400***REMOVED***/g);
+          var page_texts = output.match(/.***REMOVED***1,1400***REMOVED***[\s$]/g);
           $("#page1").find('p').text(page_texts[1]);
           for (i=0; i < page_texts.length; i++) ***REMOVED***
             $("#page" + i.toString()).find('p').text(page_texts[i]);
