@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify
 import json
-from scraper import Gene, getText
+from gene import Gene, getText
 from textgen import TextGen
 from pprint import pprint
 

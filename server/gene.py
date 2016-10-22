@@ -1,5 +1,4 @@
 import re
-import validators
 from urllib.parse import urlparse, urlsplit
 from gutenberg.acquire import load_etext
 from gutenberg.cleanup import strip_headers
