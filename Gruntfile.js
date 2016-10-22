@@ -30,6 +30,7 @@ module.exports = function (grunt) ***REMOVED***
 
     // Project settings
     yeoman: appConfig,
+    ec2: 'ec2.json'
 
     // Watches files for changes and runs tasks based on the changed files
     watch: ***REMOVED***
@@ -84,7 +85,7 @@ module.exports = function (grunt) ***REMOVED***
     // The actual grunt server settings
     connect: ***REMOVED***
       options: ***REMOVED***
-        port: 80,
+        port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: '0.0.0.0',
         livereload: 35729
