@@ -18,7 +18,7 @@ class Gene:
         if self.url == "random":
             self.document_id = random.randint(1, 53273) #Pick book at random (max id is currently 53273)
         else:
-            #Gwt Project Gutenberg document ID from url string
+            #Get Project Gutenberg document ID from url string
             url_parts = urlsplit(self.url)
             match = re.search("(?:files|ebooks|epub)\/(\d+)", url_parts.path)
             self.document_id = int(match.group(1))

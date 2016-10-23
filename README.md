@@ -8,8 +8,7 @@ version 0.15.1.
 
 # Dependencies
 * Python 3.x
-* Flask
-* Markovify
+* Flask, markovify, rdflib
 * Gutenberg API (requires the latest version, which must be obtained through Github rather than PyPi)
     - For Ubuntu-based systems, first "sudo apt-get install python3-bsddb3" for Berkeley database dependency
     - Clone or download repo: git clone https://github.com/c-w/Gutenberg.git and cd into directory
