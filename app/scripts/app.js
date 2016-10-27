@@ -15,6 +15,7 @@ var myApp = angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
+    'thatisuday.ng-image-gallery'
   ])
   .config(function ($routeProvider) ***REMOVED***
     $routeProvider
@@ -28,10 +29,22 @@ var myApp = angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       ***REMOVED***)
+      .when('/images', ***REMOVED***
+        templateUrl: 'views/images.html',
+        controller: 'ImageCtrl',
+        controllerAs: 'image',
+        activetab: 'images'
+      ***REMOVED***)
       .otherwise(***REMOVED***
         redirectTo: '/'
       ***REMOVED***);
+  ***REMOVED***).controller('HeaderCtrl', function HeaderController($scope, $location)
+  ***REMOVED***
+    $scope.isActive = function (viewLocation) ***REMOVED***
+      return viewLocation === $location.path();
+    ***REMOVED***;
   ***REMOVED***);
+
 myApp.filter('range', function() ***REMOVED***
   return function(input, total) ***REMOVED***
     total = parseInt(total);

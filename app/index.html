@@ -10,10 +10,12 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="../bower_components/components-font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="../bower_components/ng-image-gallery/dist/ng-image-gallery.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/animations.css">
     <!-- endbuild -->
   </head>
   <body ng-app="markovmutatorApp">
@@ -35,11 +37,13 @@
             </button>
           </div>
 
-          <div class="collapse navbar-collapse" id="js-navbar-collapse">
+          <div class="collapse navbar-collapse" id="js-navbar-collapse"  ng-controller="HeaderCtrl">
 
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/about">About</a></li>
+              <li><a ng-href="#/about">Bio</a></li>
+              <li ng-class="***REMOVED*** active: isActive('/')***REMOVED***"><a href="#/">Markov Mutagen</a></li>
+              <li ng-class="***REMOVED*** active: isActive('/images')***REMOVED***"><a ng-href="#/images">Images</a></li>
+              <li><a ng-href="#/writings">Writings</a></li>
               <li><a ng-href="#/">Contact</a></li>
             </ul>
           </div>
@@ -81,20 +85,23 @@
     <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="../bower_components/angular-ellipsis/src/angular-ellipsis.js"></script>
     <script src="../bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="../bower_components/hammerjs/hammer.js"></script>
+    <script src="../bower_components/ng-image-gallery/dist/ng-image-gallery.js"></script>
     <script src="../bower_components/angular-mocks/angular-mocks.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- injector:css -->
-    <link rel="stylesheet" href="scripts/jbooklet/jquery.jbooklet.css">
+    <link rel="stylesheet" href="/scripts/jbooklet/jquery.jbooklet.css">
     <!-- endinjector -->
     <!-- injector:js -->
-    <script src="scripts/jbooklet/jquery.jbooklet.js"></script>
+    <script src="/scripts/jbooklet/jquery.jbooklet.js"></script>
     <!-- endinjector -->
 
         <!-- build:js(***REMOVED***.tmp,app***REMOVED***) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/images.js"></script>
         <!-- endbuild -->
 </body>
 </html>

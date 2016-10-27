@@ -11,8 +11,8 @@
     "angular-sanitize": "^1.4.0",
     "components-font-awesome": "^4.6.3",
     "angular-ellipsis": "^0.1.7",
-    "modernizr": "^3.3.1",
-    "jquery-ui": "^1.12.1"
+    "jquery-ui": "^1.12.1",
+    "ng-image-gallery": "^2.0.8"
   ***REMOVED***,
   "devDependencies": ***REMOVED***
     "angular-mocks": "^1.4.0"

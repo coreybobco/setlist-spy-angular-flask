@@ -17,11 +17,6 @@ body ***REMOVED***
   padding-right: 15px;
 ***REMOVED***
 
-/* Custom page header */
-.header ***REMOVED***
-  border-bottom: 1px solid #e5e5e5;
-  margin-bottom: 10px;
-***REMOVED***
 /* Make the masthead heading the same height as the navigation */
 .header h3 ***REMOVED***
   margin-top: 0;
@@ -30,6 +25,9 @@ body ***REMOVED***
   padding-bottom: 19px;
 ***REMOVED***
 
+.navbar ***REMOVED***
+  margin-bottom: 0px !important;
+***REMOVED***
 /* Custom page footer */
 .footer ***REMOVED***
   padding-top: 19px;
@@ -136,4 +134,14 @@ h1,h3 ***REMOVED*** text-align: center; ***REMOVED***
 ***REMOVED***
 label ***REMOVED***
   font-weight: normal;
+***REMOVED***
+.fa-arrow-left,.fa-arrow-right ***REMOVED***
+  font-size:30px;
+***REMOVED***
+.ng-image-gallery.inline, .ng-image-gallery-modal ***REMOVED***
+  height: 550px !important;
+***REMOVED***
+.statement p ***REMOVED***
+  margin: 5px 60px 15px 60px;
+  font-size: 15px;
 ***REMOVED***

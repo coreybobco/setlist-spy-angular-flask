@@ -1,0 +1,27 @@
+<h3>If Who Painted What</h3>
+
+<div class="statement">
+  <p>Recent developments in the realm of machine learning call into question
+    our assumptions about the artistic talent and merit of artificial intelligence and
+    that an artist's singular style is attached to their mind, body, and life.</p>
+
+   <p>This series, produced using
+     <a href="https://github.com/jcjohnson/neural-style">Justin Johnson's "neural style" algorithm</a>,
+    explores how paintings and photographs might look if re-rendered by famous visual artists
+    brought back from the dead or if printed on "unprintable" materials such as quartz and fire.</p>
+  </p>
+</div>
+
+<ng-image-gallery
+  images="images"
+  titles="titles"
+  methods="methods"
+  conf="conf"
+  inline="true"
+  bubbles="bubbles"
+  img-bubbles="imgBubbles"
+  bg-close="bgClose"
+  on-open="opened();"
+  on-close="closed();"
+  bg-close="false">
+</ng-image-gallery>
