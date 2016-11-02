@@ -8,7 +8,7 @@
  * Controller of the markovmutatorApp
  */
 angular.module('markovmutatorApp')
-  .controller('MainCtrl', function ($scope, $http) ***REMOVED***
+  .controller('MutagenCtrl', function ($scope, $http) ***REMOVED***
     $scope.genes = [];
     $scope.addGene = function(url) ***REMOVED***
       var url = (url) ? JSON.stringify(url) : JSON.stringify(document.querySelector("#url").value);

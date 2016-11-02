@@ -17,17 +17,19 @@
 </div>
 
 <div id="config_options">
-  <h4 id="config_title">Options</h4>
-  Structure:
-  <label><input type="radio" name="structure" value="story" checked>Story</label>
-  <label><input type="radio" name="structure" value="poems">Poems</label><br>
-  <label><input id="purge_mode" type="checkbox"/>Purge fluff sentences before text generation (slower)</label>
-  <label>Purge Ratio (higher = more):<input id="purge_ratio" type="number" min="0" max=".95" value=".6"/></label><br>
-  Block Length:<br>
+  <h4 id="config_title">Options</h4>Hover over each option for more info.
+  <!--Structure:-->
+  <!--<label><input type="radio" name="structure" value="story" checked>Story</label>-->
+  <!--<label><input type="radio" name="structure" value="poems">Poems</label><br>-->
+  <label data-toggle="tooltip" title="Filter out sentences predominantly composed of conjunctions, prepositions, pronouns, and other less semantically relevant parts of speech in order to create longer and more meaningful sentences."><input id="purge_mode" type="checkbox"/>
+    Filter out less semantically relevant sentences (slower)</label>
+  <label data-toggle="tooltip" title="a number between 0 and .95 that indicates how permissive or strict the sentence filter should be">Filter ratio:<input id="purge_ratio" type="number" min="0" max=".95" value=".6"/></label><br>
+
+  <span data-toggle="tooltip" title="N-grams control how big the clumps of words a text generator uses to recombine a text are: 1 means 1 word, 2 means 2 words together, and so forth.">N-gram Length:
   <label><input type="radio" name="block_length" value="1">1</label>
   <label><input type="radio" name="block_length" value="2" checked>2</label>
   <label><input type="radio" name="block_length" value="3">3</label>
-  <label><input type="radio" name="block_length" value="4">4</label><br>
+  <label><input type="radio" name="block_length" value="4">4</label></span><br>
 </div>
 <button id="mutate_button" disabled ng-click="mutate()">Mutate</button>
 

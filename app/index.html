@@ -20,7 +20,7 @@
   </head>
   <body ng-app="markovmutatorApp">
     <!--[if lte IE 8]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
@@ -39,12 +39,12 @@
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse"  ng-controller="HeaderCtrl">
 
-            <ul class="nav navbar-nav">
-              <li><a ng-href="#/about">Bio</a></li>
-              <li ng-class="***REMOVED*** active: isActive('/')***REMOVED***"><a href="#/">Markov Mutagen</a></li>
-              <li ng-class="***REMOVED*** active: isActive('/images')***REMOVED***"><a ng-href="#/images">Images</a></li>
-              <li><a ng-href="#/writings">Writings</a></li>
-              <li><a ng-href="#/">Contact</a></li>
+            <ul class="nav navbar-nav" >
+              <li ng-class="***REMOVED*** active: isActive('/')***REMOVED***"><a ng-href="#/about">Bio</a></li>
+              <li ng-class="***REMOVED*** active: isActive('/mutagen')***REMOVED***"><a href="#/mutagen">Markov Mutagen</a></li>
+              <!--<li ng-class="***REMOVED*** active: isActive('/collagenerator')***REMOVED***"><a ng-href="#/collagenerator">Collagenerator</a></li>-->
+              <li ng-class="***REMOVED*** active: isActive('/art')***REMOVED***"><a ng-href="#/art">Machine Learning Art</a></li>
+              <!--<li ng-class="***REMOVED*** active: isActive('/writings')***REMOVED***"><a ng-href="#/writings">Writings</a></li>-->
             </ul>
           </div>
         </div>
@@ -57,7 +57,6 @@
 
     <div class="footer">
       <div class="container">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
       </div>
     </div>
 
@@ -99,9 +98,9 @@
 
         <!-- build:js(***REMOVED***.tmp,app***REMOVED***) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/mutagen.js"></script>
         <script src="scripts/controllers/about.js"></script>
-        <script src="scripts/controllers/images.js"></script>
+        <script src="scripts/controllers/art.js"></script>
         <!-- endbuild -->
 </body>
 </html>

@@ -20,20 +20,32 @@ var myApp = angular
   .config(function ($routeProvider) ***REMOVED***
     $routeProvider
       .when('/', ***REMOVED***
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
-      ***REMOVED***)
-      .when('/about', ***REMOVED***
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
-        controllerAs: 'about'
+        controllerAs: 'about',
+        activetab: 'about'
       ***REMOVED***)
-      .when('/images', ***REMOVED***
-        templateUrl: 'views/images.html',
+      .when('/mutagen', ***REMOVED***
+        templateUrl: 'views/mutagen.html',
+        controller: 'MutagenCtrl',
+        controllerAs: 'mutagen'
+      ***REMOVED***)
+      .when('/collagenerator', ***REMOVED***
+        templateUrl: 'views/collagenerator.html',
+        controller: 'CollageneratorCtrl',
+        controllerAs: 'collagenerator'
+      ***REMOVED***)
+      .when('/art', ***REMOVED***
+        templateUrl: 'views/art.html',
         controller: 'ImageCtrl',
-        controllerAs: 'image',
-        activetab: 'images'
+        controllerAs: 'art',
+        activetab: 'art'
+      ***REMOVED***)
+      .when('/writings', ***REMOVED***
+        templateUrl: 'views/writings.html',
+        controller: 'WritingCtrl',
+        controllerAs: 'writimgs',
+        activetab: 'writings'
       ***REMOVED***)
       .otherwise(***REMOVED***
         redirectTo: '/'

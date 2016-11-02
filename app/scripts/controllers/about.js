@@ -8,10 +8,12 @@
  * Controller of the markovmutatorApp
  */
 angular.module('markovmutatorApp')
-  .controller('AboutCtrl', function () ***REMOVED***
+  .controller('AboutCtrl', function ($scope) ***REMOVED***
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
+    $scope.fileUrl = "coreybobco_resume.docx";
+    $scope.image = "images/coreybobco.jpg";
   ***REMOVED***);

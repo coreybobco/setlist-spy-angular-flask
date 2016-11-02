@@ -9,8 +9,6 @@
  */
 angular.module('markovmutatorApp')
   .controller('ImageCtrl', function ($scope) ***REMOVED***
-    // $scope.items = ['settings', 'home', 'options', 'other'];
-    // $scope.selection = $scope.items[0];
     $scope.images = [
       ***REMOVED***
         title : 'If Klimt Painted Van Gogh',
@@ -53,12 +51,12 @@ angular.module('markovmutatorApp')
         url : 'images/playing_with_fire.jpg'
       ***REMOVED***,
       ***REMOVED***
-        title : 'IF Balla Painted My Nightmare',
-        alt : 'If Balla Painted My Nightmare',
+        title : 'If Giocama Balla Painted My Nightmare',
+        alt : 'If Giocama Balla Painted My Nightmare',
         url : 'images/balla_nightmare.jpg'
       ***REMOVED***,
       ***REMOVED***
-        title : 'IF Kurt Schwitters Painted A Friend',
+        title : 'If Kurt Schwitters Painted A Friend',
         alt : 'If Kurt Schwitters Painted A Friend',
         url : 'images/schwitters.jpg'
       ***REMOVED***

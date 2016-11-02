@@ -1,0 +1,95 @@
+<ng-controller="CollageneratorCtrl">
+<h1>Text Collagenerator</h1>
+<h3>Combine and mutate books into randomly generated bodies of text. </h3>
+<div id="body_container">
+  <div id="input_container">
+    <ul id="input_tab_list" class="nav nav-tabs nav-justified" style="width:550px">
+      <li class="active"><a data-toggle="tab" href="#inputtab1">Input 1</a></li>
+      <li><a data-toggle="tab" href="#inputtab2">Input 2</a></li>
+      <li><a data-toggle="tab" href="#inputtab3">Input 3</a></li>
+      <li><a data-toggle="tab" href="#inputtab4">Input 4</a></li>
+      <li><a data-toggle="tab" href="#inputtab5">Input 5</a></li>
+      <li><a data-toggle="tab" href="#inputtab6">Input 6</a></li>
+    </ul>
+    <div class="tab-content">
+      <div id="inputtab1" class="tab-pane fade in active">
+        <textarea cols=78 rows=32 id=input placeholder="Paste, write, or refine input here."></textarea>
+      </div>
+      <div id="inputtab2" class="tab-pane fade in">
+        <textarea cols=78 rows=32 id=input placeholder="Paste, write, or refine input here"></textarea>
+      </div>
+      <div id="inputtab3" class="tab-pane fade in">
+        <textarea cols=78 rows=32 id=input placeholder="Paste, write, or refine input here"></textarea>
+      </div>
+      <div id="inputtab4" class="tab-pane fade in">
+        <textarea cols=78 rows=32 id=input placeholder="Paste, write, or refine input here"></textarea>
+      </div>
+      <div id="inputtab5" class="tab-pane fade in">
+        <textarea cols=78 rows=32 id=input placeholder="Paste, write, or refine input here"></textarea>
+      </div>
+      <div id="inputtab6" class="tab-pane fade in">
+        <textarea cols=78 rows=32 id=input placeholder="Paste, write, or refine input here"></textarea>
+      </div>
+    </div>
+  </div>
+  <div id="divider" class="divider">
+      <span id="include_input_container">Use Which Inputs?<br>
+        <label for="include_input_1"><input type ="checkbox" id="include_input_1" name="include_inputs" value=1 checked/>Tab 1</label>
+        <label for="include_input_2"><input type ="checkbox" id="include_input_2" name="include_inputs" value=2>Tab 2</label><br>
+        <label for="include_input_3"><input type ="checkbox" id="include_input_3" name="include_inputs" value=3>Tab 3</label>
+        <label for="include_input_4"><input type ="checkbox" id="include_input_4" name="include_inputs" value=4>Tab 4</label><br>
+        <label for="include_input_5"><input type ="checkbox" id="include_input_5" name="include_inputs" value=5>Tab 5</label>
+        <label for="include_input_6"><input type ="checkbox" id="include_input_6" name="include_inputs" value=6>Tab 6</label><br>
+      </span>
+    <label for='wordcount'>How Many Words?</label><br>
+    <input id='wordcount' type='number' value='400'/><br>
+    <button>Generate Text</button><br>
+    <div id = "mode_selector">
+      <input type ="radio" id="prose" name="mode_selector" checked><label for="prose">as Prose</label><br>
+      <input class="hidden" type ="radio" id="poem" name="mode_selector"><label for="poem" class="hidden">as Poem</label>
+      <input type ="radio" id= "aphorisms" name="mode_selector"><label for="aphorisms">as Aphorisms</label><br>
+      <input type ="radio" id ="play" name="mode_selector"><label for="play">Play/Interview</label><br>
+      <input type ="radio" id ="chat" name="mode_selector"><label for="chat">as Chatlog</label><br>
+      <input type ="radio" id ="cutup" name="mode_selector">via Cut-up</label><br>
+      <div id="cutup_block_size_container" style="font-weight:normal" class="hidden">
+        Block Size Between<br>
+        <input class="cutup_block_size" type="number" value='2'/>
+        and
+        <input class='cutup_block_size' type='number' value='5'/>
+        Words
+      </div>
+    </div>
+  </div>
+  <div id="output_container">
+    <ul id="output_tab_list" class="nav nav-tabs nav-justified" style="width:550px">
+      <li class="active"><a data-toggle="tab" href="#outputtab1">Output 1</a></li>
+      <li><a data-toggle="tab" href="#outputtab2">Output 2</a></li>
+      <li><a data-toggle="tab" href="#outputtab3">Output 3</a></li>
+      <li><a data-toggle="tab" href="#outputtab4">Output 4</a></li>
+      <li><a data-toggle="tab" href="#outputtab5">Output 5</a></li>
+      <li><a data-toggle="tab" href="#outputtab6">Output 6</a></li>
+    </ul>
+    <div class="tab-content">
+      <div id="outputtab1" class="tab-pane fade in active">
+        <textarea cols=78 rows=32 id=input placeholder="Generated text will appear in this output text field which corresponds to the currently selected output tab. Try switching tabs if you wantt to save and combine generated texts from multiple outputs."></textarea>
+      </div>
+      <div id="outputtab2" class="tab-pane fade in">
+        <textarea cols=78 rows=32 id=input placeholder="Generated text will appear in this output text field which corresponds to the currently selected output tab. Try switching tabs if you wantt to save and combine generated texts from multiple outputs."></textarea>
+      </div>
+      <div id="outputtab3" class="tab-pane fade in">
+        <textarea cols=78 rows=32 id=input placeholder="Generated text will appear in this output text field which corresponds to the currently selected output tab. Try switching tabs if you wantt to save and combine generated texts from multiple outputs."></textarea>
+      </div>
+      <div id="outputtab4" class="tab-pane fade in">
+        <textarea cols=78 rows=32 id=input placeholder="Generated text will appear in this output text field which corresponds to the currently selected output tab. Try switching tabs if you wantt to save and combine generated texts from multiple outputs."></textarea>
+      </div>
+      <div id="outputtab5" class="tab-pane fade in">
+        <textarea cols=78 rows=32 id=input placeholder="Generated text will appear in this output text field which corresponds to the currently selected output tab. Try switching tabs if you wantt to save and combine generated texts from multiple outputs."></textarea>
+      </div>
+      <div id="outputtab6" class="tab-pane fade in">
+        <textarea cols=78 rows=32 id=input placeholder="Generated text will appear in this output text field which corresponds to the currently selected output tab. Try switching tabs if you wantt to save and combine generated texts from multiple outputs."></textarea>
+      </div>
+    </div>''
+  </div>
+</div>
+</div>
+</ng-controller>
