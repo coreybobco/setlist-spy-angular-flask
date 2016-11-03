@@ -31,6 +31,7 @@ angular.module('markovmutatorApp')
       ***REMOVED***);
     ***REMOVED***;
     $scope.mutate = function() ***REMOVED***
+      var mutate_button = $("#mutate_button");
       var options = ***REMOVED******REMOVED***;
       options.genes = [];
       for(var i = 0; i < $scope.genes.length; i++) ***REMOVED***
@@ -38,23 +39,31 @@ angular.module('markovmutatorApp')
           options.genes.push($scope.genes[i]);
         ***REMOVED***
       ***REMOVED***
-      options.purge_mode = $("#purge_mode").is(':checked');
-      options.purge_ratio = $("#purge_ratio").val();
-      options.block_length = $("input:checked[name=block_length]")[0].value;
-      options = JSON.stringify(options);
-      $http.post('mutate', options)
-        .then(function successCallback(response) ***REMOVED***
-          var booklet = $("#mutant_book").booklet(***REMOVED***width: '900px', height: '520px', pageTotal: 15***REMOVED***);
-          var output = response.data;
-          var page_texts = output.match(/.***REMOVED***1,1400***REMOVED***[\s$]/g);
-          $("#page1").find('p').text(page_texts[1]);
-          for (i=0; i < page_texts.length; i++) ***REMOVED***
-            $("#page" + i.toString()).find('p').text(page_texts[i]);
-          ***REMOVED***
-        ***REMOVED***,
-          function errorCallback(response) ***REMOVED***
-        console.log("Error\n" + response)
-      ***REMOVED***);
+      if (options.genes.length > 0) ***REMOVED***
+        mutate_button.disabled = true;
+        mutate_button.css('color', 'gray');
+        options.purge_mode = $("#purge_mode").is(':checked');
+        options.purge_ratio = $("#purge_ratio").val();
+        options.block_length = $("input:checked[name=block_length]")[0].value;
+        options = JSON.stringify(options);
+        $http.post('mutate', options)
+          .then(function successCallback(response) ***REMOVED***
+            var booklet = $("#mutant_book").booklet(***REMOVED***width: '900px', height: '520px', pageTotal: 15***REMOVED***);
+            var output = response.data;
+            var page_texts = output.match(/.***REMOVED***1,1400***REMOVED***[\s$]/g);
+            $("#page1").find('p').text(page_texts[1]);
+            for (i=0; i < page_texts.length; i++) ***REMOVED***
+              $("#page" + i.toString()).find('p').text(page_texts[i]);
+            ***REMOVED***
+            mutate_button.css('color', 'black');
+            mutate_button.disabled = false;
+          ***REMOVED***,
+            function errorCallback(response) ***REMOVED***
+            console.log("Error\n" + response)
+        ***REMOVED***);
+      ***REMOVED*** else ***REMOVED***
+
+      ***REMOVED***
     ***REMOVED***;
     $scope.deleteGene = function(gene)***REMOVED***
       var index = $scope.genes.indexOf(gene);
