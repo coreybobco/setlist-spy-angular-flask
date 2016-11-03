@@ -1,9 +1,9 @@
 <ng-controller="MainCtrl">
 <h1>Markov Mutagen</h1>
-<h3>Combine and mutate books into randomly generated bodies of text. </h3>
+<h3>Combine and mutate books into randomly generated hybrid books.</h3>
 <div class="add_gene_container">
   <form name="addGeneForm" ng-submit="addGeneForm.$valid && addGene()">
-    <p>Add a book's genetic components by pasting its Project Gutenberg URL below.</p>
+    <h4>Add a book's genetic components by pasting its Project Gutenberg URL below.</h4>
     <label><input id="url" name="url" ng-model="url" ng-pattern="/gutenberg.org\/(?:files|ebooks|epub|etext)\/(\d+)/"/></label>
     <input id="add_gene_button" type="submit" value="Add">  <button type='button' ng-click="addGene('random')">Random</button>
     <div class="error" ng-show="addGeneForm.url.$error.pattern">Not a valid Project Gutenberg URL</div>
@@ -32,7 +32,8 @@
     -Tweak filter level (higher = stricter)
     <input id="purge_ratio" type="number" min=".1" max=".9" value=".6" step=".05"/></label><br>
 </div>
-<button id="mutate_button" disabled ng-click="mutate()">Mutate</button>
+<h4>Books will spawn below. You can flip the pages to continue reading.</h4>
+<button id="mutate_button" disabled ng-click="mutate()">Spawn Mutant Book</button>
 
 <div id="mutant_book">
   <div ng-attr-id="page***REMOVED******REMOVED***$index***REMOVED******REMOVED***" ng-repeat="n in [] | range:15">

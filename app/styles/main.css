@@ -126,7 +126,9 @@ h1,h2,h3,h4 ***REMOVED*** text-align: center; ***REMOVED***
 ***REMOVED***
 
 #mutate_button ***REMOVED***
-  width: 100px;
+  font-family: fantasy;
+  font-size: 19px;
+  width: 180px;
   margin: 10px auto 10px auto;
   display: block;
 ***REMOVED***
