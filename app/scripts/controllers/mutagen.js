@@ -59,5 +59,5 @@ angular.module('markovmutatorApp')
     $scope.deleteGene = function(gene)***REMOVED***
       var index = $scope.genes.indexOf(gene);
       $scope.genes.splice(index, 1);
-    ***REMOVED***
+    ***REMOVED***;
   ***REMOVED***);

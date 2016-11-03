@@ -81,7 +81,7 @@ body ***REMOVED***
 ***REMOVED***
 
 h1,h2,h3,h4 ***REMOVED*** text-align: center; ***REMOVED***
-#url ***REMOVED*** width: 350px ***REMOVED***
+#url ***REMOVED*** width: 350px; margin-top: 10px; ***REMOVED***
 .error ***REMOVED*** color: red; ***REMOVED***
 .fa-times ***REMOVED*** position:absolute; right: 5px; padding-left: 5px; ***REMOVED***
 .about_header ***REMOVED*** width: 226px; margin: 0 auto;***REMOVED***
@@ -112,7 +112,6 @@ h1,h2,h3,h4 ***REMOVED*** text-align: center; ***REMOVED***
 ***REMOVED***
 .gene_source ***REMOVED*** font-style: italic; text-overflow: ellipsis; ***REMOVED***
 .col-sm-4 ***REMOVED*** padding-left: 5px; padding-right: 5px; ***REMOVED***
-
 #config_options ***REMOVED***
   border: 1px solid grey;
   border-radius: 8px;
@@ -122,6 +121,8 @@ h1,h2,h3,h4 ***REMOVED*** text-align: center; ***REMOVED***
 ***REMOVED***
 #config_title ***REMOVED***
   text-align: center;
+  width: 300px;
+  margin: 0 auto;
 ***REMOVED***
 
 #mutate_button ***REMOVED***
@@ -167,4 +168,23 @@ label ***REMOVED***
   width: 346px;
   margin: 0 auto;
   padding: 15px 0px 15px 0px
+***REMOVED***
+#config_options ***REMOVED***
+  font-family: fantasy;
+***REMOVED***
+#config_options > label, span ***REMOVED***
+  font-size: 16px;
+  padding-left: 10px;
+  display: inline;
+***REMOVED***
+input[type="checkbox"] ***REMOVED***
+  margin: auto;
+***REMOVED***
+#label_purge_ratio ***REMOVED***
+  padding-left: 25px;
+  margin: 10px 0px 10px 14px !important;
+***REMOVED***
+#purge_ratio ***REMOVED***
+  height: 16px;
+  width: 50px;
 ***REMOVED***
