@@ -80,10 +80,12 @@ body ***REMOVED***
   ***REMOVED***
 ***REMOVED***
 
-h1,h2,h3 ***REMOVED*** text-align: center; ***REMOVED***
+h1,h2,h3,h4 ***REMOVED*** text-align: center; ***REMOVED***
 #url ***REMOVED*** width: 350px ***REMOVED***
 .error ***REMOVED*** color: red; ***REMOVED***
 .fa-times ***REMOVED*** position:absolute; right: 5px; padding-left: 5px; ***REMOVED***
+.about_header ***REMOVED*** width: 226px; margin: 0 auto;***REMOVED***
+.fa-github, .fa-linkedin ***REMOVED*** font-size: 20px; color: black; ***REMOVED***
 .add_gene_container ***REMOVED***
   text-align: center;
 ***REMOVED***
