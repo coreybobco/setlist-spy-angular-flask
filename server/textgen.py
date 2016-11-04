@@ -5,16 +5,6 @@ import json
 
 class POSifiedText(markovify.Text):
 
-    # def word_split(self, sentence):
-    #     words = re.split(self.word_split_pattern, sentence)
-    #     words = [word for word in words if word != '']
-    #     words = [ "::".join(tag) for tag in nltk.pos_tag(words) ]
-    #     return words
-    #
-    # def word_join(self, words):
-    #     sentence = " ".join(word.split("::")[0] for word in words)
-    #     return sentence
-
     def test_sentence_input(self, sentence):
         meaningful_word_count = 0
         valid_word_count = 0
@@ -70,4 +60,6 @@ class TextGen:
             sentence = textgen.make_sentence()
             if isinstance(sentence, str):
                 output += " " + sentence
+            if i % 5 == 0:
+                output += "</p><p>"
         return output
