@@ -113,7 +113,7 @@ h1,h2,h3,h4 ***REMOVED*** text-align: center; ***REMOVED***
 .gene_source ***REMOVED*** font-style: italic; text-overflow: ellipsis; ***REMOVED***
 .col-sm-4 ***REMOVED*** padding-left: 5px; padding-right: 5px; ***REMOVED***
 #config_options ***REMOVED***
-  font-family: fantasy;
+  font-family: Georgia, Times, "Times New Roman", serif;
   border: 1px solid grey;
   border-radius: 8px;
   width: 360px;
