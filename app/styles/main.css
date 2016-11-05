@@ -116,7 +116,7 @@ h1,h2,h3,h4 ***REMOVED*** text-align: center; ***REMOVED***
   font-family: Georgia, Times, "Times New Roman", serif;
   border: 1px solid grey;
   border-radius: 8px;
-  width: 360px;
+  width: 374px;
   margin: auto;
   background-color: #ececec;
 ***REMOVED***
@@ -127,8 +127,8 @@ h1,h2,h3,h4 ***REMOVED*** text-align: center; ***REMOVED***
 ***REMOVED***
 
 #mutate_button ***REMOVED***
-  font-family: fantasy;
-  font-size: 19px;
+  font-family: Georgia, Times, "Times New Roman", serif;
+  font-size: 17px;
   width: 180px;
   margin: 10px auto 10px auto;
   display: block;
@@ -173,7 +173,7 @@ label ***REMOVED***
   padding: 15px 0px 15px 0px
 ***REMOVED***
 #config_options > label, span ***REMOVED***
-  font-size: 16px;
+  font-size: 14px;
   padding-left: 10px;
   display: inline;
 ***REMOVED***
