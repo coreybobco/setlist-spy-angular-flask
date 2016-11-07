@@ -51,7 +51,7 @@ class TextGen:
             self.markov_models.append(markovify.Text(text, state_size=block_length))
 
     def generateText(self):
-        output = ""
+        output = "    "
         if len(self.markov_models) > 1:
             textgen = markovify.combine(self.markov_models)
         else:
@@ -60,6 +60,4 @@ class TextGen:
             sentence = textgen.make_sentence()
             if isinstance(sentence, str):
                 output += " " + sentence
-            if i % 5 == 0:
-                output += "</p><p>"
         return output
