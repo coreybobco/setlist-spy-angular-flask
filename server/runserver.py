@@ -16,7 +16,6 @@ def addGene():
 @app.route("/mutate", methods=['POST'])
 def mutate():
     options = json.loads(request.get_data().decode(encoding='UTF-8'))
-    pprint(options)
     genes = options['genes']
     textgen = TextGen()
     for gene in genes:
