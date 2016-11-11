@@ -1,6 +1,6 @@
 import markovify
 import nltk
-import re
+from spacy.en import language_data
 import json
 from markovify.chain import Chain
 
@@ -24,7 +24,7 @@ class MutagenText(markovify.Text):
             if self.filter_stopwords_ratio:
                 meaningful_word_count = 0
                 words = nltk.word_tokenize(sentence)
-                stopwords = set(nltk.corpus.stopwords.words('english'))
+                stopwords = set(language_data.STOP_WORDS)
                 for word in words:
                     if not word in stopwords:
                         meaningful_word_count += 1

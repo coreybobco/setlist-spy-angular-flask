@@ -16,13 +16,18 @@ class Gene:
     def fetch_metadata(self):
         #Verify whether URL is valid and return Project Gutenberg metadata if URL is valid
         if self.url == "random":
-            self.document_id = random.randint(1, 53273) #Pick book at random (max id is currently 53273)
+            language = False
+            while language != "en":
+                self.document_id = random.randint(1, 53273) #Pick book at random (max id is currently 53273)
+                language_set = get_metadata('language', self.document_id)
+                language = list(language_set)[0] if len(language_set) else False
         else:
             #Get Project Gutenberg document ID from url string
             url_parts = urlsplit(self.url)
             match = re.search("(?:files|ebooks|epub)\/(\d+)", url_parts.path)
             self.document_id = int(match.group(1))
         author_set = get_metadata('author', self.document_id)
+        # print(list(get_metadata('language', self.document_id))[0])
         self.author = list(author_set)[0] if len(author_set) else "Unknown"
         if ", " in self.author:
           #Reverse Last, First to First Last

@@ -8,6 +8,7 @@ app = Flask(__name__)
 
 @app.route("/addGene", methods=['POST'])
 def addGene():
+    print('working')
     url = json.loads(request.get_data().decode(encoding='UTF-8'))
     scraper = Gene(url)
     gene = scraper.as_dict()
