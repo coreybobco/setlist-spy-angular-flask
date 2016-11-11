@@ -2,7 +2,7 @@
 
 # markovmutator
 Text generation tools for combining text snippets and online documents and generating bodies of text
-    
+
 This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
 version 0.15.1.
 
@@ -17,7 +17,7 @@ version 0.15.1.
 * NLTK, numpy
     - For Linux users, install NLTK and numpy: "sudo pip3 install nltk; sudo pip3 install numpy"
     - Open the Python console, import nltk, and download the relevant packages:
-      - punkt, averaged_perceptron_tagger, 
+      - punkt, averaged_perceptron_tagger, stopwords
 
 
 ## Build & development
