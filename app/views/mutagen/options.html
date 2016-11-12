@@ -1,0 +1,16 @@
+<div id="config_options">
+  <div id="config_title"><font size="5">Options</font> (hover for more info)</div>
+  <!--Structure:-->
+  <!--<label><input type="radio" name="structure" value="story" checked>Story</label>-->
+  <!--<label><input type="radio" name="structure" value="poems">Poems</label><br>-->
+  <span data-toggle="tooltip" title="how big the clumps of words the textgen rips from the books are (1 word, 2 words together, etc.)">N-gram Length:
+  <label><input type="radio" name="block_length" value="1">1</label>
+  <label><input type="radio" name="block_length" value="2">2</label>
+  <label><input type="radio" name="block_length" value="3" checked>3</label>
+  <label><input type="radio" name="block_length" value="4">4</label></span><br>
+  <label data-toggle="tooltip" title="sentences predominantly composed of conjunctions, prepositions, pronouns, and other less semantically relevant parts of speech">
+    <input id="purge_mode" ng-model="purge_mode" ng-change="toggleFilterRatio()" type="checkbox"/>Filter out less semantically relevant sentences (slower)</label><br>
+  <label id="label_purge_ratio" class="check-element animate-show" ng-show="purge_mode" data-toggle="tooltip">
+    -Tweak filter level (higher = stricter)
+    <input id="purge_ratio" type="number" min=".1" max=".9" value=".6" step=".05"/></label><br>
+</div>
