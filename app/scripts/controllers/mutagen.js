@@ -47,9 +47,7 @@ angular.module('markovmutatorApp')
         var mutant_book = $("#mutant_book");
         mutate_button.disabled = true;
         mutate_button.css('color', 'gray');
-        options.purge_mode = $("#purge_mode").is(':checked');
-        options.purge_ratio = $("#purge_ratio").val();
-        options.block_length = $("input:checked[name=block_length]")[0].value;
+        options.ngram_size = $("input:checked[name=ngram_size]")[0].value;
         options = JSON.stringify(options);
         $http.post('mutate', options)
           .then(function successCallback(response) ***REMOVED***
