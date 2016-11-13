@@ -67,19 +67,19 @@ module.exports = function (grunt) ***REMOVED***
       ***REMOVED***
     ***REMOVED***,
 
-    injector: ***REMOVED***
-      options: ***REMOVED***
-        ignorePath: "app/"
-      ***REMOVED***,
-      local_dependencies: ***REMOVED***
-        files: ***REMOVED***
-          '<%= yeoman.app %>/index.html': [
-            '<%= yeoman.app %>/scripts/jbooklet/*.js',
-            '<%= yeoman.app %>/scripts/jbooklet/*.css'
-          ]
-        ***REMOVED***
-      ***REMOVED***
-    ***REMOVED***,
+    // injector: ***REMOVED***
+    //   options: ***REMOVED***
+    //     ignorePath: "app/"
+    //   ***REMOVED***,
+    //   local_dependencies: ***REMOVED***
+    //     files: ***REMOVED***
+    //       '<%= yeoman.app %>/index.html': [
+    //         '<%= yeoman.app %>/scripts/jbooklet/*.js',
+    //         '<%= yeoman.app %>/scripts/jbooklet/*.css'
+    //       ]
+    //     ***REMOVED***
+    //   ***REMOVED***
+    // ***REMOVED***,
 
     // The actual grunt server settings
     connect: ***REMOVED***

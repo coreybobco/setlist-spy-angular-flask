@@ -10,6 +10,9 @@
 angular.module('markovmutatorApp')
   .controller('MutagenCtrl', function ($scope, $http) ***REMOVED***
     $scope.genes = [];
+    $scope.page = 0;
+    $scope.oddText = "angular-animate";
+    $scope.evenText = "bbbb";
     $scope.addGene = function(url) ***REMOVED***
       var url = (url) ? JSON.stringify(url) : JSON.stringify(document.querySelector("#url").value);
       $http.post('/addGene', url)
@@ -40,6 +43,8 @@ angular.module('markovmutatorApp')
         ***REMOVED***
       ***REMOVED***
       if (options.genes.length > 0) ***REMOVED***
+        $scope.show = false;
+        var mutant_book = $("#mutant_book");
         mutate_button.disabled = true;
         mutate_button.css('color', 'gray');
         options.purge_mode = $("#purge_mode").is(':checked');
@@ -48,12 +53,15 @@ angular.module('markovmutatorApp')
         options = JSON.stringify(options);
         $http.post('mutate', options)
           .then(function successCallback(response) ***REMOVED***
-            var booklet = $("#mutant_book").booklet(***REMOVED***width: '900px', height: '520px', pageTotal: 15***REMOVED***);
-            var output = response.data;
-            var page_texts = output.match(/.***REMOVED***1,1400***REMOVED***[\s$]/g);
-            $("#page1").find('p').text(page_texts[1]);
-            for (i=0; i < page_texts.length; i++) ***REMOVED***
-              $("#page" + i.toString()).find('p').text(page_texts[i]);
+            //flip page
+            if ($scope.page == "even" || $scope.page == 0) ***REMOVED***
+              $scope.oddText = response.data;
+              $scope.page = "odd";
+              $scope.evenText = "";
+            ***REMOVED*** else ***REMOVED***
+              $scope.evenText = response.data;
+              $scope.page = "even";
+              $scope.oddText = "";
             ***REMOVED***
             mutate_button.css('color', 'black');
             mutate_button.disabled = false;

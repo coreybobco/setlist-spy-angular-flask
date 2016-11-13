@@ -1,4 +1,3 @@
-<ng-controller="MainCtrl">
 <h1>Markov Mutagen</h1>
 <h3>Combine and mutate books into randomly generated hybrid books.</h3>
 <div class="add_gene_container">
@@ -16,16 +15,13 @@
   </div>
 </div>
 
-<div id="config_options">
-    <ng-include src="'views/mutagen/options.html'"></ng-include>
-</div>
+<ng-include src="'views/mutagen/options.html'"></ng-include>
 
 <h4>Books will spawn below after processing. You can flip the pages to continue reading.</h4>
-<button id="mutate_button" disabled ng-click="mutate()">Spawn Mutant Book</button>
+<button id="mutate_button" disabled ng-click="mutate()">Prose</button>
 
-<div id="mutant_book">
-  <div ng-attr-id="page***REMOVED******REMOVED***$index***REMOVED******REMOVED***" ng-repeat="n in [] | range:15">
-    <p></p>
-  </div>
+<div class="animate-switch-container" ng-switch="page">
+      <div class="animate-switch odd" ng-switch-when="odd">***REMOVED******REMOVED***oddText***REMOVED******REMOVED***</div>
+      <div class="animate-switch even" ng-switch-when="even">***REMOVED******REMOVED***evenText***REMOVED******REMOVED***</div>
+      <div class="animate-switch" ng-switch-default></div>
 </div>
-</ng-controller>
