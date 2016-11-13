@@ -119,11 +119,12 @@ h1,h2,h3,h4 ***REMOVED*** text-align: center; ***REMOVED***
   font-family: Georgia, Times, "Times New Roman", serif;
   width: 400px;
   margin: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
 ***REMOVED***
 #mutate_button ***REMOVED***
-  font-family: Georgia, Times, "Times New Roman", serif;
   font-size: 17px;
-  width: 120px;
+  width: 135px;
   margin: 10px auto 10px auto;
   display: block;
 ***REMOVED***
