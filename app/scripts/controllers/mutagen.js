@@ -57,11 +57,9 @@ angular.module('markovmutatorApp')
             if ($scope.page == "even" || $scope.page == 0) ***REMOVED***
               $scope.oddText = response.data;
               $scope.page = "odd";
-              $scope.evenText = "";
             ***REMOVED*** else ***REMOVED***
               $scope.evenText = response.data;
               $scope.page = "even";
-              $scope.oddText = "";
             ***REMOVED***
             mutate_button.css('color', 'black');
             mutate_button.disabled = false;

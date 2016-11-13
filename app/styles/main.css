@@ -89,7 +89,7 @@ h1,h2,h3,h4 ***REMOVED*** text-align: center; ***REMOVED***
 .add_gene_container ***REMOVED***
   text-align: center;
 ***REMOVED***
-#config_options, .gene_container ***REMOVED***
+.gene_container ***REMOVED***
   background-color: #eaeaea;
   border: 1px solid darkgray;
   border-radius: 8px;
@@ -117,19 +117,13 @@ h1,h2,h3,h4 ***REMOVED*** text-align: center; ***REMOVED***
 .col-sm-4 ***REMOVED*** padding-left: 5px; padding-right: 5px; ***REMOVED***
 #config_options ***REMOVED***
   font-family: Georgia, Times, "Times New Roman", serif;
-  width: 374px;
+  width: 400px;
   margin: auto;
 ***REMOVED***
-#config_title ***REMOVED***
-  text-align: center;
-  width: 300px;
-  margin: 0 auto;
-***REMOVED***
-
 #mutate_button ***REMOVED***
   font-family: Georgia, Times, "Times New Roman", serif;
   font-size: 17px;
-  width: 180px;
+  width: 120px;
   margin: 10px auto 10px auto;
   display: block;
 ***REMOVED***
@@ -175,9 +169,14 @@ label ***REMOVED***
   margin: 0 auto;
   padding: 15px 0px 15px 0px
 ***REMOVED***
-#config_options > label, span ***REMOVED***
+#ngram_size ***REMOVED***
+  width: 270px;
+  margin: auto;
+  margin-bottom: 10px;
+***REMOVED***
+#ngram_size > label ***REMOVED***
   font-size: 14px;
-  padding-left: 10px;
+  margin: 5px 15px 15px 5px;
   display: inline;
 ***REMOVED***
 input[type="checkbox"] ***REMOVED***
@@ -213,7 +212,8 @@ input[type="checkbox"] ***REMOVED***
   background:white;
   overflow:hidden;
   width: 100%;
-  height: 500px;
+  height:auto;
+  min-height: 500px;
 ***REMOVED***
 
 .animate-switch ***REMOVED***
@@ -221,6 +221,7 @@ input[type="checkbox"] ***REMOVED***
   margin: auto;
   padding: 10px;
   margin: auto;
+  white-space:pre-wrap;
 ***REMOVED***
 
 .animate-switch.ng-animate ***REMOVED***

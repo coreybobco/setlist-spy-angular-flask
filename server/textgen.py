@@ -57,8 +57,13 @@ class TextGen:
             textgen = markovify.combine(self.markov_models)
         else:
             textgen = self.markov_models[0]
-        for i in range(35):
+        sentence_count = 0
+        while sentence_count <= 12:
             sentence = textgen.make_sentence()
             if isinstance(sentence, str):
                 output += " " + sentence
+                sentence_count += 1
+                if sentence_count % 4 == 0:
+                    print(sentence)
+                    output += "\n\n"
         return output
