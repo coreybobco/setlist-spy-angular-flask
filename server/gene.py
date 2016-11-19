@@ -1,50 +1,27 @@
-import re
-from urllib.parse import urlparse, urlsplit
+from capturer import CaptureOutput
 from gutenberg.acquire import load_etext
-from gutenberg.cleanup import strip_headers
-from gutenberg.query import get_metadata
-import random
+from internetarchive import download
+import requests
 
 class Gene:
     def __init__(self, url):
-        self.source = "Project Gutenberg"
-        self.url = url
-        self.document_id = False
-        self.fetch_metadata()
         return
-
-    def fetch_metadata(self):
-        #Verify whether URL is valid and return Project Gutenberg metadata if URL is valid
-        if self.url == "random":
-            language = False
-            while language != "en":
-                self.document_id = random.randint(1, 53273) #Pick book at random (max id is currently 53273)
-                language_set = get_metadata('language', self.document_id)
-                language = list(language_set)[0] if len(language_set) else False
-        else:
-            #Get Project Gutenberg document ID from url string
-            url_parts = urlsplit(self.url)
-            match = re.search("(?:files|ebooks|epub)\/(\d+)", url_parts.path)
-            self.document_id = int(match.group(1))
-        author_set = get_metadata('author', self.document_id)
-        # print(list(get_metadata('language', self.document_id))[0])
-        self.author = list(author_set)[0] if len(author_set) else "Unknown"
-        if ", " in self.author:
-          #Reverse Last, First to First Last
-          self.author = " ".join(self.author.split(", ")[::-1])
-        title_set = get_metadata("title", self.document_id)
-        self.title = list(title_set)[0] if len(title_set) else "Unknown"
-        return self
 
     def as_dict(self):
         return ***REMOVED***
-            'source': self.source,
             'document_id': self.document_id,
+            'title': self.title,
             'author': self.author,
-            'title': self.title
+            'source': self.source,
+            'url': self.url
         ***REMOVED***
 
-def getText(gene):
+def get_text(gene):
     if gene['source'] == "Project Gutenberg":
         text = strip_headers(load_etext(gene['document_id']).strip())
+    elif gene['source'] == "Archive.org":
+        with CaptureOutput() as capturer:
+            download(gene['document_id'], glob_pattern="*txt", dry_run=True)
+        url = capturer.get_text()
+        text = requests.get(url).text
     return text

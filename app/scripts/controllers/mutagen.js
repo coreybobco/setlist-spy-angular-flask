@@ -10,9 +10,6 @@
 angular.module('markovmutatorApp')
   .controller('MutagenCtrl', function ($scope, $http) ***REMOVED***
     $scope.genes = [];
-    $scope.page = 0;
-    $scope.oddText = "angular-animate";
-    $scope.evenText = "bbbb";
     $scope.addGene = function(url) ***REMOVED***
       var url = (url) ? JSON.stringify(url) : JSON.stringify(document.querySelector("#url").value);
       $http.post('/addGene', url)

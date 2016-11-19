@@ -1,8 +1,11 @@
 from flask import Flask, request, jsonify
 import json
-from gene import Gene, getText
-from textgen import TextGen
 from pprint import pprint
+from archive_scraper import ArchiveScraper
+from gutenberg_scraper import GutenbergScraper
+from gene import get_text
+from urllib.parse import urlsplit
+from textgen import TextGen
 
 app = Flask(__name__)
 
@@ -10,7 +13,13 @@ app = Flask(__name__)
 def addGene():
     print('working')
     url = json.loads(request.get_data().decode(encoding='UTF-8'))
-    scraper = Gene(url)
+    hostname = urlsplit(url).netloc
+    if hostname.startswith("www."):
+        hostname = hostname[4::]
+    if hostname == "archive.org":
+        scraper = ArchiveScraper(url)
+    else:
+        scraper = GutenbergScraper(url)
     gene = scraper.as_dict()
     return jsonify(gene)
 
@@ -20,7 +29,7 @@ def mutate():
     genes = options['genes']
     textgen = TextGen()
     for gene in genes:
-        text = getText(gene)
+        text = get_text(gene)
         textgen.addMarkov(text, options)
     output = textgen.generateText()
     return output

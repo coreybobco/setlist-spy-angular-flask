@@ -26,7 +26,7 @@ var myApp = angular
         activetab: 'about'
       ***REMOVED***)
       .when('/mutagen', ***REMOVED***
-        templateUrl: 'views/mutagen.html',
+        templateUrl: 'views/mutagen/index.html',
         controller: 'MutagenCtrl',
         controllerAs: 'mutagen'
       ***REMOVED***)
