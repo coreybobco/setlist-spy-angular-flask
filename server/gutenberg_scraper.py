@@ -1,4 +1,3 @@
-from gutenberg.cleanup import strip_headers
 from gutenberg.query import get_metadata
 import random
 import re

@@ -1,5 +1,6 @@
 from capturer import CaptureOutput
 from gutenberg.acquire import load_etext
+from gutenberg.cleanup import strip_headers
 from internetarchive import download
 import requests
 
