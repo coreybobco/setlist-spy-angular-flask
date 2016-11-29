@@ -1,5 +1,4 @@
 import markovify
-import nltk
 import json
 from markovify.chain import Chain
 
