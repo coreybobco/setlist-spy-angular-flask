@@ -13,6 +13,8 @@ version 0.15.1.
     - Clone or download repo: git clone https://github.com/c-w/Gutenberg.git and cd into directory
     - Copy over requirements.pip with requirements-py3.pip (on Linux, cp requirements-py3.pip requirements.pip)
     - To install Gutenberg API, sudo pip3 install .
+* Archive.org API
+    - sudo pip3 install internetarchive
 
 ## Build & development
 
