@@ -82,7 +82,9 @@ body ***REMOVED***
 
 h1,h2,h3,h4 ***REMOVED*** text-align: center; ***REMOVED***
 .center ***REMOVED*** text-align: center; ***REMOVED***
-#url ***REMOVED*** width: 350px; margin-top: 10px; ***REMOVED***
+.search ***REMOVED***margin-top: 10px; ***REMOVED***
+#url ***REMOVED*** width: 350px;***REMOVED***
+#input_setlist_search ***REMOVED***width: 200px; ***REMOVED***
 .error ***REMOVED*** color: red; ***REMOVED***
 .fa-times ***REMOVED*** position:absolute; right: 5px; padding-left: 5px; ***REMOVED***
 .about_header ***REMOVED*** width: 226px; margin: 0 auto;***REMOVED***

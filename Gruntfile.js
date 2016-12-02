@@ -91,6 +91,14 @@ module.exports = function (grunt) ***REMOVED***
       ***REMOVED***,
       proxies: [
         ***REMOVED***
+          context: '/setlistSearch',
+          host: '127.0.0.1',
+          port: 5000,
+          https: false,
+          changeOrigin: false,
+          xforward: false
+        ***REMOVED***,
+        ***REMOVED***
           context: '/addGene',
           host: '127.0.0.1',
           port: 5000,

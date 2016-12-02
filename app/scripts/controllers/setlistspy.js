@@ -10,9 +10,11 @@
 angular.module('markovmutatorApp')
   .controller('SetlistSpyCtrl', function ($scope, $http) ***REMOVED***
     $scope.genes = [];
-    $scope.setlistSearch = function(url) ***REMOVED***
-      var url = (url) ? JSON.stringify(url) : JSON.stringify(document.querySelector("#url").value);
-      $http.post('/setlistSearch', url)
+    $scope.setlistSearch = function(search_term) ***REMOVED***
+      console.log(search_term);
+      var search_term = (search_term) ? JSON.stringify(search_term) : JSON.stringify(document.querySelector("#input_setlist_search").value);
+      console.log(search_term);
+      $http.post('/setlistSearch', search_term)
       .then(function successCallback(response) ***REMOVED***
         // document.querySelector("#mutate_button").disabled = false;
         // var gene = response.data;

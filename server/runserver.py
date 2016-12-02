@@ -9,6 +9,11 @@ from textgen import TextGen
 
 app = Flask(__name__)
 
+@app.route("/setlistSearch", methods=['POST'])
+def setlist_search():
+    print('working')
+    return ''
+
 @app.route("/addGene", methods=['POST'])
 def addGene():
     print('working')
