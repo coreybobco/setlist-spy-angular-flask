@@ -35,6 +35,11 @@ var myApp = angular
         controller: 'CollageneratorCtrl',
         controllerAs: 'collagenerator'
       ***REMOVED***)
+      .when('/setlistspy', ***REMOVED***
+        templateUrl: 'views/setlistspy.html',
+        controller: 'SetlistSpyCtrl',
+        controllerAs: 'setlistspy'
+      ***REMOVED***)
       .when('/art', ***REMOVED***
         templateUrl: 'views/art.html',
         controller: 'ImageCtrl',
