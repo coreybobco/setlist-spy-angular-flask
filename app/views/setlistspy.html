@@ -1,0 +1,26 @@
+<h1>Setlist Spy</h1>
+<h3>Trackid <strong>every</strong> song a DJ has <strong>ever</strong> played.</h3>
+<p class="center">Ok, actually just ones already ID'd in recorded sets</p>
+<div class="add_gene_container">
+  <form name="setlistSearchForm" ng-submit="addGutenbergForm.$valid && setlistSearch()">
+        <label><input id="url" name="search" ng-model="text"/></label>
+        <input id="add_gene_button" type="submit" value="Add">
+        <div class="error" ng-show="addGeneForm.url.$error.pattern">Not a valid URL</div>
+  </form>
+</div>
+
+<div id="mutation_chamber" class="container-fluid">
+  <div class="row">
+    <ng-include src="'views/mutagen/chamber.html'"></ng-include>
+  </div>
+</div>
+
+<ng-include src="'views/mutagen/options.html'"></ng-include>
+
+<button id="mutate_button" disabled ng-click="mutate()">Prose, Please!</button>
+
+<div class="animate-switch-container" ng-switch="page">
+      <div class="animate-switch odd" ng-switch-when="odd">***REMOVED******REMOVED***oddText***REMOVED******REMOVED***</div>
+      <div class="animate-switch even" ng-switch-when="even">***REMOVED******REMOVED***evenText***REMOVED******REMOVED***</div>
+      <div class="animate-switch" ng-switch-default></div>
+</div>
