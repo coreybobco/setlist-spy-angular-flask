@@ -7,13 +7,15 @@ from mutagen.archive import ArchiveScraper
 from mutagen.gutenberg import GutenbergScraper
 from mutagen.gene import get_text
 from mutagen.textgen import TextGen
+from setlistspy.mixesdb import MixesDBScraper
 
 app = Flask(__name__)
 
 @app.route("/setlistSearch", methods=['POST'])
 def setlist_search():
     DJ = json.loads(request.get_data().decode(encoding='UTF-8'))
-    print(DJ)
+    DJ = " ".join(DJ.split()) #Normalize whitespace
+    mdb = MixesDBScraper(DJ)
     return ''
 
 @app.route("/addGene", methods=['POST'])
