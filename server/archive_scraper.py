@@ -4,7 +4,7 @@ import requests
 import random
 import re
 from urllib.parse import urlsplit
-from gene import Gene
+from mutagen.gene import Gene
 
 class ArchiveScraper(Gene):
     def __init__(self, url):
