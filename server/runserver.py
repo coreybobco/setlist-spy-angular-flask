@@ -2,11 +2,11 @@
 from flask import Flask, request, jsonify
 import json
 from pprint import pprint
-from archive_scraper import ArchiveScraper
-from gutenberg_scraper import GutenbergScraper
-from gene import get_text
 from urllib.parse import urlsplit
-from textgen import TextGen
+from mutagen.archive_scraper import ArchiveScraper
+from mutagen.gutenberg_scraper import GutenbergScraper
+from mutagen.gene import get_text
+from mutagen.textgen import TextGen
 
 app = Flask(__name__)
 
