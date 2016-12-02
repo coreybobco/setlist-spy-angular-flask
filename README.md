@@ -8,6 +8,7 @@ Find every track a DJ has ever played. This app pulls info from [MixesDB](http:/
 
 ## Dependencies
 * Python 3.x, flask
+
 ### Markov Mutagen
 * markovify, rdflib, internetarchive, capturer
 * python Gutenberg API (requires the [git version](https://github.com/c-w/Gutenberg) and Berkeley database)
@@ -17,6 +18,7 @@ Find every track a DJ has ever played. This app pulls info from [MixesDB](http:/
     - To install Gutenberg API, `sudo pip3 install .`
 * Archive.org API
     - sudo pip3 install internetarchive
+
 ### Setlist Spy
 * requests, lxml
 
