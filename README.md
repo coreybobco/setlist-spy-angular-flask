@@ -11,10 +11,10 @@ Find every track a DJ has ever played. This app pulls info from [MixesDB](http:/
 ### Markov Mutagen
 * markovify, rdflib, internetarchive, capturer
 * python Gutenberg API (requires the [git version](https://github.com/c-w/Gutenberg) and Berkeley database)
-    - For Ubuntu-based systems, first `sudo apt-get install python3-bsddb3` for Berkeley database dependency
-    - Clone or download repo: `git clone https://github.com/c-w/Gutenberg.git` and cd into directory
+    - For Ubuntu-based systems, first install Berkeley DB `sudo apt-get install python3-bsddb3`
+    - Next clone into Gutenberg api -- `git clone https://github.com/c-w/Gutenberg.git` -- and cd into directory
     - Copy over requirements.pip with requirements-py3.pip (on Linux, cp requirements-py3.pip requirements.pip)
-    - To install Gutenberg API, sudo pip3 install .
+    - To install Gutenberg API, `sudo pip3 install .`
 * Archive.org API
     - sudo pip3 install internetarchive
 ### Setlist Spy
@@ -24,7 +24,7 @@ Find every track a DJ has ever played. This app pulls info from [MixesDB](http:/
 
 - Run `python3 server/update_cache.py` to seed the Project Gutenberg database (takes a couple hours).
 * Run `python3 server/runserver.py` to start the Python backend.
-* Run `grunt` for building and `grunt serve` for preview.
+* Run `grunt` for building and `grunt serve` to run.
 
 ## Testing
 
