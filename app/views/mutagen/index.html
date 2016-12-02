@@ -1,11 +1,11 @@
 <h1>Markov Mutagen</h1>
 <h3>Combine and mutate books into randomly generated hybrids.</h3>
 <div class="add_gene_container">
-  <form name="addGutenbergForm" ng-submit="addGutenbergForm.$valid && addGene()">
+  <form name="addGeneForm" ng-submit="addGeneForm.$valid && addGene()">
     <h4>Add a document by pasting its URL below or test your luck with a random one.</h4>
         <h4>Supports <a target="_blank" href="https://www.gutenberg.org/ebooks/">Project Gutenberg</a> and <a target="_blank" href="https://archive.org/details/texts">Archive.org</a> texts</h4>
         <label><input id="url" name="url" ng-model="url" ng-pattern="/gutenberg.org\/(?:files|ebooks|epub|etext)\/(\d+)|archive.org\/(?:stream|details)\/(\S+)/"/></label>
-        <input id="add_gene_button" type="submit" value="Add">  <button type='button' ng-click="addGene('random')">Random Gutenberg Text</button>
+        <input id="add_gene_button" type="submit" value="Add">  <button type="button" ng-click="addGene('random')">Random Gutenberg Text</button>
         <div class="error" ng-show="addGeneForm.url.$error.pattern">Not a valid URL</div>
   </form>
 </div>

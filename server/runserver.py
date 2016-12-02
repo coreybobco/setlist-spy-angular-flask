@@ -3,8 +3,8 @@ from flask import Flask, request, jsonify
 import json
 from pprint import pprint
 from urllib.parse import urlsplit
-from mutagen.archive_scraper import ArchiveScraper
-from mutagen.gutenberg_scraper import GutenbergScraper
+from mutagen.archive import ArchiveScraper
+from mutagen.gutenberg import GutenbergScraper
 from mutagen.gene import get_text
 from mutagen.textgen import TextGen
 
