@@ -194,57 +194,6 @@ input[type="checkbox"] ***REMOVED***
   height: 16px;
   width: 50px;
 ***REMOVED***
-/*
-.fade_slide.ng-hide ***REMOVED***
-  opacity: 0;
-  max-height: 0;
-  overflow: hidden;
-***REMOVED***
-.fade_slide ***REMOVED***
-  opacity: 1;
-  max-height: 1500px;
-  transition: linear 1.5s, opacity 1s, ease-in;
-  bottom: -100%;
-***REMOVED***
-.fade_slide.ng-hide-add,
-.fade_slide.ng-hide-remove***REMOVED***
-  display: block !important;
-***REMOVED****/
-
-.animate-switch-container ***REMOVED***
-  position:relative;
-  background:white;
-  overflow:hidden;
-  width: 100%;
-  height:auto;
-  min-height: 500px;
-***REMOVED***
-
-.animate-switch ***REMOVED***
-  width: 500px;
-  margin: auto;
-  padding: 10px;
-  margin: auto;
+.book ***REMOVED***
   white-space:pre-wrap;
-***REMOVED***
-
-.animate-switch.ng-animate ***REMOVED***
-  transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  bottom:0;
-***REMOVED***
-
-.animate-switch.ng-leave.ng-leave-active ***REMOVED***
-  top: -450px;
-  opacity: 0;
-***REMOVED***
-.animate-switch.ng-enter ***REMOVED***
-  top: 450px;
-***REMOVED***
-.animate-switch.ng-leave,
-.animate-switch.ng-enter.ng-enter-active ***REMOVED***
-  top:0;
 ***REMOVED***

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 import json
 from pprint import pprint
 from urllib.parse import urlsplit
@@ -16,7 +16,9 @@ def setlist_search():
     DJ = json.loads(request.get_data().decode(encoding='UTF-8'))
     DJ = " ".join(DJ.split()) #Normalize whitespace
     mdb = MixesDBScraper(DJ)
-    return ''
+    tracklist = list(mdb.tracklist)
+    tracklist.sort()
+    return json.dumps(tracklist)
 
 @app.route("/addGene", methods=['POST'])
 def addGene():

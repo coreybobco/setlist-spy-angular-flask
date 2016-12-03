@@ -1,13 +1,17 @@
-/*.animate-switch-container ***REMOVED***
+.animate-switch-container ***REMOVED***
   position:relative;
   background:white;
-  border:1px solid black;
-  height:40px;
   overflow:hidden;
+  width: 100%;
+  height:auto;
+  min-height: 500px;
 ***REMOVED***
 
 .animate-switch ***REMOVED***
-  padding:10px;
+  width: 500px;
+  margin: auto;
+  padding: 10px;
+  margin: auto;
 ***REMOVED***
 
 .animate-switch.ng-animate ***REMOVED***
@@ -19,17 +23,14 @@
   bottom:0;
 ***REMOVED***
 
-.animate-switch.ng-leave.ng-leave-active,
+.animate-switch.ng-leave.ng-leave-active ***REMOVED***
+  top: -450px;
+  opacity: 0;
+***REMOVED***
 .animate-switch.ng-enter ***REMOVED***
-  left:-50px;
+  top: 450px;
 ***REMOVED***
 .animate-switch.ng-leave,
 .animate-switch.ng-enter.ng-enter-active ***REMOVED***
   top:0;
-***REMOVED****/
-
-/*
-Copyright 2016 Google Inc. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/
+***REMOVED***
