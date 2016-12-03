@@ -15,9 +15,9 @@ app = Flask(__name__)
 def setlist_search():
     DJ = json.loads(request.get_data().decode(encoding='UTF-8'))
     DJ = " ".join(DJ.split()) #Normalize whitespace
-    mdb = MixesDBScraper(DJ)
-    tracklist = list(mdb.tracklist)
-    tracklist.sort()
+    mdb = MixesDBScraper()
+    set_urls = mdb.get_set_urls(DJ)
+    tracklist = mdb.get_tracklist(set_urls)
     return json.dumps(tracklist)
 
 @app.route("/addGene", methods=['POST'])

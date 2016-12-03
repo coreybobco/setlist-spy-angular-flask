@@ -1,13 +1,10 @@
 from lxml import html
 import requests
 import re
-from pprint import pprint
 
 class MixesDBScraper:
-    def __init__(self, DJ):
-        set_urls = self.get_set_urls(DJ)
-        self.tracklist = self.get_tracklist(set_urls)
-        pprint(self.tracklist)
+    def __init__(self):
+        return
 
     def get_set_urls(self, DJ):
         DJ = "_".join(DJ.split())
@@ -25,6 +22,8 @@ class MixesDBScraper:
             tracks = self.clean(tracks)
             tracklist.extend(tracks)
         tracklist = set(tracklist)
+        tracklist = list(tracklist)
+        tracklist.sort()
         return tracklist
 
     def get_tree(self, url):

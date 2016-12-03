@@ -11,6 +11,11 @@ angular.module('markovmutatorApp')
   .controller('ImageCtrl', function ($scope) ***REMOVED***
     $scope.images = [
       ***REMOVED***
+        title : 'If Van Gogh Painted Obama',
+        alt : 'If Van Gogh Painted Obama',
+        url : 'images/obama_vangogh.jpg'
+      ***REMOVED***,
+      ***REMOVED***
         title : 'If Klimt Painted Van Gogh',
         alt : 'If Klimt Painted Van Gogh',
         url : 'images/klimt_skeleton.jpg'

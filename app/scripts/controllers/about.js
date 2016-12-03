@@ -15,5 +15,5 @@ angular.module('markovmutatorApp')
       'Karma'
     ];
     $scope.fileUrl = "coreybobco_resume.docx";
-    $scope.image = "images/coreybobco.jpg";
+    $scope.image = "images/klarwein_lobster.jpg";
   ***REMOVED***);
