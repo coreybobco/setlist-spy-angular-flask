@@ -3,7 +3,7 @@
 describe('Controller: MainCtrl', function () ***REMOVED***
 
   // load the controller's module
-  beforeEach(module('markovmutatorApp'));
+  beforeEach(module('setlistspyApp'));
 
   var MainCtrl,
     scope;

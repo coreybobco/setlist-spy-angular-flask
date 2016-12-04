@@ -97,22 +97,6 @@ module.exports = function (grunt) ***REMOVED***
           https: false,
           changeOrigin: false,
           xforward: false
-        ***REMOVED***,
-        ***REMOVED***
-          context: '/addGene',
-          host: '127.0.0.1',
-          port: 5000,
-          https: false,
-          changeOrigin: false,
-          xforward: false
-        ***REMOVED***,
-        ***REMOVED***
-          context: '/mutate',
-          host: '127.0.0.1',
-          port: 5000,
-          https: false,
-          changeOrigin: false,
-          xforward: false
         ***REMOVED***
       ],
       livereload: ***REMOVED***
@@ -381,7 +365,7 @@ module.exports = function (grunt) ***REMOVED***
     ngtemplates: ***REMOVED***
       dist: ***REMOVED***
         options: ***REMOVED***
-          module: 'markovmutatorApp',
+          module: 'setlistspyApp',
           htmlmin: '<%= htmlmin.dist.options %>',
           usemin: 'scripts/scripts.js'
         ***REMOVED***,

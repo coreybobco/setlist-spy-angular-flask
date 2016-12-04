@@ -10,7 +10,6 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="../bower_components/components-font-awesome/css/font-awesome.css" />
-    <link rel="stylesheet" href="../bower_components/ng-image-gallery/dist/ng-image-gallery.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -18,40 +17,12 @@
     <link rel="stylesheet" href="styles/animations.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="markovmutatorApp">
+  <body ng-app="setlistspyApp">
     <!--[if lte IE 8]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="header">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-          </div>
-
-          <div class="collapse navbar-collapse" id="js-navbar-collapse"  ng-controller="HeaderCtrl">
-
-            <ul class="nav navbar-nav" >
-              <li ng-class="***REMOVED*** active: isActive('/')***REMOVED***"><a ng-href="#/about">Bio</a></li>
-              <li ng-class="***REMOVED*** active: isActive('/setlistspy')***REMOVED***"><a ng-href="#/setlistspy">Setlist Spy</a></li>
-              <li ng-class="***REMOVED*** active: isActive('/mutagen')***REMOVED***"><a href="#/mutagen">Markov Mutagen</a></li>
-              <!--<li ng-class="***REMOVED*** active: isActive('/collagenerator')***REMOVED***"><a ng-href="#/collagenerator">Collagenerator</a></li>-->
-              <li ng-class="***REMOVED*** active: isActive('/art')***REMOVED***"><a ng-href="#/art">Deep Style Art</a></li>
-              <!--<li ng-class="***REMOVED*** active: isActive('/writings')***REMOVED***"><a ng-href="#/writings">Writings</a></li>-->
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="container">
     <div ng-view=""></div>
     </div>
@@ -83,10 +54,7 @@
     <script src="../bower_components/angular-resource/angular-resource.js"></script>
     <script src="../bower_components/angular-route/angular-route.js"></script>
     <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="../bower_components/angular-ellipsis/src/angular-ellipsis.js"></script>
     <script src="../bower_components/jquery-ui/jquery-ui.js"></script>
-    <script src="../bower_components/hammerjs/hammer.js"></script>
-    <script src="../bower_components/ng-image-gallery/dist/ng-image-gallery.js"></script>
     <script src="../bower_components/angular-mocks/angular-mocks.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
@@ -95,12 +63,9 @@
     <!-- injector:js -->
     <!-- endinjector -->
 
-        <!-- build:js(***REMOVED***.tmp,app***REMOVED***) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/about.js"></script>
-        <script src="scripts/controllers/mutagen.js"></script>
-        <script src="scripts/controllers/setlistspy.js"></script>
-        <script src="scripts/controllers/art.js"></script>
-        <!-- endbuild -->
+    <!-- build:js(***REMOVED***.tmp,app***REMOVED***) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/setlistspy.js"></script>
+    <!-- endbuild -->
 </body>
 </html>

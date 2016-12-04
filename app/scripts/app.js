@@ -2,55 +2,26 @@
 
 /**
  * @ngdoc overview
- * @name markovmutatorApp
+ * @name setlistspyApp
  * @description
- * # markovmutatorApp
+ * # setlistspyApp
  *
  * Main module of the application.
  */
 var myApp = angular
-  .module('markovmutatorApp', [
+  .module('setlistspyApp', [
     'ngAnimate',
     'ngMessages',
     'ngResource',
     'ngRoute',
-    'ngSanitize',
-    'thatisuday.ng-image-gallery'
+    'ngSanitize'
   ])
   .config(function ($routeProvider) ***REMOVED***
     $routeProvider
       .when('/', ***REMOVED***
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about',
-        activetab: 'about'
-      ***REMOVED***)
-      .when('/mutagen', ***REMOVED***
-        templateUrl: 'views/mutagen/index.html',
-        controller: 'MutagenCtrl',
-        controllerAs: 'mutagen'
-      ***REMOVED***)
-      .when('/collagenerator', ***REMOVED***
-        templateUrl: 'views/collagenerator.html',
-        controller: 'CollageneratorCtrl',
-        controllerAs: 'collagenerator'
-      ***REMOVED***)
-      .when('/setlistspy', ***REMOVED***
         templateUrl: 'views/setlistspy.html',
         controller: 'SetlistSpyCtrl',
         controllerAs: 'setlistspy'
-      ***REMOVED***)
-      .when('/art', ***REMOVED***
-        templateUrl: 'views/art.html',
-        controller: 'ImageCtrl',
-        controllerAs: 'art',
-        activetab: 'art'
-      ***REMOVED***)
-      .when('/writings', ***REMOVED***
-        templateUrl: 'views/writings.html',
-        controller: 'WritingCtrl',
-        controllerAs: 'writimgs',
-        activetab: 'writings'
       ***REMOVED***)
       .otherwise(***REMOVED***
         redirectTo: '/'

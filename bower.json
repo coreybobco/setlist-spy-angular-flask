@@ -1,5 +1,5 @@
 ***REMOVED***
-  "name": "markov-mutagen",
+  "name": "setlistspy",
   "version": "0.0.0",
   "dependencies": ***REMOVED***
     "angular": "^1.4.0",
@@ -10,15 +10,13 @@
     "angular-route": "^1.4.0",
     "angular-sanitize": "^1.4.0",
     "components-font-awesome": "^4.6.3",
-    "angular-ellipsis": "^0.1.7",
-    "jquery-ui": "^1.12.1",
-    "ng-image-gallery": "^2.0.8"
+    "jquery-ui": "^1.12.1"
   ***REMOVED***,
   "devDependencies": ***REMOVED***
     "angular-mocks": "^1.4.0"
   ***REMOVED***,
   "appPath": "app",
-  "moduleName": "markovmutatorApp",
+  "moduleName": "setlistspyApp",
   "overrides": ***REMOVED***
     "bootstrap": ***REMOVED***
       "main": [

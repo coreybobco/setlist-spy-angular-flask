@@ -84,6 +84,9 @@ body ***REMOVED***
   ***REMOVED***
 ***REMOVED***
 /*Begin my additions*/
+h1 ***REMOVED***
+  margin-bottom: 0px;
+***REMOVED***
 h1,h2,h3,h4 ***REMOVED***
   text-align: center;
 ***REMOVED***
@@ -105,10 +108,10 @@ a ***REMOVED***
   font-size: 20px;
   color: black;
 ***REMOVED***
-.profilePic ***REMOVED***
-  width: 480px;
+.logo ***REMOVED***
+  width: 200px;
   margin: 0 auto;
-  padding: 15px 0px 15px 0px
+  padding: 0px 0px 0px 0px
 ***REMOVED***
 .search ***REMOVED***
   margin-top: 10px;
@@ -126,9 +129,6 @@ a ***REMOVED***
   position:absolute;
   right: 5px;
   padding-left: 5px;
-***REMOVED***
-.add_gene_container ***REMOVED***
-  text-align: center;
 ***REMOVED***
 .gene_container ***REMOVED***
   background-color: #eaeaea;

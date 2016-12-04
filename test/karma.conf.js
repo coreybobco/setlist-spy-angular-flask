@@ -28,10 +28,7 @@ module.exports = function(config) ***REMOVED***
       'bower_components/angular-resource/angular-resource.js',
       'bower_components/angular-route/angular-route.js',
       'bower_components/angular-sanitize/angular-sanitize.js',
-      'bower_components/angular-ellipsis/src/angular-ellipsis.js',
       'bower_components/jquery-ui/jquery-ui.js',
-      'bower_components/hammerjs/hammer.js',
-      'bower_components/ng-image-gallery/dist/ng-image-gallery.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
