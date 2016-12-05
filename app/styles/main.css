@@ -85,6 +85,7 @@ body ***REMOVED***
 ***REMOVED***
 /*Begin my additions*/
 h1 ***REMOVED***
+  margin-top: 4px;
   margin-bottom: 0px;
 ***REMOVED***
 h1,h2,h3,h4 ***REMOVED***
@@ -96,22 +97,18 @@ a ***REMOVED***
 .center ***REMOVED***
   text-align: center;
 ***REMOVED***
-.about ***REMOVED***
-  margin: 15 px 30px 15px 30px !important;
-***REMOVED***
-.about_header ***REMOVED***
-  width: 226px;
-  margin: 0
-  auto;
-***REMOVED***
-.fa-github, .fa-linkedin ***REMOVED***
+p.toplinks ***REMOVED***
+  font-style: italic;
+  margin: 0 auto;
   font-size: 20px;
+***REMOVED***
+.fa ***REMOVED***
   color: black;
 ***REMOVED***
 .logo ***REMOVED***
   width: 200px;
   margin: 0 auto;
-  padding: 0px 0px 0px 0px
+  padding: 0px 0px 0px 0px;
 ***REMOVED***
 .search ***REMOVED***
   margin-top: 10px;
@@ -124,39 +121,6 @@ a ***REMOVED***
 ***REMOVED***
 .error ***REMOVED***
   color: red;
-***REMOVED***
-.fa-times ***REMOVED***
-  position:absolute;
-  right: 5px;
-  padding-left: 5px;
-***REMOVED***
-.gene_container ***REMOVED***
-  background-color: #eaeaea;
-  border: 1px solid darkgray;
-  border-radius: 8px;
-***REMOVED***
-.gene_container ***REMOVED***
-  margin: 6px;
-  height: 65px;
-  width: 277px;
-***REMOVED***
-.gene_info ***REMOVED***
-  position: absolute;
-  top: 0px;
-  left: 22px;
-  text-align: center;
-***REMOVED***
-.gene_title ***REMOVED***
-  font-size: 16px;
-  font-weight:bold;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  width: 230px;
-***REMOVED***
-.gene_source ***REMOVED***
-  font-style: italic;
-  text-overflow: ellipsis;
 ***REMOVED***
 .col-sm-4 ***REMOVED***
   padding-left: 5px;
