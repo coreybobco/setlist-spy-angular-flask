@@ -6,19 +6,30 @@ from pprint import pprint
 
 class MixesDBScraper:
     def __init__(self):
+        self.base_url = "http://www.mixesdb.com"
         return
 
-    def get_set_urls(self, DJ):
-        DJ = "_".join(DJ.split())
-        url = "http://www.mixesdb.com/w/Category:" + DJ
+    def get_api_search_url(self, search_input):
+        #Get the MixesDB search URL for the category of the DJ that was entered
+        #This method should handle capitalization & substring queries. TODO: handle when multiple search results
+        search_query = "+".join(search_input.split())
+        url = self.base_url + "/db/index.php?title=Special%3ASearch&profile=cats&search=" + search_query + "&fulltext=Search"
         tree = self.get_tree(url)
+        api_search_url = tree.xpath("//div[@class='searchresults']/ul[1]//div[@class='mw-search-result-heading']/span[@class='search-result-isCat bold']/a/@href")[0]
+        api_search_url = self.base_url + api_search_url
+        print(api_search_url)
+        return api_search_url
+
+    def get_set_urls(self, search_input):
+        search_url = self.get_api_search_url(search_input)
+        tree = self.get_tree(search_url)
         set_urls = tree.xpath('//ul[@id="catMixesList"]/li/a/@href')
         return set_urls
 
     def get_tracklist(self, set_urls):
         tracklist = list()
         for set_url in set_urls:
-            scraper_url = "http://www.mixesdb.com" + set_url
+            scraper_url = self.base_url + set_url
             tree = self.get_tree(scraper_url)
             tracks = tree.xpath('//div[@id="mw-content-text"]//ol/li/text()')
             tracklist.extend(tracks)
