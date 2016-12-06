@@ -13,12 +13,12 @@
 <p class="center">Ok, actually just ones already ID'd in recorded sets</p>
 
 <div class="center">
-  <form name="setlistSearchForm" ng-submit="setlistSearchForm.$valid && setlistSearch()">
+  <form name="setlistSearchForm" ng-submit="setlistSearchForm.$valid && setlistSearch()" ng-hide="loading" ng-show="!loading">
         <label><input id="input_setlist_search" name="search" placeholder="Enter a DJ name here" ng-model="text" ng-pattern="/\S***REMOVED***2,***REMOVED***/"/></label>
         <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
         <div class="error" ng-show="addGeneForm.url.$error.pattern">Not a valid URL</div>
   </form>
-  <i id="spinner" class="fa fa-spinner fa-spin hidden" style="font-size:32px"></i>
+  <i id="spinner" class="fa fa-spinner fa-spin" ng-hide="!loading" ng-show="loading"></i>
 </div>
 
 <div class="animate-switch-container" ng-switch="page">

@@ -12,12 +12,14 @@ angular.module('setlistspyApp')
     $scope.tracks = [];
     $scope.page = 0;
     $scope.image = "images/setlistspy_logo.jpg";
+    $scope.loading = false;
     $scope.setlistSearch = function() ***REMOVED***
       var search_term = JSON.stringify(document.querySelector("#input_setlist_search").value);
+      $scope.loading = true;
       console.log(search_term);
       $http.post('/setlistSearch', search_term)
       .then(function successCallback(response) ***REMOVED***
-        console.log("done");
+        $scope.loading = false;
         $scope.tracks = response.data;
         if ($scope.page === "even" || $scope.page === 0) ***REMOVED***
           $scope.page = "odd";

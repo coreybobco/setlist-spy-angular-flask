@@ -85,7 +85,7 @@ body ***REMOVED***
 ***REMOVED***
 /*Begin my additions*/
 h1 ***REMOVED***
-  margin-top: 4px;
+  margin-top: 0px;
   margin-bottom: 0px;
 ***REMOVED***
 h1,h2,h3,h4 ***REMOVED***
@@ -104,6 +104,9 @@ p.toplinks ***REMOVED***
 ***REMOVED***
 .fa ***REMOVED***
   color: black;
+***REMOVED***
+.fa-spinner ***REMOVED***
+  font-size: 32px;
 ***REMOVED***
 .logo ***REMOVED***
   width: 200px;
