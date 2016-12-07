@@ -33,7 +33,7 @@ class MixesDBScraper:
             scraper_url = self.base_url + set_url
             tree = self.get_tree(scraper_url)
             tracks = tree.xpath('//div[@id="mw-content-text"]//ol/li/text()')
-            tracks.extend(tree.xpath("//div[parent::div[not(@class = 'commenttextfield linkPreviewWrapperList')] and @class='list']/div[contains(@class, 'list-track')]/text()"))
+            tracks.extend(tree.xpath("//div[parent::div[not(contains(@class, 'list-track'))] and @class='list']/div[contains(@class, 'list-track')]/text()"))
             print(set_url)
             pprint(tracks)
             tracklist.extend(tracks)
@@ -50,6 +50,8 @@ class MixesDBScraper:
 
     def build_trackdata(self, tracks):
         #Filters for tracks and builds collection of them w/ data structure: 'artist' -> ('tracktitle','label')
+
+        #BAD TRACK!!!! track 08 Mono Junk – Bkack Cat
         tracks_by_artist = collections.defaultdict(list)
         labels_by_track = collections.defaultdict()
         pattern = re.compile('^(?:\[[\d:\?]*\])?[\s]?(?!\?)([^\[]*) - ([^\[]*)(\[.*])?$')
