@@ -24,6 +24,7 @@ class MixesDBScraper:
         search_url = self.get_api_search_url(search_input)
         tree = self.get_tree(search_url)
         set_urls = tree.xpath('//ul[@id="catMixesList"]/li/a/@href')
+        print(set_urls)
         return set_urls
 
     def get_tracklist(self, set_urls):
@@ -32,6 +33,7 @@ class MixesDBScraper:
             scraper_url = self.base_url + set_url
             tree = self.get_tree(scraper_url)
             tracks = tree.xpath('//div[@id="mw-content-text"]//ol/li/text()')
+            tracks.extend(tree.xpath('//div[@class="list-track"]/text()'))
             tracklist.extend(tracks)
         tracks_by_artist = self.build_trackdata(tracklist)
         formatted_tracklist = self.build_formatted_tracklist(tracks_by_artist)
