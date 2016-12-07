@@ -16,11 +16,11 @@ angular.module('setlistspyApp')
     $scope.setlistSearch = function() ***REMOVED***
       var search_term = JSON.stringify(document.querySelector("#input_setlist_search").value);
       $scope.loading = true;
+      $scope.error = false;
       console.log(search_term);
       $http.post('/setlistSearch', search_term)
       .then(function successCallback(response) ***REMOVED***
         $scope.loading = false;
-        $scope.error = false;
         $scope.tracks = response.data;
         if ($scope.page === "even" || $scope.page === 0) ***REMOVED***
           $scope.page = "odd";

@@ -19,7 +19,7 @@
         <div class="error" ng-show="addGeneForm.url.$error.pattern">Not a valid URL</div>
   </form>
   <i id="spinner" class="fa fa-spinner fa-spin" ng-hide="!loading" ng-show="loading"></i>
-  <span class="error" ng-hide="!error">Error pulling data</span>
+  <span class="error" ng-hide="!error">No results or application timed out</span>
 </div>
 
 <div class="animate-switch-container" ng-switch="page">

@@ -20,9 +20,11 @@ class MixesDBScraper:
         search_query = "+".join(search_input.split())
         url = self.base_url + "/db/index.php?title=Special%3ASearch&profile=cats&search=" + search_query + "&fulltext=Search"
         tree = self.get_tree(url)
-        api_search_url = tree.xpath("//div[@class='searchresults']/ul[1]//div[@class='mw-search-result-heading']/span[@class='search-result-isCat bold']/a/@href")[0]
-        api_search_url = self.base_url + api_search_url
-        return api_search_url
+        search_url_anchor = tree.xpath("//div[@class='searchresults']/ul[1]//div[@class='mw-search-result-heading']/span[@class='search-result-isCat bold']/a/@href")
+        if len(search_url_anchor):
+            return self.base_url + search_url_anchor[0]
+        else:
+            raise NameError("No search results")
 
     def get_set_urls(self, search_input):
         search_url = self.get_api_search_url(search_input)
