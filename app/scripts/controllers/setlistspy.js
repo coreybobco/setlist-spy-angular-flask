@@ -20,6 +20,7 @@ angular.module('setlistspyApp')
       $http.post('/setlistSearch', search_term)
       .then(function successCallback(response) ***REMOVED***
         $scope.loading = false;
+        $scope.error = false;
         $scope.tracks = response.data;
         if ($scope.page === "even" || $scope.page === 0) ***REMOVED***
           $scope.page = "odd";
@@ -27,6 +28,8 @@ angular.module('setlistspyApp')
           $scope.page = "even";
         ***REMOVED***
       ***REMOVED***, function errorCallback(response) ***REMOVED***
+          $scope.loading = false;
+          $scope.error = true;
           console.log("Error\n" + response);
       ***REMOVED***);
     ***REMOVED***;

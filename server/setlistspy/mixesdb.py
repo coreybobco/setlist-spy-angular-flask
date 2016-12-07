@@ -35,11 +35,10 @@ class MixesDBScraper:
         for set_url in set_urls:
             scraper_url = self.base_url + set_url
             tree = self.get_tree(scraper_url)
-            track_texts = tree.xpath('//div[@id="mw-content-text"]//ol/li/text()')
-            track_texts.extend(tree.xpath("//div[parent::div[not(contains(@class, 'commenttextfield'))] and @class='list']/div[contains(@class, 'list-track')]/text()"))
-            print(set_url)
-            tracklist.extend(track_texts)
-        tracks_by_artist = self.build_tracklist_data(track_texts)
+            setlist = tree.xpath('//div[@id="mw-content-text"]//ol/li/text()')
+            setlist.extend(tree.xpath("//div[parent::div[not(contains(@class, 'commenttextfield'))] and @class='list']/div[contains(@class, 'list-track')]/text()"))
+            tracklist.extend(setlist)
+        self.build_tracklist_data(tracklist)
         self.build_formatted_tracklist()
         return self.formatted_tracklist
 
@@ -64,10 +63,11 @@ class MixesDBScraper:
                 self.labels_by_track[tracktitle] = label
             self.tracks_by_artist[artist].append(tracktitle)
         else:
-            print("BAD TRACK!!!! " + track)
+            print("BAD TRACK!!!! " + track_text)
 
     def build_formatted_tracklist(self):
         #Convert track collection to alphabetized list of tracks with format "***REMOVED***artist***REMOVED*** - ***REMOVED***tracktitle***REMOVED*** [label]"
+        print(self.tracks_by_artist)
         for artist,tracklist in self.tracks_by_artist.items():
             for tracktitle in tracklist:
                 formatted_track = artist + " - " + tracktitle
