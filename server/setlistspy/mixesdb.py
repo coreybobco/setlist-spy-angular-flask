@@ -33,7 +33,9 @@ class MixesDBScraper:
             scraper_url = self.base_url + set_url
             tree = self.get_tree(scraper_url)
             tracks = tree.xpath('//div[@id="mw-content-text"]//ol/li/text()')
-            tracks.extend(tree.xpath('//div[@class="list-track"]/text()'))
+            tracks.extend(tree.xpath("//div[parent::div[not(@class = 'commenttextfield linkPreviewWrapperList')] and @class='list']/div[contains(@class, 'list-track')]/text()"))
+            print(set_url)
+            pprint(tracks)
             tracklist.extend(tracks)
         tracks_by_artist = self.build_trackdata(tracklist)
         formatted_tracklist = self.build_formatted_tracklist(tracks_by_artist)
