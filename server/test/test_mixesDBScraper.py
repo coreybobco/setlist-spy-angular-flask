@@ -5,6 +5,7 @@ class TestMixesDBScraper(TestCase):
     def test_get_set_urls(self):
         mdb = MixesDBScraper()
         self.fail()
+        #BAD TRACK!!!! track 08 Mono Junk – Bkack Cat
 
     def test_get_tracklist(self):
         self.fail()

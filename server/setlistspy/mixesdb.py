@@ -7,6 +7,11 @@ from pprint import pprint
 class MixesDBScraper:
     def __init__(self):
         self.base_url = "http://www.mixesdb.com"
+        self.tracklist_data = dict()
+        self.tracks_by_artist = collections.defaultdict(list)
+        self.labels_by_track = collections.defaultdict()
+        self.track_regex = re.compile('^(?:\[[\d:\?]*\])?[\s]?(?!\?)([^\[]*) - ([^\[]*)(\[.*])?$')
+        self.formatted_tracklist = list()
         return
 
     def get_api_search_url(self, search_input):
@@ -17,14 +22,12 @@ class MixesDBScraper:
         tree = self.get_tree(url)
         api_search_url = tree.xpath("//div[@class='searchresults']/ul[1]//div[@class='mw-search-result-heading']/span[@class='search-result-isCat bold']/a/@href")[0]
         api_search_url = self.base_url + api_search_url
-        print(api_search_url)
         return api_search_url
 
     def get_set_urls(self, search_input):
         search_url = self.get_api_search_url(search_input)
         tree = self.get_tree(search_url)
         set_urls = tree.xpath('//ul[@id="catMixesList"]/li/a/@href')
-        print(set_urls)
         return set_urls
 
     def get_tracklist(self, set_urls):
@@ -32,57 +35,45 @@ class MixesDBScraper:
         for set_url in set_urls:
             scraper_url = self.base_url + set_url
             tree = self.get_tree(scraper_url)
-            tracks = tree.xpath('//div[@id="mw-content-text"]//ol/li/text()')
-            tracks.extend(tree.xpath("//div[parent::div[not(contains(@class, 'list-track'))] and @class='list']/div[contains(@class, 'list-track')]/text()"))
+            track_texts = tree.xpath('//div[@id="mw-content-text"]//ol/li/text()')
+            track_texts.extend(tree.xpath("//div[parent::div[not(contains(@class, 'commenttextfield'))] and @class='list']/div[contains(@class, 'list-track')]/text()"))
             print(set_url)
-            pprint(tracks)
-            tracklist.extend(tracks)
-        tracks_by_artist = self.build_trackdata(tracklist)
-        formatted_tracklist = self.build_formatted_tracklist(tracks_by_artist)
-        formatted_tracklist = set(formatted_tracklist)
-        formatted_tracklist = list(formatted_tracklist)
-        formatted_tracklist.sort()
-        return formatted_tracklist
+            tracklist.extend(track_texts)
+        tracks_by_artist = self.build_tracklist_data(track_texts)
+        self.build_formatted_tracklist()
+        return self.formatted_tracklist
 
     def get_tree(self, url):
         page = requests.get(url)
         return html.fromstring(page.content)
 
-    def build_trackdata(self, tracks):
+    def build_tracklist_data(self, track_texts):
         #Filters for tracks and builds collection of them w/ data structure: 'artist' -> ('tracktitle','label')
+        for track_text in track_texts:
+            self.validate_and_extract_track_data(track_text)
 
-        #BAD TRACK!!!! track 08 Mono Junk – Bkack Cat
-        tracks_by_artist = collections.defaultdict(list)
-        labels_by_track = collections.defaultdict()
-        pattern = re.compile('^(?:\[[\d:\?]*\])?[\s]?(?!\?)([^\[]*) - ([^\[]*)(\[.*])?$')
-        for track in tracks:
-            match = pattern.match(track.strip())
-            if match:
-                artist = match.group(1)
-                tracktitle = match.group(2).strip()
-                if match.group(3):
-                    #Strip extraneously release info like # and year if necessary
-                    label =  match.group(3)
-                    label = label.split("-")[0].strip("[ ]")
-                    labels_by_track[tracktitle] = label
-                tracks_by_artist[artist].append(tracktitle)
-            else:
-                print("BAD TRACK!!!! " + track)
-        trackdata = dict()
-        trackdata["tracks_by_artist"] = tracks_by_artist
-        trackdata["labels_by_track"] = labels_by_track
-        pprint(trackdata)
-        return trackdata
+    def validate_and_extract_track_data(self, track_text):
+        match = self.track_regex.match(track_text.strip())
+        if match:
+            artist = match.group(1)
+            tracktitle = match.group(2).strip()
+            if match.group(3):
+                #Strip extraneously release info like # and year if necessary
+                label =  match.group(3)
+                label = label.split("-")[0].strip("[ ]")
+                self.labels_by_track[tracktitle] = label
+            self.tracks_by_artist[artist].append(tracktitle)
+        else:
+            print("BAD TRACK!!!! " + track)
 
-    def build_formatted_tracklist(self, trackdata):
+    def build_formatted_tracklist(self):
         #Convert track collection to alphabetized list of tracks with format "***REMOVED***artist***REMOVED*** - ***REMOVED***tracktitle***REMOVED*** [label]"
-        formatted_tracklist = []
-        tracks_by_artist = trackdata["tracks_by_artist"]
-        labels_by_track = trackdata["labels_by_track"]
-        for artist,tracklist in tracks_by_artist.items():
+        for artist,tracklist in self.tracks_by_artist.items():
             for tracktitle in tracklist:
                 formatted_track = artist + " - " + tracktitle
-                if tracktitle in labels_by_track:
-                    formatted_track += " [" + labels_by_track[tracktitle] + "]"
-                formatted_tracklist.append(formatted_track)
-        return formatted_tracklist
+                if tracktitle in self.labels_by_track:
+                    formatted_track += " [" + self.labels_by_track[tracktitle] + "]"
+                self.formatted_tracklist.append(formatted_track)
+        self.formatted_tracklist = set(self.formatted_tracklist)
+        self.formatted_tracklist = list(self.formatted_tracklist)
+        self.formatted_tracklist.sort()
