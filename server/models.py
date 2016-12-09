@@ -1,11 +1,15 @@
-from peewee import *
 from playhouse.postgres_ext import *
 
-ext_db = PostgresqlExtDatabase('setlistspy', user='postgres', password="cosmicvampire", host="localhost", port=5432, register_hstore=False)
+def get_db():
+    return PostgresqlExtDatabase('setlistspy',
+                          user='postgres',
+                          password="cosmicvampire",
+                          host="localhost", port=5432,
+                          register_hstore=False)
 
 class BaseExtModel(Model):
     class Meta:
-        database = ext_db
+        database = get_db()
 
 class DJ(BaseExtModel):
     name = CharField(unique=True)
@@ -32,5 +36,6 @@ class Track_Setlist_Link(BaseExtModel):
     track = ForeignKeyField(Track)
     setlist = ForeignKeyField(Setlist)
 
-ext_db.connect()
-ext_db.create_tables([DJ, Setlist, Artist, Label, Track, Track_Setlist_Link])
+class DJ_Setlist_Link(BaseExtModel):
+    dj = ForeignKeyField(DJ)
+    setlist = ForeignKeyField(Setlist)
