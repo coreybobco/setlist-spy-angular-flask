@@ -13,7 +13,8 @@ class CSV_Seeder:
         self.current_dj_row_id = 1;
         self.csv_headers = ***REMOVED***"dj.csv": "name,url",
                             "setlist.csv": "dj,url,order,page_mod_time"***REMOVED***
-        self.seed_csvs()
+        # self.seed_csvs()
+        self.no_comments_selector = "not(contains(@class,'commenttextfield'))"
         return
 
     def seed_csvs(self):
@@ -54,9 +55,13 @@ class CSV_Seeder:
         tracklist = list()
         tree = self.get_tree(set_url)
         mod_time = tree.xpath("//li[@id='lastmod']/text()")[1].strip()
+        xpath = "//dl[parent::div[" + self.no_comments_selector + " and (child::ol or child::div)]]"
+        print(xpath)
+        tracklist_headers = tree.xpath(xpath)
+        print(tracklist_headers)
         # setlist = tree.xpath('//div[@id="mw-content-text"]//ol/li/text()')
-        # setlist.extend(tree.xpath(
-        #   "//div[parent::div[not(contains(@class, 'commenttextfield'))] and @class='list']/div[contains(@class, 'list-track')]/text()"))
+        print(tree.xpath("//div[parent::div[" + self.no_comments_selector + "] and @class='list']/div[contains(@class, 'list-track')]/text()"))
+        # setlist.extend(tree.xpath("//div[parent::div[" + self.no_comments_selector + " and @class='list']/div[contains(@class, 'list-track')]/text()"))
         # tracklist.extend(setlist)
         # self.build_tracklist_data(tracklist)
         # self.build_formatted_tracklist()
@@ -65,7 +70,7 @@ class CSV_Seeder:
         #Gets headers
 
         #XPATH FOR EXTRACTING JUST DJ IN QUESTION SET
-        $x("//ol[preceding-sibling::dl[1]/dt[contains(text()," + dj_name + ")]]")
+        #$x("//ol[preceding-sibling::dl[1]/dt[contains(text()," + dj_name + ")]]")
 
     def reset_csvs(self):
         for filename,headers in self.csv_headers.items():
