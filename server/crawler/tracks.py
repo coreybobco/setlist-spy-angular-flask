@@ -1,5 +1,6 @@
 import re
 from models import Artist, Label, Track
+from string import capwords
 
 '''This class will parse a setlist for artists, titles, and labels and add those to the database if they
 do not already exist. The Setlist Parser class will also use the ID's of these it grabs so it can store
@@ -50,5 +51,5 @@ class TracksParser:
             self.setlist_trackids.append(track.id)
         return
 
-def titlecase(s):
-    return re.sub(r"[A-Za-z]+('[A-Za-z]+)?", lambda mo: mo.group(0)[0].upper() + mo.group(0)[1:].lower(), s)
+def titlecase(text):
+    return " (".join(capwords(text_component) for text_component in text.split("("))
