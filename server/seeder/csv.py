@@ -70,7 +70,8 @@ class CSV_Seeder:
         #Gets headers
 
         #XPATH FOR EXTRACTING JUST DJ IN QUESTION SET
-        #$x("//ol[preceding-sibling::dl[1]/dt[contains(text()," + dj_name + ")]]")
+        #$x("//ol[preceding-sibling::dl[1]/dt[contains(text()," + dj_name + ")]]/li/text()")
+        $x("//ol[parent::*[not(contains(@class,'commenttextfield'))] and preceding-sibling::dl[1]/dt[contains(text()," + dj_name + ")]]/li/text()")
 
     def reset_csvs(self):
         for filename,headers in self.csv_headers.items():

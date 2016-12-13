@@ -1,39 +1,82 @@
 from lxml import html
 import requests
+from pprint import pprint
+from crawler.crawler import Crawler
+from crawler.tracks import TracksParser
+from models import Setlist, Track_Setlist_Link, DJ_Setlist_Link
 
-#Abstract class for webcrawling from MixesDb
 #The purpose of this class is to scrape data from a MixesDB setlist url page in order to generate a data
 #structure that can be used to seed or update the PostgresSQL database
 class SetlistCrawler(Crawler):
-    def __init__(self, dj_name, url):
+    def __init__(self, dj_id, dj_name, url):
         Crawler.__init__(self)
-        self.dj_name = dj_name
+        #Database values
+        self.row_id = False
+        self.dj_id = dj_id
         self.url = url
-        self.multi_tracklist = False
+        self.track_ids = list()
+        self.multi_dj = False
+        self.multi_version = True
 
-    def crawl_setlist_page(self):
+        #Other attributes, including xpath components
+        self.dj_name = dj_name
+        self.searchable_dj_name = self.dj_name.split("(")[0].strip()
+        self.no_comments_selector = "not(contains(@class,'commenttextfield'))"
+        self.tree = self.get_tree(url)
+        self.track_texts = list()
+        return
+
+    def crawl(self):
         tracklist = list()
-        tree = self.get_tree(set_url)
-        mod_time = tree.xpath("//li[@id='lastmod']/text()")[1].strip()
-        self.tracklist_headers = tree.xpath("//dl[parent::div[" + self.no_comments_selector + " and (child::ol or child::div)]]/dt/text()")
-        print(tracklist_headers)
-        if len(tracklist_headers) > 1:
-            self.crawl_multi_tracklist()
-        # setlist = tree.xpath('//div[@id="mw-content-text"]//ol/li/text()')
-        print(tree.xpath("//div[parent::div[" + self.no_comments_selector + "] and @class='list']/div[contains(@class, 'list-track')]/text()"))
-        # setlist.extend(tree.xpath("//div[parent::div[" + self.no_comments_selector + " and @class='list']/div[contains(@class, 'list-track')]/text()"))
-        # tracklist.extend(setlist)
-        # self.build_tracklist_data(tracklist)
-        # self.build_formatted_tracklist()
-        # return self.formatted_tracklist'
+        self.mod_time = self.tree.xpath("//li[@id='lastmod']/text()")[1].strip()
+        self.tracklist_headers = self.tree.xpath("//dl[parent::div[" + self.no_comments_selector + " and (child::ol or child::div)]]/dt/text()")
+        if len(self.tracklist_headers) > 1:
+            self.crawl_multi_header()
+        else:
+            self.crawl_single_dj()
+        tparser = TracksParser(self.track_texts)
+        tparser.save_to_db()
+        self.track_ids = tparser.setlist_trackids
+        return
 
-    def crawl_multi_tracklist(self):
-        #When there are multiple versions of a tracklist, this method should combine and sort them by order.
-        #When the tracklists is for multiple DJ's, this 
-        #Gets headers
+    def crawl_multi_header(self):
+        '''When there are multiple headers in the tracklist section, determine if there are multiple
+        artists in the tracklist and if there are multiple versions before handling'''
+        for header in self.tracklist_headers:
+            lowercase_header = header.lower()
+            if self.searchable_dj_name.lower() in lowercase_header:
+                self.multi_dj = True
+            if "version" in lowercase_header:
+                self.multi_version = True
+        if self.multi_dj:
+            self.crawl_multi_dj()
+        else:
+            self.crawl_single_dj()
+        return
 
-        #XPATH FOR EXTRACTING JUST DJ IN QUESTION SET
-        #$x("//ol[preceding-sibling::dl[1]/dt[contains(text()," + dj_name + ")]]")
+    def crawl_single_dj(self):
+        self.track_texts = self.tree.xpath("//ol[parent::*[" + self.no_comments_selector + "]/li//text()")
+        self.track_texts.extend(self.tree.xpath("//div[parent::*[" + self.no_comments_selector + " and @class='list']/div[contains(@class, 'list-track')]//text()"))
+        pprint(self.track_texts)
+        return
+
+    def crawl_multi_dj(self):
+        #TODO: For now this only works when the preceding header is an artist, not 'Part 2', 'Version 1', etc
+        belongs_to_dj_selector = "preceding-sibling::*[1]/dt[contains(text(), '" + self.searchable_dj_name + "')]"
+        tracklist_condition = self.no_comments_selector + "] and " + belongs_to_dj_selector
+
+        self.track_texts = self.tree.xpath("//ol[parent::*[" + tracklist_condition + "]/li//text()")
+        self.track_texts.extend(self.tree.xpath("//div[parent::*[" + tracklist_condition + " and @class='list']/div[contains(@class, 'list-track')]//text()"))
+        pprint(self.track_texts)
+        return
+
+    def save_to_db(self):
+        if self.initial_seed:
+            setlist = Setlist.create(dj=self.dj_id, url=self.url, track_ids=self.track_ids, multi_dj=self.multi_dj,
+                                  multi_version=self.multiversion, page_mod_time=self.page_mod_time)
+            DJ_Setlist_Link.create(dj=self.dj_id, setlist=setlist.id)
+            for track_id in self.track_ids:
+                Track_Setlist_Link.create(track=track_id, setlist=setlist.id)
 
 
 

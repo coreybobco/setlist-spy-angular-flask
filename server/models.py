@@ -18,10 +18,10 @@ class DJ(BaseExtModel):
 class Setlist(BaseExtModel):
     dj = ForeignKeyField(DJ)
     url = CharField(unique=True)
-    track_order = ArrayField()
-    multi_tracklist = BooleanField(default=False)
+    track_ids = ArrayField() #Sorted in setlist order when setlist.multi_version = True, otherwise just an aggregate
+    multi_dj = BooleanField(default = False)
+    multi_version = BooleanField(default = False)
     page_mod_time = DateTimeField()
-    # raw sql = INSERT INTO setlist (dj_id, url, track_order, page_mod_time) VALUES(1, 'www.sjdk.com', array[1,2,3], date '30 September 2015');
 
 class Artist(BaseExtModel):
     name = CharField(unique=True)
