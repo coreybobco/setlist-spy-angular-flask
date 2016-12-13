@@ -17,7 +17,7 @@ class DJ(BaseExtModel):
 
 class Setlist(BaseExtModel):
     dj = ForeignKeyField(DJ)
-    url = CharField(unique=True)
+    url = CharField()
     track_ids = ArrayField() #Sorted in setlist order when setlist.multi_version = True, otherwise just an aggregate
     multi_dj = BooleanField(default = False)
     multi_version = BooleanField(default = False)
