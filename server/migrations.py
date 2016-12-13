@@ -1,4 +1,3 @@
-from playhouse.postgres_ext import *
 from models import *
 from crawler.djs import *
 
@@ -15,7 +14,8 @@ class migrator:
 
     def seed_db(self):
         self.initialize_db(True)
-        seeder = DJsCrawler()
+        seeder = DJsCrawler(True, True)
+        seeder.crawl_categories_page()
 
     def fill_schema(self):
         self.db.execute_sql("CREATE SCHEMA IF NOT EXISTS public")
