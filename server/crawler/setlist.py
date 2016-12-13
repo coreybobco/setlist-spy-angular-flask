@@ -36,9 +36,12 @@ class SetlistCrawler(Crawler):
         else:
             self.crawl_single_dj()
         tparser = TracksParser(self.track_texts)
-        tparser.save_to_db()
+        self.build_tracklist_data()
+        if self.save:
+            tparser.save_to_db()
         self.track_ids = tparser.setlist_trackids
-        self.save_to_db()
+        if self.save:
+            self.save_to_db()
         return
 
     def crawl_multi_header(self):

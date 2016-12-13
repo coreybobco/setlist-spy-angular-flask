@@ -21,7 +21,7 @@ class TracksParser:
         match = self.track_regex.match(track_text.strip())
         if match:
             track_info['artist'] = match.group(1)
-            track_info['title'] = match.group(2).strip()
+            track_info['title'] = match.group(2).strip().title()
             if match.group(3):
                 #Strip extraneously release info like # and year if necessary
                 label = match.group(3)
@@ -31,7 +31,6 @@ class TracksParser:
             print("BAD TRACK!!!! " + track_text)
 
     def save_to_db(self):
-        self.build_tracklist_data()
         for track_info in self.tracks_info:
             artist, created = Artist.get_or_create(name=track_info['artist'])
             if "label" in track_info:
