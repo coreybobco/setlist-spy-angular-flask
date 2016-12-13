@@ -8,7 +8,7 @@ from models import Setlist, Track_Setlist_Link, DJ_Setlist_Link
 #The purpose of this class is to scrape data from a MixesDB setlist url page in order to generate a data
 #structure that can be used to seed or update the PostgresSQL database
 class SetlistCrawler(Crawler):
-    def __init__(self, dj_id, dj_name, url):
+    def __init__(self, dj_id, dj_name, url, initial_seed):
         Crawler.__init__(self)
         #Database values
         self.row_id = False
@@ -24,6 +24,7 @@ class SetlistCrawler(Crawler):
         self.no_comments_selector = "not(contains(@class,'commenttextfield'))"
         self.tree = self.get_tree(url)
         self.track_texts = list()
+        self.initial_seed = initial_seed
         return
 
     def crawl(self):
@@ -37,6 +38,7 @@ class SetlistCrawler(Crawler):
         tparser = TracksParser(self.track_texts)
         tparser.save_to_db()
         self.track_ids = tparser.setlist_trackids
+        self.save_to_db()
         return
 
     def crawl_multi_header(self):
@@ -55,28 +57,29 @@ class SetlistCrawler(Crawler):
         return
 
     def crawl_single_dj(self):
-        self.track_texts = self.tree.xpath("//ol[parent::*[" + self.no_comments_selector + "]/li//text()")
-        self.track_texts.extend(self.tree.xpath("//div[parent::*[" + self.no_comments_selector + " and @class='list']/div[contains(@class, 'list-track')]//text()"))
+        self.track_texts = self.tree.xpath("//ol[parent::*[" + self.no_comments_selector + "]]/li//text()")
+        self.track_texts.extend(self.tree.xpath("//div[parent::*[" + self.no_comments_selector + "] and @class='list']/div[contains(@class, 'list-track')]//text()"))
         pprint(self.track_texts)
         return
 
     def crawl_multi_dj(self):
         #TODO: For now this only works when the preceding header is an artist, not 'Part 2', 'Version 1', etc
+        #Also not working for DJ's with apostrophes/single quotes in name due to xpath
         belongs_to_dj_selector = "preceding-sibling::*[1]/dt[contains(text(), '" + self.searchable_dj_name + "')]"
         tracklist_condition = self.no_comments_selector + "] and " + belongs_to_dj_selector
-
-        self.track_texts = self.tree.xpath("//ol[parent::*[" + tracklist_condition + "]/li//text()")
-        self.track_texts.extend(self.tree.xpath("//div[parent::*[" + tracklist_condition + " and @class='list']/div[contains(@class, 'list-track')]//text()"))
+        if not "'" in self.searchable_dj_name:
+            self.track_texts = self.tree.xpath("//ol[parent::*[" + tracklist_condition + "]/li//text()")
+            self.track_texts.extend(self.tree.xpath("//div[parent::*[" + tracklist_condition + " and @class='list']/div[contains(@class, 'list-track')]//text()"))
         pprint(self.track_texts)
         return
 
     def save_to_db(self):
         if self.initial_seed:
             setlist = Setlist.create(dj=self.dj_id, url=self.url, track_ids=self.track_ids, multi_dj=self.multi_dj,
-                                  multi_version=self.multiversion, page_mod_time=self.page_mod_time)
+                                  multi_version=self.multi_version, page_mod_time=self.page_mod_time)
             DJ_Setlist_Link.create(dj=self.dj_id, setlist=setlist.id)
             for track_id in self.track_ids:
-                Track_Setlist_Link.create(track=track_id, setlist=setlist.id)
+                Track_Setlist_Link.get_or_create(track=track_id, setlist=setlist.id)
 
 
 

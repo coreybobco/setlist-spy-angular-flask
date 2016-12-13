@@ -3,10 +3,9 @@ import requests
 
 #Abstract class for webcrawling from MixesDb
 class Crawler:
-    def get_tree(self, url):
-        def __init__(self):
-            self.base_url = "http://www.mixesdb.com"
-            return
+    def __init__(self):
+        self.base_url = "http://www.mixesdb.com"
+        return
 
     def get_tree(self, url):
         page = requests.get(url)

@@ -1,5 +1,6 @@
 from playhouse.postgres_ext import *
 from models import *
+from crawler.djs import *
 
 class migrator:
     def __init__(self):
@@ -11,6 +12,10 @@ class migrator:
             self.db.drop_tables(self.models)
         self.fill_schema()
         self.create_functions()
+
+    def seed_db(self):
+        self.initialize_db(True)
+        seeder = DJsCrawler()
 
     def fill_schema(self):
         self.db.execute_sql("CREATE SCHEMA IF NOT EXISTS public")

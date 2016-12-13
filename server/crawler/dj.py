@@ -31,10 +31,9 @@ class DJCrawler(Crawler):
 
     def save_to_db(self):
         if self.initial_seed:
-            data = DJ.create(name=name, url=url)
-            self.created = True
+            data = DJ.create(name=self.name, url=self.url)
         else:
-            data, self.created = DJ.get_or_create(name=name, url=url)
+            data, created = DJ.get_or_create(name=name, url=url)
         self.row_id = data.id
         return
 

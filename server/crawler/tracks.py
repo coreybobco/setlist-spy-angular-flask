@@ -17,6 +17,7 @@ class TracksParser:
             self.validate_and_extract_track_data(track_text)
 
     def validate_and_extract_track_data(self, track_text):
+        track_info = dict()
         match = self.track_regex.match(track_text.strip())
         if match:
             track_info['artist'] = match.group(1)
@@ -29,12 +30,17 @@ class TracksParser:
         else:
             print("BAD TRACK!!!! " + track_text)
 
-    def save_to_db():
+    def save_to_db(self):
         self.build_tracklist_data()
         for track_info in self.tracks_info:
-            artist = Artist.get_or_create(name=track_info['artist'])
-            label = Label.get_or_create(name=track_info['label'])
-            track = Track.create_or_get(artist=artist.id, title=track_info['title'], label=label.id)
+            artist, created = Artist.get_or_create(name=track_info['artist'])
+            if "label" in track_info:
+                label, created = Label.get_or_create(name=track_info['label'])
+                track, created = Track.create_or_get(artist=artist.id, title=track_info['title'])
+                track.label = label.id
+                track.save()
+            else:
+                track, created = Track.create_or_get(artist=artist.id, title=track_info['title'])
             self.setlist_trackids.append(track.id)
         return
 
