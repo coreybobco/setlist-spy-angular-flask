@@ -4,7 +4,7 @@ from crawler.djs import *
 class migrator:
     def __init__(self):
         self.db = get_db()
-        self.models = [DJ, Setlist, Artist, Label, Track, Track_Setlist_Link, DJ_Setlist_Link]
+        self.models = [DJ, Setlist, Artist, Label, Track, Track_Setlist_Link]
 
     def initialize_db(self, drop_tables=False):
         if drop_tables:

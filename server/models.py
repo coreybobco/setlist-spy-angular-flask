@@ -37,8 +37,4 @@ class Track(BaseExtModel):
 
 class Track_Setlist_Link(BaseExtModel):
     track = ForeignKeyField(Track)
-    setlist = ForeignKeyField(Setlist)
-
-class DJ_Setlist_Link(BaseExtModel):
-    dj = ForeignKeyField(DJ)
-    setlist = ForeignKeyField(Setlist)
+    setlist = ForeignKeyField(Setlist

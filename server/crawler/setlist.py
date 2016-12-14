@@ -1,7 +1,7 @@
 from pprint import pprint
 from crawler.crawler import Crawler
 from crawler.tracks import TracksParser
-from models import Setlist, Track_Setlist_Link, DJ_Setlist_Link
+from models import Setlist, Track_Setlist_Link
 
 #The purpose of this class is to scrape data from a MixesDB setlist url page in order to generate a data
 #structure that can be used to seed or update the PostgresSQL database
@@ -82,13 +82,11 @@ class SetlistCrawler(Crawler):
         if self.initial_seed:
             setlist = Setlist.create(dj=self.dj_id, url=self.url, track_ids=self.track_ids, multi_dj=self.multi_dj,
                                   multi_version=self.multi_version, page_mod_time=self.page_mod_time)
-            DJ_Setlist_Link.create(dj=self.dj_id, setlist=setlist.id)
             for track_id in self.track_ids:
                 Track_Setlist_Link.get_or_create(track=track_id, setlist=setlist.id)
         else:
             setlist, created = Setlist.create_or_get(dj=self.dj_id, url=self.url, track_ids=self.track_ids, multi_dj=self.multi_dj,
                                      multi_version=self.multi_version, page_mod_time=self.page_mod_time)
-            DJ_Setlist_Link.get_or_create(dj=self.dj_id, setlist=setlist.id)
             for track_id in self.track_ids:
                 Track_Setlist_Link.get_or_create(track=track_id, setlist=setlist.id)
 
