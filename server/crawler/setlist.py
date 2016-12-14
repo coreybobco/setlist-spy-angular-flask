@@ -85,6 +85,12 @@ class SetlistCrawler(Crawler):
             DJ_Setlist_Link.create(dj=self.dj_id, setlist=setlist.id)
             for track_id in self.track_ids:
                 Track_Setlist_Link.get_or_create(track=track_id, setlist=setlist.id)
+        else:
+            setlist = Setlist.create_or_get(dj=self.dj_id, url=self.url, track_ids=self.track_ids, multi_dj=self.multi_dj,
+                                     multi_version=self.multi_version, page_mod_time=self.page_mod_time)
+            DJ_Setlist_Link.get_or_create(dj=self.dj_id, setlist=setlist.id)
+            for track_id in self.track_ids:
+                Track_Setlist_Link.get_or_create(track=track_id, setlist=setlist.id)
 
 
 
