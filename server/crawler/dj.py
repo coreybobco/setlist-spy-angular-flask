@@ -25,11 +25,19 @@ class DJCrawler(Crawler):
             self.save_to_db()
         else:
             pprint(self)
-        set_urls = tree.xpath('//ul[@id="catMixesList"]/li/a/@href')
-        set_urls = list(map(lambda url: self.base_url + url, set_urls))
-        for set_url in set_urls:
-            setlist_crawler = SetlistCrawler(self.row_id, self.name, set_url, self.save, self.initial_seed)
-            setlist_crawler.crawl()
+        while self.url != False:
+            set_urls = tree.xpath('//ul[@id="catMixesList"]/li/a/@href')
+            set_urls = list(map(lambda url: self.base_url + url, set_urls))
+            for set_url in set_urls:
+                setlist_crawler = SetlistCrawler(self.row_id, self.name, set_url, self.save, self.initial_seed)
+                setlist_crawler.crawl()
+            next_url = self.tree.xpath("//div[@class='listPagination'][1]/a[contains(text(), 'next')]/@href")
+            if len(next_url):
+                self.url = self.base_url + next_url[0]
+                tree = self.get_tree(self.url)
+            else:
+                self.url = False
+        return
 
     def save_to_db(self):
         if self.initial_seed:
