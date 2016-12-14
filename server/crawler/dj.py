@@ -31,7 +31,7 @@ class DJCrawler(Crawler):
             for set_url in set_urls:
                 setlist_crawler = SetlistCrawler(self.row_id, self.name, set_url, self.save, self.initial_seed)
                 setlist_crawler.crawl()
-            next_url = self.tree.xpath("//div[@class='listPagination'][1]/a[contains(text(), 'next')]/@href")
+            next_url = tree.xpath("//div[@class='listPagination'][1]/a[contains(text(), 'next')]/@href")
             if len(next_url):
                 self.url = self.base_url + next_url[0]
                 tree = self.get_tree(self.url)
