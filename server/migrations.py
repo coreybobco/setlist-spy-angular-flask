@@ -12,9 +12,9 @@ class migrator:
         self.fill_schema()
         self.create_functions()
 
-    def seed_db(self, drop_tables = False):
+    def seed_db(self, drop_tables = False, starting_url = False):
         self.initialize_db(drop_tables)
-        seeder = DJsCrawler(True, True)
+        seeder = DJsCrawler(starting_url, True, True)
         seeder.crawl_categories_pages()
 
     def fill_schema(self):
