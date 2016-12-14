@@ -5,7 +5,7 @@ from crawler.dj import DJCrawler
 # The purpose of this class is to iterate through the MixesDB "Category: Artist" pages (i.e. the DJ pages)
 # so the postgresql database can be seeded or updated
 class DJsCrawler(Crawler):
-    def __init__(self, save=False, initial_seed=True):
+    def __init__(self, save=False, initial_seed=False):
         Crawler.__init__(self)
         #No database values, just these attributes
         self.url = self.base_url + "/w/Category:Artist"
@@ -30,7 +30,7 @@ class DJsCrawler(Crawler):
         self.tree = self.get_tree(self.url)
         dj_urls = self.tree.xpath("//ul[@id='catSubcatsList']//a/@href")
         dj_urls = list(map(lambda url: self.base_url + url, dj_urls))
-        pprint(dj_urls)
+        # pprint(dj_urls)
         for dj_url in dj_urls:
             dj_crawler = DJCrawler(dj_url, self.save, self.initial_seed)
             dj_crawler.crawl()
