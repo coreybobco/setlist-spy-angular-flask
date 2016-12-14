@@ -15,7 +15,7 @@ class migrator:
     def seed_db(self):
         self.initialize_db(True)
         seeder = DJsCrawler(True, True)
-        seeder.crawl_categories_page()
+        seeder.crawl_categories_pages()
 
     def fill_schema(self):
         self.db.execute_sql("CREATE SCHEMA IF NOT EXISTS public")
