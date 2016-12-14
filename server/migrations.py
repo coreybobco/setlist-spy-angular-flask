@@ -12,8 +12,8 @@ class migrator:
         self.fill_schema()
         self.create_functions()
 
-    def seed_db(self):
-        self.initialize_db(True)
+    def seed_db(self, drop_tables = False):
+        self.initialize_db(drop_tables)
         seeder = DJsCrawler(True, True)
         seeder.crawl_categories_pages()
 
