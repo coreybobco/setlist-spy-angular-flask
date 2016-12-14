@@ -43,7 +43,7 @@ class DJCrawler(Crawler):
         if self.initial_seed:
             data = DJ.create(name=self.name, url=self.url)
         else:
-            data, created = DJ.get_or_create(name=name, url=url)
+            data, created = DJ.get_or_create(name=self.name, url=self.url)
         self.row_id = data.id
         return
 
