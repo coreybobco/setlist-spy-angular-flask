@@ -15,6 +15,8 @@ class DJsCrawler(Crawler):
         return
 
     def crawl_categories_pages(self):
+        while self.url != False:
+            self.craw
         return
 
     def crawl_categories_page(self):
