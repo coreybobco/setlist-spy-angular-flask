@@ -29,7 +29,13 @@ class SetlistCrawler(Crawler):
 
     def crawl(self):
         tracklist = list()
-        self.page_mod_time = self.tree.xpath("//li[@id='lastmod']/text()")[1].strip()
+        page_mod_time = self.tree.xpath("//li[@id='lastmod']/text()")
+        if len(page_mod_time) > 1:
+            self.page_mod_time = page_mod_time[1].strip()
+        elif  len(page_mod_time) == 1::
+            self.page_mod_time = page_mod_time[0]
+        else:
+            self.page_mod_time = "2010 Jan 1"
         self.tracklist_headers = self.tree.xpath("//dl[parent::div[" + self.no_comments_selector + " and (child::ol or child::div)]]/dt/text()")
         if len(self.tracklist_headers) > 1:
             self.crawl_multi_header()
