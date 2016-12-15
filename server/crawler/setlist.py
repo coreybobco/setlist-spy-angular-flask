@@ -32,7 +32,7 @@ class SetlistCrawler(Crawler):
         page_mod_time = self.tree.xpath("//li[@id='lastmod']/text()")
         if len(page_mod_time) > 1:
             self.page_mod_time = page_mod_time[1].strip()
-        elif  len(page_mod_time) == 1::
+        elif  len(page_mod_time) == 1:
             self.page_mod_time = page_mod_time[0]
         else:
             self.page_mod_time = "2010 Jan 1"
