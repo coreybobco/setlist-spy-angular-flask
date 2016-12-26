@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 from flask import Flask, request
 import json
-from setlistspy.mixesdb import MixesDBScraper
+from search import Search
+from pprint import pprint
 
 app = Flask(__name__)
 
@@ -9,10 +10,9 @@ app = Flask(__name__)
 def setlist_search():
     search_input = json.loads(request.get_data().decode(encoding='UTF-8'))
     search_input = " ".join(search_input.split()) #Normalize whitespace
-    mdb = MixesDBScraper()
-    set_urls = mdb.get_set_urls(search_input)
-    tracklist = mdb.get_tracklist(set_urls)
-    return json.dumps(tracklist)
+    search = Search(search_input)
+    pprint(search.results)
+    return json.dumps(search.results)
 
 if __name__ == '__main__':
     app.run(

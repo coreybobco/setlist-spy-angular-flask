@@ -5,5 +5,4 @@
 /bower_components
 /.idea
 /server/.idea
-/server/db.json
 *.pyc

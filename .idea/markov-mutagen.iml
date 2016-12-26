@@ -2,13 +2,13 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <excludeFolder url="file://$MODULE_DIR$/../markovmutator_angular/temp" />
-      <excludeFolder url="file://$MODULE_DIR$/../markovmutator_angular/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/../markovmutator_angular/temp" />
+      <excludeFolder url="file://$MODULE_DIR$/../markovmutator_angular/tmp" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.5.2 (/usr/bin/python3.5)" jdkType="Python SDK" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>

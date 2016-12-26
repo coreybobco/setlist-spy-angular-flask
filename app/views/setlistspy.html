@@ -22,16 +22,4 @@
   <span class="error" ng-hide="!error">No results or application timed out</span>
 </div>
 
-<div class="animate-switch-container" ng-switch="page">
-      <div class="animate-switch odd" ng-switch-when="odd">
-        <ul>
-          <li ng-repeat="track in tracks">***REMOVED******REMOVED***track***REMOVED******REMOVED***</li>
-        </ul>
-      </div>
-      <div class="animate-switch even" ng-switch-when="even">
-        <ul>
-          <li ng-repeat="track in tracks">***REMOVED******REMOVED***track***REMOVED******REMOVED***</li>
-        </ul>
-      </div>
-      <div class="animate-switch" ng-switch-default></div>
-</div>
+<ng-include src="'views/results.html'"></ng-include>

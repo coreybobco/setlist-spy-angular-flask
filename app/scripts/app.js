@@ -11,10 +11,13 @@
 var myApp = angular
   .module('setlistspyApp', [
     'ngAnimate',
+    'ngAria',
+    'ngMaterial',
     'ngMessages',
     'ngResource',
     'ngRoute',
-    'ngSanitize'
+    'ngSanitize',
+    'ui.grid'
   ])
   .config(function ($routeProvider) ***REMOVED***
     $routeProvider

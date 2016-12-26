@@ -1,0 +1,26 @@
+<div class="animate-switch-container" ng-switch="page">
+  <div class="animate-switch odd tabsdemoStaticTabs" ng-switch-when="odd" >
+    <md-content>
+    <md-tabs class="md-accent" md-selected="data.selectedIndex" md-align-tabs="top" md-stretch-tabs="always">
+      <md-tab id="tab1">
+        <md-tab-label>What They Played</md-tab-label>
+        <md-tab-body>
+          <ul>
+            <li ng-repeat="dj_track in dj_tracks">***REMOVED******REMOVED***dj_track***REMOVED******REMOVED***</li>
+          </ul>
+        </md-tab-body>
+      </md-tab>
+      <md-tab id="tab2">
+        <md-tab-label>Who Played Them</md-tab-label>
+        <md-tab-body>
+          <ul>
+            <li ng-repeat="artist_track in artist_tracks">***REMOVED******REMOVED***artist_track***REMOVED******REMOVED***</li>
+          </ul>
+        </md-tab-body>
+      </md-tab>
+    </md-tabs>
+  </div>
+  <div class="animate-switch even" ng-switch-when="even">
+  </div>
+  <div class="animate-switch" ng-switch-default></div>
+</div>

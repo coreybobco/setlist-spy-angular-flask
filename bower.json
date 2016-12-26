@@ -10,7 +10,9 @@
     "angular-route": "^1.4.0",
     "angular-sanitize": "^1.4.0",
     "components-font-awesome": "^4.6.3",
-    "jquery-ui": "^1.12.1"
+    "jquery-ui": "^1.12.1",
+    "angular-aria": "^1.6.1",
+    "angular-material": "^1.1.1"
   ***REMOVED***,
   "devDependencies": ***REMOVED***
     "angular-mocks": "^1.4.0"

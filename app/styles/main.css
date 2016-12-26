@@ -191,3 +191,19 @@ input[type="checkbox"] ***REMOVED***
 .book ***REMOVED***
   white-space:pre-wrap;
 ***REMOVED***
+
+md-tabs-wrapper ***REMOVED***
+  background-color: #676767 !important;
+***REMOVED***
+.tabsdemoStaticTabs md-tab-content ***REMOVED***
+  padding: 25px; ***REMOVED***
+.tabsdemoStaticTabs md-tab-content:nth-child(1) ***REMOVED***
+  background-color: #e8e8e8; ***REMOVED***
+.tabsdemoStaticTabs md-tab-content:nth-child(2) ***REMOVED***
+  background-color: #d8d8d8; ***REMOVED***
+.tabsdemoStaticTabs .after-tabs-area > span ***REMOVED***
+  margin-top: 25px;
+  padding-right: 15px;
+  vertical-align: middle;
+  line-height: 30px;
+  height: 35px; ***REMOVED***

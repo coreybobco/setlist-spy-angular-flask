@@ -21,7 +21,9 @@ angular.module('setlistspyApp')
       $http.post('/setlistSearch', search_term)
       .then(function successCallback(response) ***REMOVED***
         $scope.loading = false;
-        $scope.tracks = response.data;
+        var results = response.data;
+        $scope.dj_tracks = results['dj_tracks'];
+        $scope.artist_tracks = results['artist_tracks'];
         if ($scope.page === "even" || $scope.page === 0) ***REMOVED***
           $scope.page = "odd";
         ***REMOVED*** else ***REMOVED***
