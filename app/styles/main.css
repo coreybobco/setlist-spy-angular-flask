@@ -129,19 +129,6 @@ p.toplinks ***REMOVED***
   padding-left: 5px;
   padding-right: 5px;
 ***REMOVED***
-#config_options ***REMOVED***
-  font-family: Georgia, Times, "Times New Roman", serif;
-  width: 400px;
-  margin: auto;
-  margin-top: 15px;
-  margin-bottom: 15px;
-***REMOVED***
-#mutate_button ***REMOVED***
-  font-size: 17px;
-  width: 135px;
-  margin: 10px auto 10px auto;
-  display: block;
-***REMOVED***
 .b-page, .b-wrap ***REMOVED***
   width: 400px;
 ***REMOVED***
@@ -151,59 +138,21 @@ label ***REMOVED***
 .fa-arrow-left,.fa-arrow-right ***REMOVED***
   font-size:30px;
 ***REMOVED***
-.ng-image-gallery.inline, .ng-image-gallery-modal ***REMOVED***
-  height: 550px !important;
-***REMOVED***
-.statement p ***REMOVED***
-  margin: 5px 60px 15px 100px;
-  font-size: 15px;
-***REMOVED***
-.carousel-content ***REMOVED***
-  color:black;
-  display:flex;
-  align-items:center;
-***REMOVED***
 .row ***REMOVED***
   width: 80%;
   margin: 0 auto;
-***REMOVED***
-#ngram_size ***REMOVED***
-  width: 270px;
-  margin: auto;
-  margin-bottom: 10px;
-***REMOVED***
-#ngram_size > label ***REMOVED***
-  font-size: 14px;
-  margin: 5px 15px 15px 5px;
-  display: inline;
-***REMOVED***
-input[type="checkbox"] ***REMOVED***
-  margin: auto;
-***REMOVED***
-#label_purge_ratio ***REMOVED***
-  padding-left: 25px;
-  margin: 10px 0px 10px 14px !important;
-***REMOVED***
-#purge_ratio ***REMOVED***
-  height: 16px;
-  width: 50px;
-***REMOVED***
-.book ***REMOVED***
-  white-space:pre-wrap;
 ***REMOVED***
 
 md-tabs-wrapper ***REMOVED***
   background-color: #676767 !important;
 ***REMOVED***
-.tabsdemoStaticTabs md-tab-content ***REMOVED***
-  padding: 25px; ***REMOVED***
 .tabsdemoStaticTabs md-tab-content:nth-child(1) ***REMOVED***
   background-color: #e8e8e8; ***REMOVED***
 .tabsdemoStaticTabs md-tab-content:nth-child(2) ***REMOVED***
   background-color: #d8d8d8; ***REMOVED***
-.tabsdemoStaticTabs .after-tabs-area > span ***REMOVED***
-  margin-top: 25px;
-  padding-right: 15px;
-  vertical-align: middle;
-  line-height: 30px;
-  height: 35px; ***REMOVED***
+.md-accent ***REMOVED***
+  height: 500px;
+***REMOVED***
+.ui-grid ***REMOVED***
+  height: 450px;
+***REMOVED***

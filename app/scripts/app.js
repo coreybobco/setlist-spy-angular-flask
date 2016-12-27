@@ -17,7 +17,8 @@ var myApp = angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ui.grid'
+    'ui.grid',
+    'ui.grid.grouping'
   ])
   .config(function ($routeProvider) ***REMOVED***
     $routeProvider

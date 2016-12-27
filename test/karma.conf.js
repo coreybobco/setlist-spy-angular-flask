@@ -31,6 +31,8 @@ module.exports = function(config) ***REMOVED***
       'bower_components/jquery-ui/jquery-ui.js',
       'bower_components/angular-aria/angular-aria.js',
       'bower_components/angular-material/angular-material.js',
+      'bower_components/angular-ui-grid/ui-grid.js',
+      'bower_components/angular-ui-grid/ui-grid.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'app/scripts/**/*.js',
