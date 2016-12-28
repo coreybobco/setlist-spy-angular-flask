@@ -8,6 +8,7 @@ from psycopg2.extras import RealDictCursor
 class Search:
     def __init__(self, search_input):
         sc = SearchCrawler()
+        self.search_input = search_input
         self.search_term = sc.get_api_search_url(search_input)
         self.results = {'artist_tracks': {}, 'dj_tracks': [], 'djs_by_setlist': {}}
         db = json.load(open("db.json"))
@@ -36,7 +37,7 @@ class Search:
                 JOIN setlist on setlist.id = track_setlist_link.setlist_id
                 JOIN dj on dj.id = setlist.dj_id
                 WHERE artist.name = %s GROUP BY track ORDER BY track;"""
-        self.cur.execute(sql, (self.search_term,))
+        self.cur.execute(sql, (self.search_input,))
         self.results['artist_tracks'] = self.cur.fetchall()
         sql = """SELECT DISTINCT setlist.url, array_agg(DISTINCT dj.name ORDER BY dj.name) as djs FROM setlist
                 JOIN dj on dj.id = setlist.dj_id
@@ -44,7 +45,7 @@ class Search:
                 JOIN track on track.id = track_setlist_link.track_id
                 JOIN artist ON track.artist_id = artist.id
                 WHERE artist.name = %s GROUP BY setlist.url;"""
-        self.cur.execute(sql, (self.search_term,))
+        self.cur.execute(sql, (self.search_input,))
         setlist_data = self.cur.fetchall()
         for setlist_data in setlist_data:
             url = setlist_data['url']
