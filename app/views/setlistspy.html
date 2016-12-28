@@ -9,8 +9,7 @@
     <img ng-src="{{image}}">
 </div>
 
-<h4>ID <strong>every</strong> track a DJ has <strong>ever</strong> played.</h4>
-<p class="center">Ok, actually just ones already ID'd in recorded sets</p>
+<h4>All tracks played by a DJ<br>Every <i class="fa fa-play" aria-hidden="true"></i> of an artist's <i class="fa fa-music" aria-hidden="true"></i></h4>
 
 <div class="center">
   <form name="setlistSearchForm" ng-submit="setlistSearchForm.$valid && setlistSearch()" ng-hide="loading" ng-show="!loading">
@@ -21,5 +20,6 @@
   <i id="spinner" class="fa fa-spinner fa-spin" ng-hide="!loading" ng-show="loading"></i>
   <span class="error" ng-hide="!error">No results or application timed out</span>
 </div>
+<p class="center small">Data sourced from <a target="_blank" href="http://mixesdb.com">MixesDb</a>, liable to human error</p>
 
 <ng-include src="'views/results.html'"></ng-include>

@@ -100,6 +100,9 @@ ul {
 .center {
   text-align: center;
 }
+.small {
+  font-size:12px;
+}
 p.toplinks {
   font-style: italic;
   margin: 0 auto;
