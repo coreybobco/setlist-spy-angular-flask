@@ -1,17 +1,17 @@
-<div class="animate-switch-container" ng-switch="page">
+<div class="animate-switch-container" ng-switch="page" flex>
   <div class="animate-switch odd tabsdemoStaticTabs" ng-switch-when="odd" >
     <md-content>
       <md-tabs class="md-accent" md-selected="data.selectedIndex" md-align-tabs="top" md-stretch-tabs="always">
         <md-tab id="tab1">
           <md-tab-label>What They Played</md-tab-label>
           <md-tab-body>
-            <div ui-grid="DJgridOptions"ui-grid-grouping class="djGrid"></div>
+            <div ui-grid="DJgridOptions" class="djGrid"></div>
           </md-tab-body>
         </md-tab>
         <md-tab id="tab2">
           <md-tab-label>Who Played Them</md-tab-label>
           <md-tab-body>
-            <div ui-grid="ArtistgridOptions" ui-grid-grouping class="artistGrid"></div>
+            <div ui-grid="ArtistgridOptions" class="artistGrid"></div>
           </md-tab-body>
         </md-tab>
       </md-tabs>
@@ -23,13 +23,13 @@
         <md-tab id="tab1">
           <md-tab-label>What They Played</md-tab-label>
           <md-tab-body>
-            <div ui-grid="DJgridOptions" ui-grid-grouping class="grid"></div>
+            <div ui-grid="DJgridOptions" class="grid"></div>
           </md-tab-body>
         </md-tab>
         <md-tab id="tab2">
           <md-tab-label>Who Played Them</md-tab-label>
           <md-tab-body>
-            <div ui-grid="ArtistgridOptions" ui-grid-grouping class="grid"></div>
+            <div ui-grid="ArtistgridOptions" class="grid"></div>
           </md-tab-body>
         </md-tab>
       </md-tabs>

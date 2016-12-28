@@ -65,7 +65,7 @@ body {
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
-    max-width: 800px;
+    max-width: 650px;
   }
 
   /* Remove the padding we set earlier */
@@ -156,6 +156,13 @@ md-tabs-wrapper {
 .md-accent {
   height: 500px;
 }
+md-tabs-canvas.md-paginated {
+     margin: 0px;
+}
+.md-tab {
+  text-overflow: clip;
+  text-align: center;
+}
 .ui-grid {
   height: 450px;
 }
@@ -177,4 +184,11 @@ display: table-cell;
 white-space: normal;
 padding: 2px;
 word-break: break-word;
+}
+.ui-grid-cell-contents > ul {
+  margin-right: 10px;
+}
+
+.ui-grid-viewport {
+  width: auto !important;
 }

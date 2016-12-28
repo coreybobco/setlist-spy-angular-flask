@@ -25,16 +25,19 @@ angular.module('setlistspyApp')
         $scope.loading = false;
         var results = response.data;
         // $scope.dj_tracks = results['dj_tracks'];
+        $scope.container_width = $(".animate-switch").width();
         $scope.DJgridOptions = { data: results['dj_tracks'],
                                  enableFiltering: true,
-                                 columnDefs: [{field: 'track', displayName: 'Artist - Track', width: 360, cellTemplate: '<div class="ui-grid-cell-contents">{{row.entity.artist}} - {{row.entity.title}}</div>'},
-                                              { field: 'label', displayName: 'Label', width: 190 }]
+                                 enableHorizontalScrollbar: 0,
+                                 columnDefs: [{field: 'track', displayName: 'Artist - Track', width: .65 * $scope.container_width, cellTemplate: '<div class="ui-grid-cell-contents">{{row.entity.artist}} - {{row.entity.title}}</div>'},
+                                              { field: 'label', displayName: 'Label', width: .35 * $scope.container_width }]
                          };
         $scope.djs_by_setlist = results['djs_by_setlist'];
         $scope.ArtistgridOptions = { data: results['artist_tracks'],
                                      enableFiltering: true,
-                                     columnDefs: [{ field: 'track', displayName: 'Track Title', width: 240},
-                                                  { field: 'setlist_urls', displayName: 'Setlists', width: 400, cellTemplate: '<div class="ui-grid-cell-contents"><ul><li ng-repeat="url in row.entity.setlist_urls"><a target="_blank" href="{{url}}">{{grid.appScope.djs_by_setlist[url]}} </a></li></ul></div>'}]};
+                                     enableHorizontalScrollbar: 0,
+                                     columnDefs: [{ field: 'track', displayName: 'Track Title', width: .5 * $scope.container_width},
+                                                  { field: 'setlist_urls', displayName: 'Setlists', width: .5 * $scope.container_width, cellTemplate: '<div class="ui-grid-cell-contents"><ul><li ng-repeat="url in row.entity.setlist_urls"><a target="_blank" href="{{url}}">{{grid.appScope.djs_by_setlist[url]}} </a></li></ul></div>'}]};
         if ($scope.page === "even" || $scope.page === 0) {
           $scope.page = "odd";
         } else {
