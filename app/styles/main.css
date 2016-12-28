@@ -165,6 +165,7 @@ md-tabs-canvas.md-paginated {
 .md-tab {
   text-overflow: clip;
   text-align: center;
+  padding: 12px 0px 24px 0px;
 }
 .ui-grid {
   height: 450px;
