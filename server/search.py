@@ -8,7 +8,7 @@ from psycopg2.extras import RealDictCursor
 class Search:
     def __init__(self, search_input):
         sc = SearchCrawler()
-        self.search_input = search_input
+        self.search_input = search_input.title()
         self.search_term = sc.get_api_search_url(search_input)
         self.results = {'artist_tracks': {}, 'dj_tracks': [], 'djs_by_setlist': {}}
         db = json.load(open("db.json"))
