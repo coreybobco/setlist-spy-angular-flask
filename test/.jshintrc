@@ -1,4 +1,4 @@
-***REMOVED***
+{
   "bitwise": true,
   "browser": true,
   "curly": true,
@@ -11,8 +11,8 @@
   "strict": true,
   "undef": true,
   "unused": true,
-  "globals": ***REMOVED***
+  "globals": {
     "angular": false,
     "inject": false
-  ***REMOVED***
-***REMOVED***
+  }
+}

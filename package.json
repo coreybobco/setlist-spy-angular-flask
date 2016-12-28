@@ -1,7 +1,7 @@
-***REMOVED***
+{
   "name": "setlistspy",
   "private": true,
-  "devDependencies": ***REMOVED***
+  "devDependencies": {
     "angular": "^1.5.8",
     "autoprefixer-core": "^6.0.1",
     "grunt": "^1.0.1",
@@ -37,12 +37,12 @@
     "karma-phantomjs-launcher": "^1.0.2",
     "serve-static": "^1.11.1",
     "time-grunt": "^1.0.0"
-  ***REMOVED***,
-  "engines": ***REMOVED***
+  },
+  "engines": {
     "node": ">=0.10.0"
-  ***REMOVED***,
-  "scripts": ***REMOVED***
+  },
+  "scripts": {
     "test": "karma start test/karma.conf.js"
-  ***REMOVED***,
-  "dependencies": ***REMOVED******REMOVED***
-***REMOVED***
+  },
+  "dependencies": {}
+}

@@ -11,6 +11,7 @@ def setlist_search():
     search_input = json.loads(request.get_data().decode(encoding='UTF-8'))
     search_input = " ".join(search_input.split()) #Normalize whitespace
     search = Search(search_input)
+    pprint(search.results)
     return json.dumps(search.results)
 
 if __name__ == '__main__':

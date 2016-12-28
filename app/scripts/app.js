@@ -20,31 +20,31 @@ var myApp = angular
     'ui.grid',
     'ui.grid.grouping'
   ])
-  .config(function ($routeProvider) ***REMOVED***
+  .config(function ($routeProvider) {
     $routeProvider
-      .when('/', ***REMOVED***
+      .when('/', {
         templateUrl: 'views/setlistspy.html',
         controller: 'SetlistSpyCtrl',
         controllerAs: 'setlistspy'
-      ***REMOVED***)
-      .otherwise(***REMOVED***
+      })
+      .otherwise({
         redirectTo: '/'
-      ***REMOVED***);
-  ***REMOVED***).controller('HeaderCtrl', function HeaderController($scope, $location)
-  ***REMOVED***
-    $scope.isActive = function (viewLocation) ***REMOVED***
+      });
+  }).controller('HeaderCtrl', function HeaderController($scope, $location)
+  {
+    $scope.isActive = function (viewLocation) {
       return viewLocation === $location.path();
-    ***REMOVED***;
-  ***REMOVED***);
+    };
+  });
 
-myApp.filter('range', function() ***REMOVED***
-  return function(input, total) ***REMOVED***
+myApp.filter('range', function() {
+  return function(input, total) {
     total = parseInt(total);
 
-    for (var i=0; i<total; i++) ***REMOVED***
+    for (var i=0; i<total; i++) {
       input.push(i);
-    ***REMOVED***
+    }
 
     return input;
-  ***REMOVED***;
-***REMOVED***);
+  };
+});

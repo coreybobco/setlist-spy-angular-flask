@@ -9,7 +9,7 @@ class Search:
     def __init__(self, search_input):
         sc = SearchCrawler()
         self.search_term = sc.get_api_search_url(search_input)
-        self.results = ***REMOVED***'artist_tracks': [], 'dj_tracks': []***REMOVED***
+        self.results = {'artist_tracks': {}, 'dj_tracks': [], 'djs_by_setlist': {}}
         db = json.load(open("db.json"))
         conn = psycopg2.connect(database=db['database'], user=db['username'], password=db['password'], host=db['host'])
         self.cur = conn.cursor(cursor_factory=RealDictCursor)
@@ -30,12 +30,23 @@ class Search:
         return
 
     def get_artist_tracks(self):
-        sql = """SELECT concat(track.title, ' [', label.name, ']') as track, dj.name as DJ, setlist.url FROM track
-                LEFT JOIN label ON label.id = track.label_id
+        sql = """SELECT track.title as track, array_agg(DISTINCT setlist.url ORDER BY setlist.url) as setlist_urls FROM track
                 JOIN artist ON track.artist_id = artist.id
                 JOIN track_setlist_link on track_setlist_link.track_id = track.id
                 JOIN setlist on setlist.id = track_setlist_link.setlist_id
-                JOIN dj on dj.id = setlist.dj_id where artist.name = %s ORDER BY track.title;"""
+                JOIN dj on dj.id = setlist.dj_id
+                WHERE artist.name = %s GROUP BY track ORDER BY track;"""
         self.cur.execute(sql, (self.search_term,))
         self.results['artist_tracks'] = self.cur.fetchall()
+        sql = """SELECT DISTINCT setlist.url, array_agg(DISTINCT dj.name ORDER BY dj.name) as djs FROM setlist
+                JOIN dj on dj.id = setlist.dj_id
+                JOIN track_setlist_link on track_setlist_link.setlist_id = setlist.id
+                JOIN track on track.id = track_setlist_link.track_id
+                JOIN artist ON track.artist_id = artist.id
+                WHERE artist.name = %s GROUP BY setlist.url;"""
+        self.cur.execute(sql, (self.search_term,))
+        setlist_data = self.cur.fetchall()
+        for setlist_data in setlist_data:
+            url = setlist_data['url']
+            self.results['djs_by_setlist'][url] = ", ".join(setlist_data['djs']) + " (" + url[25:29] + ")"
         return

@@ -1,37 +1,37 @@
-.animate-switch-container ***REMOVED***
+.animate-switch-container {
   position:relative;
   background:white;
   overflow:hidden;
   width: 100%;
   height:auto;
   min-height: 500px;
-***REMOVED***
+}
 
-.animate-switch ***REMOVED***
-  width: 700px;
+.animate-switch {
+  width: 550px;
   margin: auto;
   padding: 10px;
   margin: auto;
-***REMOVED***
+}
 
-.animate-switch.ng-animate ***REMOVED***
+.animate-switch.ng-animate {
   transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
   position:absolute;
   top:0;
   left:0;
   right:0;
   bottom:0;
-***REMOVED***
+}
 
-.animate-switch.ng-leave.ng-leave-active ***REMOVED***
+.animate-switch.ng-leave.ng-leave-active {
   top: -450px;
   opacity: 0;
-***REMOVED***
-.animate-switch.ng-enter ***REMOVED***
+}
+.animate-switch.ng-enter {
   top: 450px;
-***REMOVED***
+}
 .animate-switch.ng-leave,
-.animate-switch.ng-enter.ng-enter-active ***REMOVED***
+.animate-switch.ng-enter.ng-enter-active {
   top:0;
-***REMOVED***
-.ng-animate ***REMOVED*** -webkit-animation: none 0s; ***REMOVED***
+}
+.ng-animate { -webkit-animation: none 0s; }

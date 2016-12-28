@@ -6,7 +6,7 @@
 <h1>Setlist Spy</h1>
 
 <div class="logo">
-    <img ng-src="***REMOVED******REMOVED***image***REMOVED******REMOVED***">
+    <img ng-src="{{image}}">
 </div>
 
 <h4>ID <strong>every</strong> track a DJ has <strong>ever</strong> played.</h4>
@@ -14,7 +14,7 @@
 
 <div class="center">
   <form name="setlistSearchForm" ng-submit="setlistSearchForm.$valid && setlistSearch()" ng-hide="loading" ng-show="!loading">
-        <label><input id="input_setlist_search" name="search" placeholder="Enter a DJ name here" ng-model="text" ng-pattern="/\S***REMOVED***2,***REMOVED***/"/></label>
+        <label><input id="input_setlist_search" name="search" placeholder="Enter a DJ name here" ng-model="text" ng-pattern="/\S{2,}/"/></label>
         <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
         <div class="error" ng-show="addGeneForm.url.$error.pattern">Not a valid URL</div>
   </form>

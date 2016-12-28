@@ -1,7 +1,7 @@
-***REMOVED***
+{
   "name": "setlistspy",
   "version": "0.0.0",
-  "dependencies": ***REMOVED***
+  "dependencies": {
     "angular": "^1.5.8",
     "bootstrap": "^3.2.0",
     "angular-animate": "^1.6.1",
@@ -14,25 +14,25 @@
     "angular-aria": "^1.6.1",
     "angular-material": "^1.1.1",
     "angular-ui-grid": "^4.0.1"
-  ***REMOVED***,
-  "devDependencies": ***REMOVED***
+  },
+  "devDependencies": {
     "angular-mocks": "^1.4.0"
-  ***REMOVED***,
+  },
   "appPath": "app",
   "moduleName": "setlistspyApp",
-  "overrides": ***REMOVED***
-    "bootstrap": ***REMOVED***
+  "overrides": {
+    "bootstrap": {
       "main": [
         "less/bootstrap.less",
         "dist/css/bootstrap.css",
         "dist/js/bootstrap.js"
       ]
-    ***REMOVED***,
-    "font-awesome": ***REMOVED***
+    },
+    "font-awesome": {
       "main": [
         "less/font-awesome.less",
         "css/font-awesome.css"
       ]
-    ***REMOVED***
-  ***REMOVED***
-***REMOVED***
+    }
+  }
+}

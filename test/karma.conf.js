@@ -1,10 +1,10 @@
 // Karma configuration
 // Generated on 2016-10-03
 
-module.exports = function(config) ***REMOVED***
+module.exports = function(config) {
   'use strict';
 
-  config.set(***REMOVED***
+  config.set({
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
 
@@ -76,10 +76,10 @@ module.exports = function(config) ***REMOVED***
     logLevel: config.LOG_INFO,
 
     // Uncomment the following lines if you are using grunt's server to run the tests
-    // proxies: ***REMOVED***
+    // proxies: {
     //   '/': 'http://localhost:9000/'
-    // ***REMOVED***,
+    // },
     // URL root prevent conflicts with the site root
     // urlRoot: '_karma_'
-  ***REMOVED***);
-***REMOVED***;
+  });
+};
