@@ -31,8 +31,8 @@ class Label(BaseExtModel):
 
 class Track(BaseExtModel):
     __tablename__ = 'tracks'
-    artist = ForeignKeyField(Artist)
-    title = CharField(unique=True)
+    artist = ForeignKeyField(Artist) #DO COMPOUND FORIEGN KEY
+    title = CharField()
     label = ForeignKeyField(Label, null=True)
 
 class Track_Setlist_Link(BaseExtModel):

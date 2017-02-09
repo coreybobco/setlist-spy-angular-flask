@@ -31,6 +31,7 @@ class Search:
         return
 
     def get_artist_tracks(self):
+        # See if jam two queries and gets two results
         sql = """SELECT track.title as track, array_agg(DISTINCT setlist.url ORDER BY setlist.url) as setlist_urls FROM track
                 JOIN artist ON track.artist_id = artist.id
                 JOIN track_setlist_link on track_setlist_link.track_id = track.id
