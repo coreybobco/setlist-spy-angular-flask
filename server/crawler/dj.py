@@ -4,7 +4,7 @@ from crawler.abstract import AbstractCrawler
 from seeder.dj import DJSeeder
 
 '''Iterates through the MixesDB's "Category: Artist" pages (200 DJ's per page), scrapes DJ names and URLs, and writes data to a CSV as rows'''
-class DJCrawler(AbstractCrawler):
+class DJListCrawler(AbstractCrawler):
     def __init__(self, starting_url = False):
         AbstractCrawler.__init__(self)
         # self.reset_csv()
