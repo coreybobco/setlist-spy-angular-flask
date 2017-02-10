@@ -1,8 +1,10 @@
+/bower_components
 /node_modules
 /dist
 /.tmp
 /.sass-cache
-/bower_components
 /.idea
 /server/.idea
+/server/*.csv
+/server/db.json
 *.pyc
