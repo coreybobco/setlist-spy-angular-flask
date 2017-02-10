@@ -3,7 +3,7 @@ import time
 from crawler.abstract import AbstractCrawler
 from seeder.dj import DJSeeder
 
-'''The purpose of this class is to iterate through the MixesDB "Category: Artist" pages (200 DJ's per page), scrape data on each DJ, and write this data to a CSV as rows'''
+'''Iterates through the MixesDB's "Category: Artist" pages (200 DJ's per page), scrapes DJ names and URLs, and writes data to a CSV as rows'''
 class DJCrawler(AbstractCrawler):
     def __init__(self, starting_url = False):
         AbstractCrawler.__init__(self)

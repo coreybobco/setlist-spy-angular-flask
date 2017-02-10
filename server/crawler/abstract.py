@@ -1,4 +1,5 @@
 from lxml import html
+import json
 import requests
 import time
 
@@ -6,6 +7,7 @@ import time
 class AbstractCrawler:
     def __init__(self):
         self.base_url = "http://www.mixesdb.com"
+        self.db = json.load(open("db.json"))
         self.start_time = time.time()
         return
 
@@ -14,4 +16,4 @@ class AbstractCrawler:
         return html.fromstring(page.content)
 
     def log_time(self):
-        print("--- %s seconds to upsert values---" % (time.time() - self.start_time))
+        print("---%s seconds to upsert values---" % (time.time() - self.start_time))

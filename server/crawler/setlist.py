@@ -1,41 +1,42 @@
 from pprint import pprint
-from crawler.crawler import Crawler
+import psycopg2
+from crawler.abstract import AbstractCrawler
 from crawler.tracks import TracksParser
 from models import Setlist, Track_Setlist_Link
 
 #The purpose of this class is to scrape data from a MixesDB setlist url page in order to generate a data
 #structure that can be used to seed or update the PostgresSQL database
-class SetlistCrawler(Crawler):
-    def __init__(self, dj_id, dj_name, url, initial_seed=False):
-        Crawler.__init__(self)
+class SetlistCrawler(AbstractCrawler):
+    def __init__(self):
+        AbstractCrawler.__init__(self)
         #Database values
-        self.row_id = False
-        self.dj_id = dj_id
-        self.url = url
-        self.track_ids = list()
-        self.multi_dj = False
-        self.multi_version = True
-        self.page_mod_time = False
+        # self.row_id = False
+        # self.dj_id = dj_id
+        # self.url = url
+        # self.track_ids = list()
+        # self.multi_dj = False
+        # self.multi_version = False
+        # self.page_mod_time = False
 
         #Other attributes, including xpath components
-        self.dj_name = dj_name
-        self.searchable_dj_name = self.dj_name.split("(")[0].strip()
-        self.no_comments_selector = "not(contains(@class,'commenttextfield'))"
-        self.tree = self.get_tree(url)
-        self.track_texts = list()
-        self.initial_seed = initial_seed
+        # self.dj_name = dj_name
+        # self.searchable_dj_name = self.dj_name.split("(")[0].strip()
+        # self.no_comments_selector = "not(contains(@class,'commenttextfield'))"
+        # self.tree = self.get_tree(url)
+        # self.track_texts = list()
+        # self.initial_seed = initial_seed
+        self.crawl()
         return
 
     def crawl(self):
-        tracklist = list()
-        self.page_mod_time = self.get_page_mod_time()
-        self.tracklist_headers = self.tree.xpath("//dl[parent::div[" + self.no_comments_selector + " and (child::ol or child::div)]]/dt/text()")
-        if len(self.tracklist_headers) > 1:
-            self.crawl_multi_header()
-        else:
-            self.crawl_single_dj()
-        self.parse_tracks()
-        self.save_to_db()
+        conn = psycopg2.connect(database=self.db['database'], user=self.db['username'], password=self.db['password'], host=self.db['host'])
+        cursor = conn.cursor()
+        cursor.execute("SELECT id, url FROM dj")
+        dj_rows = cursor.fetchmany(100)
+        while len(dj_rows):
+            print(dj_rows)
+            dj_rows = cursor.fetchmany(100)
+        self.log_time()
 
     def get_page_mod_time(self):
         page_mod_time = self.tree.xpath("//li[@id='lastmod']/text()") #should be using PHP API to get the eexact
