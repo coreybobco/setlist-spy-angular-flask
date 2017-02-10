@@ -1,42 +1,40 @@
-from pprint import pprint
-from crawler.crawler import Crawler
-from crawler.setlist import SetlistCrawler
-from models import DJ
+import csv
+import time
+from crawler.abstract import AbstractCrawler
+from seeder.dj import DJSeeder
 
-#The purpose of this class is to scrape data from a MixesDB setlist url page in order to generate a data
-#structure that can be used to seed or update the PostgresSQL database
-class DJCrawler(Crawler):
-    def __init__(self, url, initial_seed=False):
-        Crawler.__init__(self)
-        #Database values
-        self.row_id = False
-        self.name = ''
-        self.category_url = url
-
-        #Other variables
-        self.initial_seed = initial_seed
+'''The purpose of this class is to iterate through the MixesDB "Category: Artist" pages (200 DJ's per page), scrape data on each DJ, and write this data to a CSV as rows'''
+class DJCrawler(AbstractCrawler):
+    def __init__(self, starting_url = False):
+        AbstractCrawler.__init__(self)
+        # self.reset_csv()
+        self.url = starting_url if starting_url else self.base_url + "/w/Category:Artist"
+        self.crawl()
+        s = DJSeeder()
+        s.upsert()
 
     def crawl(self):
-        tree = self.get_tree(self.url)
-        self.name = tree.xpath("//h1[@id='firstHeading']/text()")[0][9::]
-        self.save_to_db(url)
-        url = self.category_url
-        while url != False:
-            set_urls = tree.xpath('//ul[@id="catMixesList"]/li/a/@href')
-            set_urls = list(map(lambda url: self.base_url + url, set_urls))
-            for set_url in set_urls:
-                setlist_crawler = SetlistCrawler(self.row_id, self.name, set_url, self.save, self.initial_seed)
-                setlist_crawler.crawl()
-            next_url = tree.xpath("//div[@class='listPagination'][1]/a[contains(text(), 'next')]/@href")
-            if len(next_url):
-                url = self.base_url + next_url[0]
-                tree = self.get_tree(url)
-            else:
-                url = False
+        self.url = False
+        while self.url != False:
+            print(url)
+            self.tree = self.get_tree(self.url)
+            dj_names = self.tree.xpath("//ul[@id='catSubcatsList']//a/text()")
+            dj_urls = self.tree.xpath("//ul[@id='catSubcatsList']//a/@href")
+            with open('dj.csv', 'a', newline='') as f:
+                writer = csv.writer(f, delimiter='\t')
+                for idx, dj_url in enumerate(dj_urls):
+                    writer.writerow([dj_names[idx],  self.base_url + dj_url])
+            f.close()
+            self.url = self.seek_next_page()
+        self.log_time()
 
-    def save_to_db(self, url):
-        if self.initial_seed:
-            data = DJ.create(name=self.name, url=self.url)
+    def seek_next_page(self):
+        next_url = self.tree.xpath("//div[@class='listPagination'][1]/a[contains(text(), 'next')]/@href")
+        if len(next_url) and next_url[0] != None:
+            return self.base_url + next_url[0]
         else:
-            data, created = DJ.get_or_create(name=self.name, url=self.url)
-        self.row_id = data.id
+            return False
+
+    def reset_csv(self):
+        with open('dj.csv', 'w', newline='') as f:
+            f.close()

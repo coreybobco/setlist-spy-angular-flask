@@ -1,9 +1,9 @@
 from playhouse.postgres_ext import *
 
 def get_db():
-    return PostgresqlExtDatabase('setlistspy',
-                          user='postgres',
-                          password="cosmicvampire",
+    return PostgresqlExtDatabase('setlistspy_test',
+                          user='ft_marinetti',
+                          password="1000xenomorphs!!!",
                           host="localhost", port=5432,
                           register_hstore=False)
 
@@ -14,6 +14,10 @@ class BaseExtModel(Model):
 class DJ(BaseExtModel):
     name = CharField(unique=True)
     url = CharField(unique=True)
+
+class Tmp_DJ(BaseExtModel):
+    name = CharField()
+    url = CharField()
 
 class Setlist(BaseExtModel):
     dj = ForeignKeyField(DJ)
