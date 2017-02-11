@@ -1,6 +1,7 @@
 from pprint import pprint
 import psycopg2
-from crawler.abstract import AbstractCrawler
+from abstract.crawler import AbstractCrawler
+import db
 from crawler.tracks import TracksParser
 from models import Setlist, Track_Setlist_Link
 
@@ -9,58 +10,44 @@ from models import Setlist, Track_Setlist_Link
 class SetlistCrawler(AbstractCrawler):
     def __init__(self):
         AbstractCrawler.__init__(self)
-        #Database values
-        # self.row_id = False
-        # self.dj_id = dj_id
-        # self.url = url
-        # self.track_ids = list()
-        # self.multi_dj = False
-        # self.multi_version = False
-        # self.page_mod_time = False
-
-        #Other attributes, including xpath components
-        # self.dj_name = dj_name
-        # self.current_dj_keyword = self.dj_name.split("(")[0].strip()
         self.no_comments_selector = "not(contains(@class,'commenttextfield'))"
-        # self.tree = self.get_tree(url)
-        # self.track_texts = list()
-        # self.initial_seed = initial_seed
-        self.crawl()
         return
 
     def crawl(self):
-        conn = psycopg2.connect(database=self.db['database'], user=self.db['username'], password=self.db['password'], host=self.db['host'])
-        cursor = conn.cursor()
+        conn, cursor = db.connect()
         cursor.execute("SELECT * FROM dj")
         dj_rows = cursor.fetchmany(100)
         while len(dj_rows):
             for row in dj_rows:
                 self.current_dj_keyword = row[1].split("(")[0].strip()
-                dj_page_tree = self.get_tree(row[2])
-                setlist_urls = dj_page_tree.xpath('//ul[@id="catMixesList"]/li/a/@href')
-                setlist_urls = list(map(lambda url: self.base_url + url, setlist_urls))
-                for setlist_url in setlist_urls:
-                    #TODO: Get the page mod time the right way.
-                    self.setlist_page_tree = self.get_tree(setlist_url)
-                    print(setlist_url)
-                    tracklist_headers = self.setlist_page_tree.xpath("//dl[parent::div[" + self.no_comments_selector + " and (child::ol or child::div)]]/dt/text()")
-                    if len(tracklist_headers) > 1:
-                        track_texts = self.crawl_multi_header(tracklist_headers)
-                    else:
-                        track_texts = self.crawl_single_dj()
-                    print(track_texts)
+                setlist_urls = self.get_setlist_urls(row[2])
+                conn.commit()
             dj_rows = cursor.fetchmany(100)
         self.log_time()
 
-    def get_page_mod_time(self):
-        page_mod_time = self.tree.xpath("//li[@id='lastmod']/text()") #should be using PHP API to get the eexact
-        if len(page_mod_time) > 1:
-            page_mod_time = page_mod_time[1].strip()
-        elif  len(page_mod_time) == 1:
-            page_mod_time = page_mod_time[0]
+    def get_tracks(setlist_url):
+        setlist_page_tree = self.get_tree(setlist_url)
+        headers_xpath = "//dl[parent::div[" + self.no_comments_selector + " and (child::ol or child::div)]]/dt/text()"
+        headers_before_tracklist = setlist_page_tree.xpath(headers_xpath)
+        for header in headers_before_tracklist:
+            lowercase_header = header.lower()
+            if self.current_dj_keyword.lower() in lowercase_header:
+                return get_tracks_from_solo_dj_set()
+            if "version" in lowercase_header:
+                return self.get_tracks_from_solo_dj_set
+        if len(headers_before_tracklist) > 1:
+            return self.get_tracks_when_multiple_djs
         else:
-            page_mod_time = "2010 Jan 1"
-        return page_mod_time
+            return self.
+
+    def get_setlist_urls(self, dj_url):
+        whie dj_url != False:
+            dj_tree = self.get_tree(dj_url)
+            scraped_setlist_urls = dj_tree.xpath('//ul[@id="catMixesList"]/li/a/@href')
+            more_results_url = tree.xpath("//div[@class='listPagination'][1]/a[contains(text(), 'next')]/@href")
+            dj_url = self.base_url + next_url[0] if len(more_results_url) else False
+        scraped_setlist_urls = list(map(lambda url: self.base_url + url, scraped_setlist_urls))
+        return scraped_setlist_urls
 
     def parse_tracks(self):
         tparser = TracksParser(self.track_texts)
@@ -71,7 +58,7 @@ class SetlistCrawler(AbstractCrawler):
             pprint(tparser.tracks_info)
         self.track_ids = tparser.setlist_trackids
 
-    def crawl_multi_header(self, tracklist_headers):
+    def get_tracks_when_multiple_djs(self, tracklist_headers):
         '''When there are multiple headers in the tracklist section, determine if there are multiple
         artists in the tracklist and if there are multiple versions before handling'''
         for header in tracklist_headers:
@@ -85,7 +72,7 @@ class SetlistCrawler(AbstractCrawler):
         else:
             self.crawl_single_dj()
 
-    def crawl_single_dj(self):
+    def get_tracks_when_one_dj(self):
         track_texts = self.setlist_page_tree.xpath("//ol[parent::*[" + self.no_comments_selector + "]]/li//text()")
         track_texts.extend(self.setlist_page_tree.xpath("//div[parent::*[" + self.no_comments_selector + "] and @class='list']/div[contains(@class, 'list-track')]//text()"))
         return track_texts
@@ -101,14 +88,12 @@ class SetlistCrawler(AbstractCrawler):
         # pprint(self.track_texts)
         return track_texts
 
-    def b(self):
-        if self.initial_seed:
-            setlist = Setlist.create(dj=self.dj_id, url=self.url, track_ids=self.track_ids, multi_dj=self.multi_dj,
-                                  multi_version=self.multi_version, page_mod_time=self.page_mod_time)
-            for track_id in self.track_ids:
-                Track_Setlist_Link.get_or_create(track=track_id, setlist=setlist.id)
+    def get_page_mod_time(self):
+        page_mod_time = self.tree.xpath("//li[@id='lastmod']/text()") #should be using PHP API to get the eexact
+        if len(page_mod_time) > 1:
+            page_mod_time = page_mod_time[1].strip()
+        elif  len(page_mod_time) == 1:
+            page_mod_time = page_mod_time[0]
         else:
-            setlist, created = Setlist.create_or_get(dj=self.dj_id, url=self.url, track_ids=self.track_ids, multi_dj=self.multi_dj,
-                                     multi_version=self.multi_version, page_mod_time=self.page_mod_time)
-            for track_id in self.track_ids:
-                Track_Setlist_Link.get_or_create(track=track_id, setlist=setlist.id)
+            page_mod_time = "2010 Jan 1"
+        return page_mod_time
