@@ -22,10 +22,9 @@ class Tmp_DJ(BaseExtModel):
 class Setlist(BaseExtModel):
     dj = ForeignKeyField(DJ)
     url = CharField()
-    track_ids = ArrayField() #Sorted in setlist order when setlist.multi_version = True, otherwise just an aggregate
+    page_mod_time = DateTimeField()
     multi_dj = BooleanField(default = False)
     multi_version = BooleanField(default = False)
-    page_mod_time = DateTimeField()
 
 class Artist(BaseExtModel):
     name = CharField(unique=True)
@@ -34,8 +33,7 @@ class Label(BaseExtModel):
     name = CharField(unique=True)
 
 class Track(BaseExtModel):
-    __tablename__ = 'tracks'
-    artist = ForeignKeyField(Artist) #DO COMPOUND FORIEGN KEY
+    artist = ForeignKeyField(Artist)
     title = CharField()
     label = ForeignKeyField(Label, null=True)
 

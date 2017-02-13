@@ -1,17 +1,15 @@
-import csv
 import psycopg2
-import time
 from abstract.parent import AbstractParent
-import db
+from db import psql_db, neo4j_db
 
 '''Seeds the the DJ table in Postgres'''
 class DJSeeder(AbstractParent):
     def __init__(self, starting_url = False):
         AbstractParent.__init__(self)
 
-    def upsert(self):
+    def upsert_psql(self):
+        conn, cursor = psql_db.connect()
         f = open('dj.csv', 'r', newline='')
-        conn, cursor = db.connect()
         #Copy dj.csv to temp table and then upsert de-duped values to actual table
         cursor.copy_from(f, 'tmp_dj', columns=('name', 'url'))
         conn.commit()
@@ -25,3 +23,10 @@ class DJSeeder(AbstractParent):
         conn.commit()
 
         conn.close()
+
+    def insert_into_neo4j(self):
+        driver = neo4j_db.connect()
+        session = driver.session()
+        session.run('''LOAD CSV FROM "file:///dj.csv" AS line
+                     CREATE (:DJ { name: line[0], url:line[1] })''')
+        session.close()
