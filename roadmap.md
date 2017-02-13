@@ -1,6 +1,6 @@
-.2.1 Milestones:
-* Improve batch migration script runtime
-* Add try-catch validation to batch migration script
+.3.0 Milestones:
+* Reimplement database with Neo4j
+* Optimize crawler and upsert scripts & add try-catch
 
 .2.0:
 * Batch scraped/seeded data to PostgreSQL database to speed up query
