@@ -22,7 +22,6 @@ class Tmp_DJ(BaseExtModel):
 class Setlist(BaseExtModel):
     dj = ForeignKeyField(DJ)
     url = CharField()
-    track_ids = ArrayField() #Sorted in setlist order when setlist.multi_version = False, otherwise just an aggregate
     page_mod_time = DateTimeField()
     multi_dj = BooleanField(default = False)
     multi_version = BooleanField(default = False)

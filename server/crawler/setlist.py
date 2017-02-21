@@ -1,4 +1,4 @@
-from pprint import pprint
+rom pprint import pprint
 import psycopg2
 from abstract.crawler import AbstractCrawler
 from db import psql_db
@@ -53,11 +53,6 @@ class SetlistCrawler(AbstractCrawler):
         tparser = TracksParser(track_texts)
         tparser.build_tracklist_data()
         return tparser.tracks_info
-        # if self.save:
-        #     tparser.save_to_db()
-        # else:
-        #     pprint(tparser.tracks_info)
-        # self.track_ids = tparser.setlist_trackids
 
     def get_tracks_for_setlist_with_one_dj(self):
         track_texts = self.setlist_page_tree.xpath("//ol[parent::*[" + self.no_comments_selector + "]]/li//text()")
@@ -73,13 +68,3 @@ class SetlistCrawler(AbstractCrawler):
             track_texts.extend(self.setlist_page_tree.xpath("//div[parent::*[" + tracklist_condition + " and @class='list']/div[contains(@class, 'list-track')]//text()"))
         # pprint(self.track_texts)
         return track_texts
-
-    def get_page_mod_time(self):
-        page_mod_time = self.tree.xpath("//li[@id='lastmod']/text()") #should be using PHP API to get the eexact
-        if len(page_mod_time) > 1:
-            page_mod_time = page_mod_time[1].strip()
-        elif  len(page_mod_time) == 1:
-            page_mod_time = page_mod_time[0]
-        else:
-            page_mod_time = "2010 Jan 1"
-        return page_mod_time
