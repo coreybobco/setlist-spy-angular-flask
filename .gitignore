@@ -5,6 +5,6 @@
 /.sass-cache
 /.idea
 /server/.idea
-/server/*.csv
+/server/csv/*.csv
 /server/db.json
 *.pyc

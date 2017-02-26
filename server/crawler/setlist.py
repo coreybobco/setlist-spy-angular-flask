@@ -1,9 +1,11 @@
-rom pprint import pprint
+from pprint import pprint
+import csv
+import os
 import psycopg2
 from abstract.crawler import AbstractCrawler
-from db import psql_db
+from db.psql_db import PsqlHandler
 from crawler.tracks import TracksParser
-from models import Setlist, Track_Setlist_Link
+# from models import Setlist, Track_Setlist_Link
 
 #The purpose of this class is to scrape data from a MixesDB setlist url page in order to generate a data
 #structure that can be used to seed or update the PostgresSQL database
@@ -13,18 +15,30 @@ class SetlistCrawler(AbstractCrawler):
         self.no_comments_selector = "not(contains(@class,'commenttextfield'))"
         return
 
-    def crawl(self):
-        conn, cursor = psql_db.connect()
-        cursor.execute("SELECT * FROM dj")
-        dj_rows = cursor.fetchmany(100)
+    def crawl(self, get_tracks=False):
+        self.reset_csv('setlist_import.csv')
+        p = PsqlHandler()
+        p.connect()
+        p.cursor.execute("SELECT * FROM dj")
+        dj_rows = p.cursor.fetchmany(100)
+        os.chdir("csv")
         while len(dj_rows):
-            for dj_row in dj_rows:
-                self.dj_search_keyphrase = dj_row[1].split("(")[0].strip()
-                setlist_urls = self.get_setlist_urls(dj_row[2])
-                for setlist_url in setlist_urls:
-                    track_texts = self.scrape_setlist_page_for_tracks(setlist_url)
-                    track_nodes = self.parse_tracks(track_texts)
-            dj_rows = cursor.fetchmany(100)
+            with open('setlist_import.csv', 'a', newline='') as f:
+                writer = csv.writer(f, delimiter='\t')
+                for dj_row in dj_rows:
+                    self.dj_search_keyphrase = dj_row[1].split("(")[0].strip()
+                    setlist_urls = self.get_setlist_urls(dj_row[2])
+                    for setlist_url in setlist_urls:
+                        self.setlist_page_tree = self.get_tree(setlist_url)
+                        if get_tracks:
+                            track_texts = self.scrape_setlist_page_for_tracks(setlist_url)
+                            track_nodes = self.parse_tracks(track_texts)
+                        writer.writerow([dj_row[0], setlist_url, self.get_page_mod_time()])
+                dj_rows = p.cursor.fetchmany(100)
+                print("fetched more dj rows")
+            f.close()
+        os.chdir("..")
+        print("Crawled setlists")
         self.log_time()
 
     def get_setlist_urls(self, dj_url):
@@ -37,7 +51,6 @@ class SetlistCrawler(AbstractCrawler):
         return scraped_setlist_urls
 
     def scrape_setlist_page_for_tracks(self, setlist_url):
-        self.setlist_page_tree = self.get_tree(setlist_url)
         headers_xpath = "//dl[parent::div[" + self.no_comments_selector + " and (child::ol or child::div)]]/dt/text()"
         headers_before_tracklist = self.setlist_page_tree.xpath(headers_xpath)
         #If there are headers before tracklists, evaluate whether or not they
@@ -66,5 +79,15 @@ class SetlistCrawler(AbstractCrawler):
         if not "'" in self.dj_search_keyphrase:
             track_texts = self.setlist_page_tree.xpath("//ol[parent::*[" + tracklist_condition + "]/li//text()")
             track_texts.extend(self.setlist_page_tree.xpath("//div[parent::*[" + tracklist_condition + " and @class='list']/div[contains(@class, 'list-track')]//text()"))
-        # pprint(self.track_texts)
-        return track_texts
+            return track_texts
+        else:
+            return list()
+
+    def get_page_mod_time(self):
+        page_mod_time = self.setlist_page_tree.xpath("//li[@id='lastmod']/text()")
+        if len(page_mod_time) > 1:
+            return page_mod_time[1].strip()
+        elif  len(page_mod_time) == 1:
+            return page_mod_time[0].strip()
+        else:
+            return "2008 Jan 1"

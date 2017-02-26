@@ -23,8 +23,16 @@ class Setlist(BaseExtModel):
     dj = ForeignKeyField(DJ)
     url = CharField()
     page_mod_time = DateTimeField()
-    multi_dj = BooleanField(default = False)
-    multi_version = BooleanField(default = False)
+    class Meta:
+        indexes = (
+            # create a unique on from/to/date
+            (('dj', 'url'), True),
+        )
+
+class Tmp_Setlist(BaseExtModel):
+    dj = ForeignKeyField(DJ)
+    url = CharField()
+    page_mod_time = DateTimeField()
 
 class Artist(BaseExtModel):
     name = CharField(unique=True)
