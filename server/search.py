@@ -19,35 +19,35 @@ class Search:
         return
 
     def get_dj_tracks(self):
-        sql = """SELECT DISTINCT artist.name as artist, track.title, label.name as label FROM track
-                 JOIN artist ON track.artist_id = artist.id
-                 LEFT JOIN label ON track.label_id = label.id
-                 WHERE track.id IN (SELECT track_id FROM track_setlist_link
-                 WHERE setlist_id IN (SELECT id from setlist WHERE dj_id =
-                 (SELECT id FROM dj WHERE name = %s)))
-                 ORDER BY artist.name;"""
+        sql = """SELECT DISTINCT setspy_api_artist.name, setspy_api_track.title FROM setspy_api_track
+                 JOIN setspy_api_artist ON setspy_api_track.artist_id = setspy_api_artist.id
+                 WHERE setspy_api_track.id IN (SELECT track_id FROM setspy_api_track_setlist_link
+                 WHERE setlist_id IN (SELECT id from setspy_api_setlist WHERE dj_id =
+                 (SELECT id FROM setspy_api_dj WHERE name = 'Helena Hauff')))
+                 ORDER BY setspy_api_artist.name;"""
         self.cur.execute(sql, (self.search_term,))
         self.results['dj_tracks'] = self.cur.fetchall();
         return
 
     def get_artist_tracks(self):
-        sql = """SELECT track.title as track, array_agg(DISTINCT setlist.url ORDER BY setlist.url) as setlist_urls FROM track
-                JOIN artist ON track.artist_id = artist.id
-                JOIN track_setlist_link on track_setlist_link.track_id = track.id
-                JOIN setlist on setlist.id = track_setlist_link.setlist_id
-                JOIN dj on dj.id = setlist.dj_id
-                WHERE artist.name = %s GROUP BY track ORDER BY track;"""
+        sql = """SELECT setspy_api_track.title as track, array_agg(DISTINCT setspy_api_setlist.title ORDER BY setspy_api_setlist.title) as setlist_urls FROM setspy_api_track
+                JOIN setspy_api_artist ON setspy_api_track.artist_id = setspy_api_artist.id
+                JOIN setspy_api_track_setlist_link on setspy_api_track_setlist_link.track_id = setspy_api_track.id
+                JOIN setspy_api_setlist on setspy_api_setlist.id = setspy_api_track_setlist_link.setlist_id
+                JOIN setspy_api_dj on setspy_api_dj.id = setspy_api_setlist.dj_id
+                WHERE setspy_api_artist.name = %s GROUP BY track ORDER BY track;"""
         self.cur.execute(sql, (self.search_input,))
         self.results['artist_tracks'] = self.cur.fetchall()
-        sql = """SELECT DISTINCT setlist.url, array_agg(DISTINCT dj.name ORDER BY dj.name) as djs FROM setlist
-                JOIN dj on dj.id = setlist.dj_id
-                JOIN track_setlist_link on track_setlist_link.setlist_id = setlist.id
-                JOIN track on track.id = track_setlist_link.track_id
-                JOIN artist ON track.artist_id = artist.id
-                WHERE artist.name = %s GROUP BY setlist.url;"""
+        #.title should be .url was originally
+        sql = """SELECT DISTINCT setspy_api_setlist.title, array_agg(DISTINCT setspy_api_dj.name ORDER BY setspy_api_dj.name) as djs FROM setspy_api_setlist
+                JOIN setspy_api_dj on setspy_api_dj.id = setspy_api_setlist.dj_id
+                JOIN setspy_api_track_setlist_link on setspy_api_track_setlist_link.setlist_id = setspy_api_setlist.id
+                JOIN setspy_api_track on setspy_api_track.id = setspy_api_track_setlist_link.track_id
+                JOIN setspy_api_artist ON setspy_api_track.artist_id = setspy_api_artist.id
+                WHERE setspy_api_artist.name = %s GROUP BY setspy_api_setlist.title;"""
         self.cur.execute(sql, (self.search_input,))
         setlist_data = self.cur.fetchall()
         for setlist_data in setlist_data:
-            url = setlist_data['url']
+            url = setlist_data['title'] #should be url
             self.results['djs_by_setlist'][url] = ", ".join(setlist_data['djs']) + " (" + url[25:29] + ")"
         return
