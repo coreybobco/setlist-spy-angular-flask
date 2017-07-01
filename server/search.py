@@ -23,7 +23,7 @@ class Search:
                  JOIN setspy_api_artist ON setspy_api_track.artist_id = setspy_api_artist.id
                  WHERE setspy_api_track.id IN (SELECT track_id FROM setspy_api_track_setlist_link
                  WHERE setlist_id IN (SELECT id from setspy_api_setlist WHERE dj_id =
-                 (SELECT id FROM setspy_api_dj WHERE name = 'Helena Hauff')))
+                 (SELECT id FROM setspy_api_dj WHERE name = %s)))
                  ORDER BY setspy_api_artist.name;"""
         self.cur.execute(sql, (self.search_term,))
         self.results['dj_tracks'] = self.cur.fetchall();
