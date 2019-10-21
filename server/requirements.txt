@@ -31,4 +31,4 @@ ssh-import-id==5.5
 ufw==0.35
 unattended-upgrades==0.1
 urllib3==1.13.1
-Werkzeug==0.11.11
+Werkzeug==0.15.3
